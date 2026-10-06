@@ -35,9 +35,9 @@ Requirements for initial release. Each maps directly to roadmap phases.
 
 ### Bio, Clients & Awards Showcase (SHOW)
 
-- [ ] **SHOW-01**: Bio / Story section narrates Gorden Koschel's 35-year journey from graphic designer to heureka GmbH CD/co-owner to *gravity*.
-- [ ] **SHOW-02**: Blue-chip client showcase (Porsche, Bosch, Telefónica, Hilti, etc.) renders with an interactive velocity marquee and responsive grid.
-- [ ] **SHOW-03**: Hall of Awards displays prestigious honours including Red Dot Grand Prix 2025, Red Dot Best of the Best, ADC 2023 & 2025, German Design Award Gold, and iF Design Award with interactive metadata.
+- [x] **SHOW-01**: Bio / Story section narrates Gorden Koschel's 35-year journey from graphic designer to heureka GmbH CD/co-owner to *gravity*.
+- [x] **SHOW-02**: Blue-chip client showcase (Porsche, Bosch, Telefónica, Hilti, etc.) renders with an interactive velocity marquee and responsive grid.
+- [x] **SHOW-03**: Hall of Awards displays prestigious honours including Red Dot Grand Prix 2025, Red Dot Best of the Best, ADC 2023 & 2025, German Design Award Gold, and iF Design Award with interactive metadata.
 
 ### Conversion, SEO & Polish (POLISH)
 

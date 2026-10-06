@@ -1,0 +1,779 @@
+---
+// src/components/sections/Bio.astro
+// Authentic 100% replica of gravity-design.de Bio, Client Roster & Awards Vault
+---
+
+<section class="om-bio" id="bio" aria-label="Bio, Clients und Awards">
+  <div class="om-bio-licht" aria-hidden="true"></div>
+  <div class="om-bio-grid">
+
+    <!-- Column 1: Sticky Bio/ Label -->
+    <div class="om-bio-halt om-bio-halt--label" style="grid-row: 1 / 4">
+      <h2 class="om-bio-label">Bio/</h2>
+    </div>
+
+    <!-- Slot 1: My Story -->
+    <div class="om-bio-halt" style="--i:0; grid-row: 1 / 4">
+      <h3 class="om-bio-key">My Story</h3>
+    </div>
+    <div class="om-bio-slot" style="--i:0; grid-row: 1">
+      <p class="om-bio-text">
+        ’72 geboren als „irgendwas mit kreativ“. Danach Mediengestalter. Diplom Grafik-Designer FH. Freelancer. Creative Director. Mitinhaber und Geschäftsführer der Agentur <span class="om-heureka">heureka</span> GmbH, die mehrfach im PAGE-Ranking unter den 50 kreativsten Agenturen Deutschlands aufgeführt wurde.<span class="om-bio-abs"></span>Nach 35 Jahren: Neustart mit <span class="om-marke om-accent">gravity</span> als Visual Strategist &amp; Creative Visualizer.
+      </p>
+    </div>
+
+    <!-- Slot 2: Clients -->
+    <div class="om-bio-halt" style="--i:1; grid-row: 2 / 4">
+      <h3 class="om-bio-key">Clients</h3>
+    </div>
+    <div class="om-bio-slot" style="--i:1; grid-row: 2">
+      <p class="om-bio-text">
+        Im Rahmen meiner Tätigkeit als Creative Director für die <span class="om-heureka">heureka</span> GmbH habe ich Projekte für folgende Kunden maßgeblich umgesetzt:<span class="om-bio-abs"></span>Bosch&nbsp;· Vorwerk&nbsp;· Telefónica&nbsp;· HOCHTIEF&nbsp;· Gewobag&nbsp;· HILTI&nbsp;· thyssenkrupp&nbsp;· MLP&nbsp;· Giesecke+Devrient&nbsp;· BYK-Chemie&nbsp;· BYK-Gardner&nbsp;· Sarstedt&nbsp;· Fraport&nbsp;· Porsche.
+      </p>
+    </div>
+
+    <!-- Slot 3: Awards -->
+    <div class="om-bio-halt" style="--i:2; grid-row: 3 / 4">
+      <h3 class="om-bio-key">Awards</h3>
+    </div>
+    <div class="om-bio-slot" style="--i:2; grid-row: 3">
+      <p class="om-bio-text">
+        Während meiner Tätigkeit als Creative Director für die <span class="om-heureka">heureka</span> GmbH hat die <span class="om-heureka">heureka</span> GmbH die folgenden Awards gewonnen:<span class="om-bio-abs"></span>ADC-Wettbewerb 2023 und 2025&nbsp;· German Brand Award 2023&nbsp;· German Design Award Gold 2023 und 2024&nbsp;· iF Design Award 2023&nbsp;· BCM Gold 2023&nbsp;· Deutscher Digital Award&nbsp;· DDC – Deutscher Designer Club&nbsp;· Deutscher PR-Preis&nbsp;· Public Private Award&nbsp;· diverse Red Dot Awards, unter anderem <a class="om-verweis" href="https://www.red-dot.org/de/project/telefonica-deutschland-annual-report-2018-40635" target="_blank" rel="noopener">„Best of the Best“<svg class="om-verweis-zeichen" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9 15 L15 9 M10.4 9 H15 V13.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> und in 2025 den <a class="om-verweis" href="https://www.youtube.com/shorts/nIYOURlW_8c" target="_blank" rel="noopener"><span class="om-unterstrich">Red Dot Grand Prix</span><svg class="om-verweis-zeichen" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9 15 L15 9 M10.4 9 H15 V13.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>.
+      </p>
+    </div>
+
+    <!-- Slot 4: Exhibition Photo & Quote -->
+    <div class="om-bio-bilder" style="grid-row: 4">
+      <img
+        class="om-bio-bild om-bio-bild--versetzt"
+        id="bioExhibitionImg"
+        src="/awards-ausstellung.jpg"
+        width="1400"
+        height="1866"
+        loading="lazy"
+        decoding="async"
+        alt="Die ausgezeichneten Arbeiten in der Red-Dot-Ausstellung"
+      />
+
+      <blockquote class="om-bio-zitat reveal">
+        <p class="om-bio-zitat-satz">
+          „Möglich ist inzwischen fast alles.<br />Interessant wird es bei der Auswahl.“
+        </p>
+        <cite class="om-bio-zitat-name">Gorden Koschel</cite>
+      </blockquote>
+    </div>
+
+    <!-- Invitation transition -->
+    <p class="om-bio-einladung reveal" id="bioEinladung">Lust auf ein gemeinsames Projekt?</p>
+
+  </div>
+</section>
+
+<style>
+  .om-marke,
+  .om-heureka {
+    font-weight: 700;
+  }
+
+  .om-accent {
+    color: var(--accent);
+  }
+
+  .om-bio {
+    position: relative;
+    z-index: 4;
+    overflow: clip;
+    --bio-kante: 100%;
+    background-color: var(--bg);
+    color: var(--fg);
+    --bio-pad-x: 56px;
+    --bio-pad-oben: clamp(96px, 14vh, 190px);
+    padding: var(--bio-pad-oben) var(--bio-pad-x) clamp(80px, 12vh, 160px);
+    --bio-top: max(288px, 16vh);
+    --bio-key: clamp(34px, 5.2vw, 88px);
+    --bio-copy: clamp(20px, min(2.8vw, 4vh), 44px);
+    --bio-step: calc(var(--bio-key) * 1.12);
+    --bio-gasse: clamp(40px, 5.3vw, 130px);
+  }
+
+  .om-bio-licht {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    transform: translateZ(0);
+    height: 100vh;
+    margin: calc(-1 * var(--bio-pad-oben)) calc(-1 * var(--bio-pad-x)) calc(var(--bio-pad-oben) - 100vh);
+    background: var(--bg) var(--tiefe);
+    pointer-events: none;
+  }
+
+  .om-bio-grid {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    grid-template-rows: repeat(3, auto) auto;
+    column-gap: 0;
+    row-gap: clamp(60px, 10vh, 140px);
+  }
+
+  .om-bio-label,
+  .om-bio-key {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    line-height: 1;
+    white-space: nowrap;
+    position: sticky;
+  }
+
+  .om-bio-halt {
+    grid-column: 2;
+  }
+
+  .om-bio-halt--label {
+    grid-column: 1;
+  }
+
+  .om-bio-label {
+    top: var(--bio-top);
+    font-size: var(--bio-key);
+  }
+
+  .om-bio-key {
+    top: calc(var(--bio-top) + var(--i) * var(--bio-step));
+    font-size: var(--bio-key);
+    margin: 0 0 calc((2 - var(--i)) * var(--bio-step)) 0.18em;
+    color: var(--fg);
+    transition: color 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .om-bio-key.is-current {
+    color: var(--accent);
+  }
+
+  .om-bio-abs {
+    display: block;
+    height: 0.62em;
+  }
+
+  .om-bio-slot {
+    grid-column: 3;
+    min-height: var(--bio-lesen, 130vh);
+  }
+
+  .om-bio-text {
+    position: sticky;
+    top: calc(var(--bio-top) + var(--i) * var(--bio-step));
+    margin: 0 0 0 var(--bio-gasse);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    font-size: var(--bio-copy);
+    line-height: 1.24;
+  }
+
+  :global(.om-bio-text .z) {
+    transition: color 0.38s ease;
+  }
+
+  :global(.om-bio-text .z.is-hot) {
+    color: var(--accent);
+  }
+
+  .om-verweis {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .om-verweis-zeichen {
+    position: static;
+    inset: auto;
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.3em;
+    vertical-align: -0.1em;
+    color: var(--accent);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .om-verweis:hover .om-verweis-zeichen,
+  .om-verweis:focus-visible .om-verweis-zeichen {
+    opacity: 0.65;
+    transform: translate(0.1em, -0.1em);
+  }
+
+  .om-unterstrich {
+    position: relative;
+    display: inline-block;
+  }
+
+  .om-unterstrich::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.06em;
+    height: max(2px, 0.055em);
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  :global(.om-unterstrich.is-gezogen::after) {
+    transform: scaleX(1);
+  }
+
+  .om-bio-bilder {
+    grid-column: 3;
+    align-self: start;
+    display: grid;
+    grid-template-columns: 1fr 1.45fr;
+    --bild-luecke: clamp(14px, 1.6vw, 28px);
+    gap: var(--bild-luecke);
+    align-items: start;
+    margin: clamp(28px, 5vh, 72px) 0 0 var(--bio-gasse);
+  }
+
+  .om-bio-bild {
+    display: block;
+    width: 100%;
+    height: auto;
+    --tempo: 0.05;
+    transform: translateY(calc(var(--bild-weg, 0px) * var(--tempo)));
+    will-change: transform;
+  }
+
+  .om-bio-bild--versetzt {
+    --tempo: -0.08;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .om-bio-zitat {
+    grid-column: 1;
+    grid-row: 1;
+    margin: clamp(28px, 4.5vh, 64px) 0 0;
+    color: var(--accent);
+  }
+
+  .om-bio-zitat-satz {
+    margin: 0;
+    font-size: var(--bio-copy);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+
+  .om-bio-zitat-name {
+    display: block;
+    font-style: normal;
+    margin-top: 1.1em;
+    font-size: clamp(11px, 0.78vw, 14px);
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--fg) 52%, var(--bg));
+    font-weight: 700;
+  }
+
+  .om-bio-einladung {
+    grid-column: 1 / -1;
+    margin: clamp(80px, 11vh, 140px) 0 0;
+    text-align: center;
+    text-wrap: balance;
+    font-size: min(4.8vh, 7.5vw);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    color: var(--fg);
+  }
+
+  .om-bio-einladung.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  :global(.om-bio-einladung.is-in .mf-hoch) {
+    transform: none;
+  }
+
+  :global(.mf-maske) {
+    display: inline-block;
+    overflow: clip;
+    vertical-align: top;
+  }
+
+  :global(.mf-hoch) {
+    display: inline-block;
+    transform: translateY(115%);
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  /* Responsive breakpoints */
+  @media (min-width: 1181px) and (pointer: coarse) {
+    .om-bio {
+      --bio-copy: clamp(18px, min(2.3vw, 3.3vh), 34px);
+    }
+  }
+
+  @media (max-width: 1180px) {
+    .om-bio {
+      --bio-pad-x: 24px;
+      --bio-key: clamp(26px, 4.6vw, 56px);
+      --bio-copy: clamp(18px, min(2.9vw, 3.4vh), 32px);
+      --bio-gasse: clamp(20px, 3.2vw, 60px);
+    }
+
+    .om-bio-bilder {
+      grid-column: 1 / -1;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .om-bio {
+      --bio-key: clamp(36px, 11vw, 64px);
+      --bio-copy: clamp(18px, 5.1vw, 30px);
+      --bio-pad-oben: max(clamp(48px, 8vh, 90px), var(--logo-unten, 150px));
+      --bio-top: calc(var(--bio-pad-oben) + var(--bio-key) * 2.2);
+    }
+
+    .om-bio-grid {
+      display: block;
+    }
+
+    .om-bio-halt--label {
+      position: sticky;
+      top: var(--bio-pad-oben);
+      z-index: 3;
+    }
+
+    .om-bio-label {
+      position: static;
+      margin-bottom: clamp(80px, 14vh, 160px);
+    }
+
+    :global(.om-bio-auftakt) {
+      position: relative;
+    }
+
+    :global(.om-bio-block) {
+      position: sticky;
+      top: var(--bio-top);
+      z-index: 1;
+    }
+
+    .om-bio-key {
+      position: static;
+      margin: 0 0 0.32em;
+    }
+
+    .om-bio-slot {
+      min-height: var(--bio-lesen, 130vh);
+    }
+
+    :global(.om-bio-slot + .om-bio-slot) {
+      margin-top: 38vh;
+    }
+
+    .om-bio-text {
+      position: static;
+      margin: 0;
+    }
+
+    .om-bio-licht {
+      display: none;
+    }
+
+    .om-bio-halt--label::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: calc(-1 * var(--bio-pad-x));
+      right: calc(-1 * var(--bio-pad-x));
+      top: calc(-1 * var(--bio-pad-oben));
+      bottom: calc(-1.2 * var(--bio-key));
+      background: linear-gradient(var(--bg) 0%, var(--bg) calc(var(--bio-pad-oben) + var(--bio-key)), transparent 100%);
+      pointer-events: none;
+    }
+
+    .om-bio-bilder {
+      grid-template-columns: 1fr;
+      margin-left: 0;
+      margin-top: clamp(64px, 11vh, 130px);
+    }
+
+    .om-bio-bild--versetzt {
+      margin-top: 0;
+      --tempo: 0.05;
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .om-bio-zitat {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: clamp(36px, 6vh, 64px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .om-verweis-zeichen {
+      transition: none;
+    }
+    .om-bio-bild {
+      transform: none !important;
+    }
+    :global(.mf-hoch) {
+      transform: none !important;
+      transition: none !important;
+    }
+    .om-unterstrich::after {
+      transition: none;
+      transform: scaleX(1);
+    }
+  }
+</style>
+
+<script>
+  // Client interactions and animation scripts for Bio section
+  document.addEventListener('DOMContentLoaded', () => {
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1. Character Scrub Wave (FENSTER = 14)
+    const slots = Array.from(document.querySelectorAll<HTMLElement>('.om-bio-slot'));
+    if (slots.length && !isReduced) {
+      const FENSTER = 14;
+      let einspaltig = false;
+
+      function zerlegen(el: Node): HTMLElement[] {
+        const liste: HTMLElement[] = [];
+        (function lauf(knoten: Node) {
+          const kinder = Array.from(knoten.childNodes);
+          for (let n = 0; n < kinder.length; n++) {
+            const k = kinder[n];
+            if (k.nodeType === Node.TEXT_NODE) {
+              const roh = k.nodeValue || '';
+              const frag = document.createDocumentFragment();
+              for (let i = 0; i < roh.length; i++) {
+                const c = roh.charAt(i);
+                if (c === ' ' || c === '\u00A0' || c === '\n' || c === '\t') {
+                  frag.appendChild(document.createTextNode(c));
+                  continue;
+                }
+                const sp = document.createElement('span');
+                sp.className = 'z';
+                sp.textContent = c;
+                frag.appendChild(sp);
+                liste.push(sp);
+              }
+              knoten.replaceChild(frag, k);
+            } else if (k.nodeType === Node.ELEMENT_NODE) {
+              lauf(k);
+            }
+          }
+        })(el);
+        return liste;
+      }
+
+      interface Posten {
+        slot: HTMLElement;
+        text: HTMLElement | null;
+        z: HTMLElement[];
+        unter: HTMLElement | null;
+        unterAb: number;
+        gezogen: boolean;
+        klebe: number;
+        hoehe: number;
+        dok: number;
+        schacht: number;
+        lo: number;
+        hi: number;
+      }
+
+      const posten: Posten[] = slots
+        .map((slot) => {
+          const text = slot.querySelector<HTMLElement>('.om-bio-text');
+          const z = text ? zerlegen(text) : [];
+          const unter = text ? text.querySelector<HTMLElement>('.om-unterstrich') : null;
+          let abIndex = -1;
+          if (unter) {
+            const erstes = unter.querySelector<HTMLElement>('span.z');
+            abIndex = erstes ? z.indexOf(erstes) : -1;
+          }
+          return {
+            slot,
+            text,
+            z,
+            unter,
+            unterAb: abIndex,
+            gezogen: false,
+            klebe: 0,
+            hoehe: 0,
+            dok: 0,
+            schacht: 0,
+            lo: 0,
+            hi: -1,
+          };
+        })
+        .filter((p) => p.z.length > 0);
+
+      function strichSetzen(p: Posten, an: boolean) {
+        if (!p.unter || p.gezogen === an) return;
+        p.gezogen = an;
+        p.unter.classList.toggle('is-gezogen', an);
+      }
+
+      function dokTop(el: HTMLElement | null): number {
+        let y = 0;
+        for (let n: HTMLElement | null = el; n; n = n.offsetParent as HTMLElement) {
+          y += n.offsetTop;
+        }
+        return y;
+      }
+
+      function klebeElement(text: HTMLElement | null): HTMLElement | null {
+        if (!text) return null;
+        if (getComputedStyle(text).position === 'sticky') return text;
+        const el = text.parentElement;
+        if (el && getComputedStyle(el).position === 'sticky') return el;
+        return null;
+      }
+
+      function messen() {
+        if (!posten.length) return;
+        einspaltig = !klebeElement(posten[0].text);
+        posten.forEach((p) => {
+          const ke = klebeElement(p.text) || p.text;
+          if (!ke) return;
+          p.klebe = parseFloat(getComputedStyle(ke).top) || 0;
+          p.hoehe = ke.getBoundingClientRect().height;
+          p.dok = dokTop(p.slot);
+          p.schacht = p.slot.offsetHeight;
+        });
+      }
+
+      function fenster(p: Posten, lo: number, hi: number) {
+        lo = lo < 0 ? 0 : lo;
+        hi = hi > p.z.length - 1 ? p.z.length - 1 : hi;
+        if (lo > hi) {
+          lo = 0;
+          hi = -1;
+        }
+        if (lo === p.lo && hi === p.hi) return;
+        for (let i = p.lo; i <= p.hi; i++) {
+          if (p.z[i] && (i < lo || i > hi)) p.z[i].classList.remove('is-hot');
+        }
+        for (let i = lo; i <= hi; i++) {
+          if (p.z[i] && (i < p.lo || i > p.hi)) p.z[i].classList.add('is-hot');
+        }
+        p.lo = lo;
+        p.hi = hi;
+      }
+
+      function rechnen() {
+        const y = window.pageYOffset || document.documentElement.scrollTop;
+        for (let k = 0; k < posten.length; k++) {
+          const p = posten[k];
+          const oben = p.dok - y;
+          if (einspaltig) {
+            fenster(p, 0, -1);
+            strichSetzen(p, oben < window.innerHeight * 0.55);
+            continue;
+          }
+          const weg = p.schacht - p.hoehe;
+          let t = weg > 0 ? (p.klebe - oben) / weg : 0;
+          t = t < 0 ? 0 : t > 1 ? 1 : t;
+
+          const front = Math.floor(t * (p.z.length + 2 * FENSTER)) - FENSTER;
+          fenster(p, front - FENSTER + 1, front);
+          strichSetzen(p, front >= p.unterAb);
+        }
+      }
+
+      let geplant = false;
+      function anstossen() {
+        if (geplant) return;
+        geplant = true;
+        requestAnimationFrame(() => {
+          geplant = false;
+          rechnen();
+        });
+      }
+
+      messen();
+      rechnen();
+      window.addEventListener('scroll', anstossen, { passive: true });
+      window.addEventListener('resize', () => {
+        messen();
+        rechnen();
+      });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          messen();
+          rechnen();
+        });
+      }
+    }
+
+    // 2. Sticky Key Highlight via IntersectionObserver
+    const keys = Array.from(document.querySelectorAll<HTMLElement>('.om-bio-key'));
+    if (keys.length && 'IntersectionObserver' in window) {
+      const drin = keys.map(() => false);
+
+      function aktualisieren() {
+        let aktiv = -1;
+        for (let i = 0; i < keys.length; i++) {
+          if (drin[i]) aktiv = i;
+        }
+        for (let j = 0; j < keys.length; j++) {
+          keys[j].classList.toggle('is-current', j === aktiv);
+        }
+      }
+
+      function melden(entries: IntersectionObserverEntry[]) {
+        entries.forEach((e) => {
+          const idx = keys.indexOf(e.target as HTMLElement);
+          if (idx !== -1) drin[idx] = e.isIntersecting;
+        });
+        aktualisieren();
+      }
+
+      let beobachter: IntersectionObserver[] = [];
+      function bauen() {
+        beobachter.forEach((o) => o.disconnect());
+        beobachter = [];
+        const vh = window.innerHeight;
+        keys.forEach((k) => {
+          let park = parseFloat(getComputedStyle(k).top);
+          if (isNaN(park)) {
+            park = parseFloat(getComputedStyle(k.parentElement!).top) || 0;
+          }
+          const LUFT = 6;
+          const linie = Math.min(vh * 0.9, park + LUFT);
+          const unten = Math.max(0, Math.round(vh - linie));
+          const o = new IntersectionObserver(melden, {
+            rootMargin: `0px 0px -${unten}px 0px`,
+            threshold: 0,
+          });
+          o.observe(k);
+          beobachter.push(o);
+        });
+      }
+
+      bauen();
+      window.addEventListener('resize', bauen);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(bauen);
+      }
+    }
+
+    // 3. Exhibition Image Parallax
+    const block = document.querySelector<HTMLElement>('.om-bio-bilder');
+    if (block && !isReduced) {
+      let geplantParallax = false;
+      function messenParallax() {
+        const r = block!.getBoundingClientRect();
+        block!.style.setProperty(
+          '--bild-weg',
+          `${(window.innerHeight / 2 - (r.top + r.height / 2)).toFixed(1)}px`
+        );
+      }
+      function anstossenParallax() {
+        if (geplantParallax) return;
+        geplantParallax = true;
+        requestAnimationFrame(() => {
+          geplantParallax = false;
+          messenParallax();
+        });
+      }
+      messenParallax();
+      window.addEventListener('scroll', anstossenParallax, { passive: true });
+      window.addEventListener('resize', anstossenParallax);
+    }
+
+    // 4. Invitation Word Splitter & Reveal
+    const einladung = document.getElementById('bioEinladung');
+    if (einladung) {
+      const worte = (einladung.textContent || '').trim().split(/\s+/);
+      einladung.textContent = '';
+      worte.forEach((wort, i) => {
+        const maske = document.createElement('span');
+        maske.className = 'mf-maske';
+        const innen = document.createElement('span');
+        innen.className = 'mf-hoch';
+        innen.textContent = wort;
+        innen.style.transitionDelay = `${(i * 0.06).toFixed(3)}s`;
+        maske.appendChild(innen);
+        einladung.appendChild(maske);
+        if (i < worte.length - 1) einladung.appendChild(document.createTextNode(' '));
+      });
+    }
+
+    const els = document.querySelectorAll<HTMLElement>('.reveal');
+    if (els.length && 'IntersectionObserver' in window) {
+      function zeige(el: HTMLElement) {
+        el.classList.add('is-in');
+        ioZeitpunkt.unobserve(el);
+        ioSicher.unobserve(el);
+      }
+      const ioZeitpunkt = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) zeige(e.target as HTMLElement);
+          });
+        },
+        { threshold: 0, rootMargin: '0px 0px -20% 0px' }
+      );
+      const ioSicher = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) zeige(e.target as HTMLElement);
+          });
+        },
+        { threshold: 0.85 }
+      );
+      els.forEach((el) => {
+        ioZeitpunkt.observe(el);
+        ioSicher.observe(el);
+      });
+    }
+
+    // 5. Mobile Dynamic DOM Restructuring (<=720px)
+    if (window.innerWidth <= 720) {
+      const halter = Array.from(document.querySelectorAll<HTMLElement>('.om-bio-halt'));
+      const schaechte: HTMLElement[] = [];
+      halter.forEach((halt) => {
+        if (halt.classList.contains('om-bio-halt--label')) return;
+        const schacht = halt.nextElementSibling as HTMLElement | null;
+        if (!schacht || !schacht.classList.contains('om-bio-slot')) return;
+        const b = document.createElement('div');
+        b.className = 'om-bio-block';
+        while (schacht.firstChild) b.appendChild(schacht.firstChild);
+        if (halt.firstElementChild) b.insertBefore(halt.firstElementChild, b.firstChild);
+        halt.remove();
+        schacht.appendChild(b);
+        schaechte.push(schacht);
+      });
+
+      const label = document.querySelector<HTMLElement>('.om-bio-halt--label');
+      if (label && schaechte.length) {
+        const auftakt = document.createElement('div');
+        auftakt.className = 'om-bio-auftakt';
+        label.parentNode?.insertBefore(auftakt, label);
+
+        const schleier = document.createElement('div');
+        schleier.className = 'om-bio-schleier';
+        schleier.setAttribute('aria-hidden', 'true');
+        auftakt.appendChild(schleier);
+        auftakt.appendChild(label);
+        schaechte.forEach((s) => auftakt.appendChild(s));
+      }
+    }
+  });
+</script>

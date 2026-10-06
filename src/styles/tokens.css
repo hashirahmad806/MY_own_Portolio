@@ -16,6 +16,7 @@
   --accent-glow: rgba(180, 129, 248, 0.35);
 
   /* Overlays & Shadows */
+  --tiefe: url("/tiefe.png") 0 0 / 100% 100% no-repeat;
   --overlay-1: rgba(16, 16, 16, 0.72);
   --overlay-2: rgba(16, 16, 16, 0.38);
   --overlay-3: rgba(16, 16, 16, 0.12);

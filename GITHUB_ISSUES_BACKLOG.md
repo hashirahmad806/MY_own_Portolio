@@ -4,20 +4,21 @@ This file catalogs all remaining implementation tasks and potential enhancements
 
 ---
 
-### Issue 1: Implement Phase 5 — Bio, Client Marquee & Awards Vault (`SHOW-01`, `SHOW-02`, `SHOW-03`)
-**Labels:** `enhancement`, `phase-5`, `priority: high`
+### Issue 1: [COMPLETED] Phase 5 — Bio, Client Marquee & Awards Vault (`SHOW-01`, `SHOW-02`, `SHOW-03`)
+**Labels:** `completed`, `phase-5`
 
 #### Description
 Build the Bio and Credentials showcase to narrate Gorden Koschel's 35-year creative caliber and blue-chip track record.
 
 #### Tasks
-- [ ] Create `src/components/sections/Bio.astro`:
+- [x] Create `src/components/sections/Bio.astro`:
   - **My Story**: '72 geboren als „irgendwas mit kreativ“... Mediengestalter, Diplom Grafik-Designer FH, Creative Director und Mitinhaber heureka GmbH (Top 50 PAGE-Agenturen).
-  - **Client Velocity Marquee**: Continuous smooth horizontal ticker featuring Bosch, Vorwerk, Telefónica, HOCHTIEF, Gewobag, Hilti, thyssenkrupp, MLP, Giesecke+Devrient, BYK-Chemie, Fraport, Porsche.
-  - **Hall of Awards**: Interactive award grid and badges (Red Dot Grand Prix 2025, Best of the Best, ADC 2023 & 2025, German Design Award Gold, iF Design Award).
-  - **Exhibition Image**: Mount `awards-ausstellung.jpg` with glass border and zoom hover.
+  - **Client Roster**: Authentic client list with character scrub wave illumination (`.z.is-hot`) featuring Bosch, Vorwerk, Telefónica, HOCHTIEF, Gewobag, Hilti, thyssenkrupp, MLP, Giesecke+Devrient, BYK-Chemie, Fraport, Porsche.
+  - **Hall of Awards**: Interactive award vault with circular SVG arrow links (`.om-verweis`) for Red Dot Best of the Best and Red Dot Grand Prix 2025 (with animated underline `.om-unterstrich`).
+  - **Exhibition Image**: Mount `awards-ausstellung.jpg` with `--tempo: -0.08` parallax translation.
   - **Quote Callout**: „Möglich ist inzwischen fast alles. Interessant wird es bei der Auswahl.“ — Gorden Koschel.
-- [ ] Connect with ScrollTrigger for fluid reveal animations.
+  - **Invitation Transition**: Masked word slide-up transition (`#bioEinladung`): „Lust auf ein gemeinsames Projekt?“.
+- [x] Connect with ScrollTrigger, IntersectionObserver, and mobile dynamic DOM consolidation (<=720px).
 
 ---
 
