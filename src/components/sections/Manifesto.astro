@@ -2,14 +2,18 @@
 /**
  * Manifesto.astro
  *
- * Authentic Manifesto Section from gravity-design.de:
+ * Authentic Manifesto & 3D Orbit Universe from gravity-design.de:
  * - Organic SVG Bold Curve Transition (#boldCurve, #boldCurvePath) with spring bounce
- * - Pinned #boldScroll with sticky #boldSection (circular clip-path reveal)
+ * - Interleaved 3D Orbit Universe (#orbitBack at z:0, #boldSection at z:1, #orbitFront at z:2)
+ * - Pinned #boldScroll with sticky #boldSection (circular clip-path reveal revealing back cards)
+ * - Front cards float directly over the lilac editorial manifesto typography in true 3D perspective
  * - Revolving satellite orbital ring (#mfRing) with magnetic cursor attraction
  * - Categorical label "Manifest"
  * - Staggered masked editorial typography (.om-manifesto) with 3D perspective zoom
  * - Strike-through animation on "Agentur" and underline on "bold"
  * - "Drag to orbit" teaser hint
+ * - Full authentic 3D Orbit Universe Engine with inertia, drag physics, project cards, and linear gallery
+ * - Horizontal filmstrip (#streifen) for responsive layouts
  */
 ---
 
@@ -18,6 +22,49 @@
   <path id="boldCurvePath" d="M0,0 Q500,-140 1000,0 L1000,160 L0,160 Z" fill="var(--accent)"></path>
 </svg>
 
+<!-- 3D Orbit Dual Layers (Interleaved with Manifesto) -->
+<!-- Back 3D Orbit Layer: Renders behind boldSection (z-index: 0) -->
+<div class="orbit-layer" id="orbitBack" aria-hidden="true">
+  <div class="orbit-stage">
+    <div class="orbit-world" id="orbitWorldBack"></div>
+  </div>
+</div>
+
+<!-- Front 3D Orbit Layer: Renders in front of boldSection (z-index: 2) -->
+<div class="orbit-layer" id="orbitFront" aria-hidden="true">
+  <div class="orbit-stage">
+    <div class="orbit-world" id="orbitWorldFront"></div>
+  </div>
+</div>
+
+<!-- Floating Active Card Caption -->
+<div class="om-karte-bu om-bu" id="karteBu" aria-hidden="true"></div>
+<div class="om-karte-aufl" id="karteAufl" aria-hidden="true"></div>
+<div class="om-film-tasten-fest" id="filmTasten"></div>
+
+<!-- View Mode Switcher Button (3D Orbit <-> Linear Gallery) -->
+<button
+  class="om-galerie-schalter"
+  id="galerieSchalter"
+  type="button"
+  aria-pressed="false"
+  aria-label="Galerieansicht umschalten"
+  data-cursor-hover
+>
+  <!-- Icon: Linear Row view -->
+  <svg class="zeichen-reihe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 10V14M18 10V14M2 8.2L2 15.8C2 16.9201 2 17.4802 2.21799 17.908C2.40973 18.2843 2.71569 18.5903 3.09202 18.782C3.51984 19 4.07989 19 5.2 19L18.8 19C19.9201 19 20.4802 19 20.908 18.782C21.2843 18.5903 21.5903 18.2843 21.782 17.908C22 17.4802 22 16.9201 22 15.8V8.2C22 7.0799 22 6.51984 21.782 6.09202C21.5903 5.7157 21.2843 5.40974 20.908 5.21799C20.4802 5 19.9201 5 18.8 5L5.2 5C4.0799 5 3.51984 5 3.09202 5.21799C2.7157 5.40973 2.40973 5.71569 2.21799 6.09202C2 6.51984 2 7.07989 2 8.2ZM14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z"></path>
+  </svg>
+  <!-- Icon: 3D Orbit ring -->
+  <svg class="zeichen-orbit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M17.1153 15.3582C16.8446 15.6642 16.5606 15.9665 16.2635 16.2635C11.9678 20.5593 6.58585 22.1422 4.2427 19.7991C2.6363 18.1926 2.8752 15.158 4.56847 12.0242M6.88967 8.72526C7.17138 8.40495 7.46772 8.08875 7.77824 7.77824C12.074 3.48247 17.4559 1.89956 19.7991 4.2427C21.4066 5.85021 21.1662 8.88795 19.4698 12.024M16.2635 7.77824C20.5593 12.074 22.1422 17.4559 19.7991 19.7991C17.4559 22.1422 12.074 20.5593 7.77824 16.2635C3.48247 11.9678 1.89956 6.58585 4.2427 4.2427C6.58585 1.89956 11.9678 3.48247 16.2635 7.77824ZM13.0001 12C13.0001 12.5523 12.5523 13 12.0001 13C11.4478 13 11.0001 12.5523 11.0001 12C11.0001 11.4477 11.4478 11 12.0001 11C12.5523 11 13.0001 11.4477 13.0001 12Z"></path>
+  </svg>
+</button>
+
+<!-- Alternative Linear Gallery View -->
+<div class="om-galerie" id="galerie" aria-hidden="true"></div>
+
+<!-- Pinned Manifesto Section -->
 <div class="om-bold-scroll" id="boldScroll">
   <section class="om-bold" id="boldSection">
     <!-- Orbital Ring & Revolving Satellite Dot with Magnetic Cursor Physics -->
@@ -81,7 +128,11 @@
   </section>
 </div>
 
+<!-- Horizontal Filmstrip for Mobile / Overflow Layouts -->
+<div class="om-streifen" id="streifen" aria-label="Arbeiten" data-lenis-prevent=""></div>
+
 <style>
+  /* ── Bold Transition Curve ── */
   .om-bold-curve {
     position: relative;
     z-index: 3;
@@ -94,6 +145,450 @@
     pointer-events: none;
   }
 
+  /* ── 3D Orbit Layer System ── */
+  :global(.orbit-layer) {
+    position: fixed;
+    inset: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  :global(#orbitBack) {
+    z-index: 0;
+    background: var(--bg);
+    pointer-events: none;
+  }
+
+  :global(#orbitFront) {
+    z-index: 2;
+    pointer-events: auto;
+    cursor: grab;
+  }
+
+  :global(#orbitFront.is-hover),
+  :global(#orbitFront.is-schalter) {
+    cursor: pointer;
+  }
+
+  :global(#orbitFront.is-dragging) {
+    cursor: grabbing;
+  }
+
+  :global(body.is-kontakt-nah),
+  :global(body.is-kontakt-nah #orbitFront) {
+    cursor: pointer;
+  }
+
+  :global(.orbit-stage) {
+    position: absolute;
+    inset: 0px;
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.orbit-world) {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    transform-style: preserve-3d;
+  }
+
+  :global(.orbit-card) {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 14px 40px;
+    will-change: transform, filter;
+  }
+
+  :global(.orbit-card.is-scharf) {
+    will-change: auto;
+  }
+
+  :global(.orbit-shade) {
+    position: absolute;
+    inset: 0px;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  :global(.orbit-card img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+
+  :global(.orbit-card.is-heureka::after),
+  :global(.om-bild-rahmen.is-heureka::after),
+  :global(.om-karte-aufl.is-heureka::after) {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 3%;
+    bottom: 2.8%;
+    width: 11%;
+    aspect-ratio: 428.765 / 85.17;
+    background-color: var(--aufl-farbe, var(--fg));
+    mask: url("/heureka-logo-white.svg") left bottom / contain no-repeat;
+    -webkit-mask: url("/heureka-logo-white.svg") left bottom / contain no-repeat;
+    pointer-events: none;
+    transition: background-color 0.8s;
+  }
+
+  :global(.orbit-card.is-aufl-dunkel::after),
+  :global(.om-bild-rahmen.is-aufl-dunkel::after),
+  :global(.om-karte-aufl.is-aufl-dunkel::after) {
+    --aufl-farbe: var(--bg);
+  }
+
+  :global(.orbit-card::before),
+  :global(.om-bild-rahmen::before),
+  :global(.om-karte-aufl::before) {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    right: 3%;
+    bottom: 2.8%;
+    width: 5.8%;
+    aspect-ratio: 1 / 1;
+    background: url("/ai-label-white.svg") right bottom / contain no-repeat;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s;
+  }
+
+  :global(.orbit-card.is-ki::before),
+  :global(.om-bild-rahmen.is-ki::before),
+  :global(.om-karte-aufl.is-ki::before) {
+    opacity: 1;
+  }
+
+  :global(.orbit-card::after) { width: 15%; }
+  :global(.orbit-card.is-ki::before) { width: 7.5%; }
+
+  :global(.om-karte-bu) {
+    position: fixed;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    color: #F2F0EC;
+    max-width: min(46ch, 92vw);
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  :global(.om-karte-bu.is-da) { opacity: 1; }
+  :global(.om-karte-bu b) { display: block; font-size: 15px; margin-bottom: 3px; }
+  :global(.om-bu-zeile) { display: block; font-size: 12px; opacity: 0.75; }
+  :global(.om-bu-credit) { display: block; font-size: 11px; opacity: 0.55; margin-top: 2px; }
+
+  :global(.om-karte-aufl) {
+    position: fixed;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :global(.om-film-tasten-fest) {
+    position: fixed;
+    z-index: 4;
+    top: 0px;
+    left: 0px;
+  }
+
+  :global(.om-karte-aufl.is-da) { opacity: 1; }
+  :global(.om-karte-aufl::after),
+  :global(.om-karte-aufl::before) {
+    transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s;
+  }
+  :global(.om-karte-aufl::after) { width: 15%; }
+  :global(.om-karte-aufl.is-ki::before) { width: 7.5%; }
+  :global(.om-karte-aufl.is-klein::after) { width: 11%; }
+  :global(.om-karte-aufl.is-klein.is-ki::before) { width: 5.8%; }
+  :global(.orbit-card.is-ohne-aufl::after),
+  :global(.orbit-card.is-ohne-aufl::before) { display: none; }
+
+  /* ── Switcher Button ── */
+  :global(.om-galerie-schalter) {
+    position: fixed;
+    left: 50%;
+    top: calc(50% + clamp(138px, 13vh, 170px));
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 38px;
+    height: 38px;
+    padding: 0px;
+    border: 2px solid color-mix(in srgb, rgb(242, 240, 236) 52%, transparent 48%);
+    border-radius: 50%;
+    background: rgba(16, 16, 16, 0.6);
+    color: rgb(242, 240, 236);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    transition: opacity 0.45s, border-color 0.3s, background 0.3s;
+  }
+
+  :global(body.is-orbit-bereit .om-galerie-schalter) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  :global(.om-galerie-schalter:hover),
+  :global(.om-galerie-schalter.is-drauf) {
+    border-color: rgb(242, 240, 236);
+    background: rgba(180, 129, 248, 0.25);
+  }
+
+  :global(.om-galerie-schalter:focus-visible) {
+    outline: rgb(242, 240, 236) solid 2px;
+    outline-offset: 3px;
+  }
+
+  :global(.om-galerie-schalter svg) {
+    position: static;
+    inset: auto;
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  :global(.om-galerie-schalter .zeichen-orbit) {
+    display: none;
+  }
+
+  :global(body.is-galerie .om-galerie-schalter .zeichen-orbit) {
+    display: block;
+  }
+
+  :global(body.is-galerie .om-galerie-schalter .zeichen-reihe) {
+    display: none;
+  }
+
+  :global(body.is-galerie .om-galerie-schalter) {
+    position: fixed;
+    bottom: auto;
+    top: max(20px, min(clamp(56px, 9vh, 96px), 50% - 46px - min(31vw, 31vh)));
+    z-index: 5;
+    width: 36px;
+    height: 36px;
+    pointer-events: auto;
+  }
+
+  /* ── Linear Gallery Mode ── */
+  :global(.om-galerie) {
+    position: fixed;
+    inset: 0px;
+    z-index: 2;
+    overflow: hidden;
+    visibility: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+  }
+
+  :global(.om-galerie.is-zug) { cursor: grabbing; }
+
+  :global(.om-galerie .om-bild-rahmen) {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 14px 40px;
+    transition: filter 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), border-radius 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  :global(.om-galerie .orbit-shade) {
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  :global(.om-galerie-bild.ohne-flug),
+  :global(.om-galerie-bild.ohne-flug .om-bild-rahmen),
+  :global(.om-galerie-bild.ohne-flug .orbit-shade) {
+    transition: none;
+  }
+
+  :global(body.is-galerie #orbitFront) {
+    pointer-events: none;
+  }
+
+  :global(.om-galerie-bild) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  :global(.om-galerie-pfeil) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    z-index: 20;
+    width: 46px;
+    height: 46px;
+    padding: 0px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: var(--logo-on-accent);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, opacity 0.3s;
+  }
+
+  :global(.om-galerie-pfeil:disabled) {
+    opacity: 0.28;
+    cursor: default;
+  }
+
+  :global(.om-galerie-pfeil svg) {
+    position: static;
+    inset: auto;
+    width: 17px;
+    height: 17px;
+    display: block;
+  }
+
+  :global(.om-galerie.is-zug .om-galerie-bild),
+  :global(.om-galerie.is-zug .om-galerie-pfeil) {
+    transition: none;
+  }
+
+  :global(.om-galerie .om-bild-rahmen::after),
+  :global(.om-galerie .om-bild-rahmen::before) {
+    transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s;
+  }
+
+  :global(.om-galerie .om-bild-rahmen.is-orbitmass::after) { width: 15%; }
+  :global(.om-galerie .om-bild-rahmen.is-orbitmass.is-ki::before) { width: 7.5%; }
+
+  :global(.om-galerie .om-bu) {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 0px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.4s;
+    color: #F2F0EC;
+    max-width: min(46ch, 92vw);
+  }
+
+  :global(.om-galerie-bild.is-mitte .om-bu) { opacity: 1; }
+  :global(.om-galerie-bild.is-mitte) { cursor: default; }
+
+  /* ── Streifen (Responsive Strip) ── */
+  :global(.om-streifen) {
+    display: none;
+    position: fixed;
+    inset: 0px;
+    z-index: 0;
+    background: var(--bg);
+    visibility: hidden;
+    overflow: auto hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  :global(.om-streifen::-webkit-scrollbar) { display: none; }
+
+  :global(.om-streifen-bahn) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    min-height: 100%;
+    padding: 0 var(--rand);
+  }
+
+  :global(.om-streifen-pfeile) {
+    display: none;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    z-index: 42;
+    top: var(--strf-pfeil-top, 72%);
+    transform: translateY(-50%);
+    transition: opacity 0.45s, top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    justify-content: space-between;
+    padding: 0 var(--rand);
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  :global(.om-streifen-pfeile.is-da) { opacity: 1; }
+
+  :global(.om-streifen-pfeile button) {
+    pointer-events: auto;
+    width: 46px;
+    height: 46px;
+    padding: 0px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: var(--logo-on-accent);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s, opacity 0.3s;
+  }
+
+  :global(.om-streifen-pfeile button.is-leer) { opacity: 0.28; cursor: default; }
+  :global(.om-streifen-pfeile button) { position: relative; }
+  :global(.om-streifen-pfeile button::before) { content: ""; position: absolute; inset: -28px -18px; border-radius: 50%; }
+  :global(.om-streifen-pfeile svg) { width: 17px; height: 17px; display: block; }
+
+  :global(.om-streifen-karte) {
+    position: relative;
+    flex: 0 0 auto;
+    margin: 0px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  :global(.om-streifen .om-bild-rahmen.is-wischbar) { touch-action: pan-x; }
+
+  :global(.om-streifen .om-bild-rahmen img) {
+    display: block;
+    height: auto;
+    width: auto;
+    max-height: var(--strf-bild);
+    max-width: 84vw;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+
+  :global(.om-streifen-karte .om-bu) {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0px;
+    width: 100%;
+    max-width: min(78vw, 520px);
+    color: #F2F0EC;
+  }
+
+  /* ── Sticky Manifesto Section ── */
   .om-bold-scroll {
     position: relative;
     height: 430vh;
@@ -214,7 +709,6 @@
     justify-content: space-between;
     align-items: center;
     transform-origin: 50% 50%;
-    will-change: transform, opacity, filter;
   }
 
   .mf-paar {
@@ -402,15 +896,17 @@
 
 <script>
   import { initManifestoScroll } from '../../scripts/manifesto-scroll';
+  import { initOrbitEngine } from '../../scripts/orbit-engine';
 
-  const startManifesto = () => {
+  const startSection = () => {
     initManifestoScroll();
+    initOrbitEngine();
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startManifesto);
+    document.addEventListener('DOMContentLoaded', startSection);
   } else {
-    startManifesto();
+    startSection();
   }
-  document.addEventListener('astro:page-load', startManifesto);
+  document.addEventListener('astro:page-load', startSection);
 </script>

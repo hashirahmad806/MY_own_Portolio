@@ -1,9 +1,13 @@
 /**
- * motion.ts — Lenis + GSAP ScrollTrigger synchronized motion bridge
+ * motion.ts — Lenis + GSAP ScrollTrigger synchronized luxury motion bridge
  *
- * Critical pattern: Lenis intercepts native scroll events and feeds virtual
- * scroll deltas into a custom RAF. GSAP ScrollTrigger must be driven by
- * this same RAF, not the native window scroll event, to avoid jitter.
+ * Configured identically to gravity-design.de:
+ * - duration: 1.15 for butter-smooth luxury inertia
+ * - smoothWheel: true
+ * - syncTouch: false
+ * - allowNestedScroll: true
+ * - manual scroll restoration to prevent jumps on reload
+ * - gsap ticker synchronized with 0 lag smoothing
  */
 
 import Lenis from 'lenis';
@@ -12,55 +16,42 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Accessibility: Respect prefers-reduced-motion ───────────────────────────
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches;
+if (typeof window !== 'undefined') {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
 
-let lenis: Lenis | null = null;
-
-if (!prefersReducedMotion) {
-  // ─── Initialize Lenis with luxury inertia ────────────────────────────────
-  lenis = new Lenis({
-    duration: 1.2,
+  // Initialize buttery-smooth luxury scrolling
+  const lenis = new Lenis({
+    duration: 1.15,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    touchMultiplier: 2,
-    infinite: false,
+    syncTouch: false,
+    allowNestedScroll: true,
   });
 
-  // ─── Critical sync: Lenis → GSAP ScrollTrigger ───────────────────────────
-  // This is the ONLY correct way to avoid positional jitter.
-  // lenis.on('scroll') fires AFTER Lenis applies its virtual delta,
-  // so ScrollTrigger gets the already-smoothed value, not the raw event.
-  lenis.on('scroll', ScrollTrigger.update);
+  (window as any).lenis = lenis;
 
-  // ─── Feed Lenis into GSAP ticker (not window.requestAnimationFrame) ───────
+  lenis.on('scroll', () => {
+    ScrollTrigger.update();
+  });
+
   gsap.ticker.add((time: number) => {
     lenis.raf(time * 1000);
   });
 
-  // ─── Eliminate GSAP ticker lag compensation — prevents double-smoothing ──
   gsap.ticker.lagSmoothing(0);
-} else {
-  // Reduced motion: instant GSAP (no transitions), no Lenis
-  gsap.globalTimeline.timeScale(100);
 }
 
-export default lenis;
-
-/**
- * Utility: programmatically scroll to a target (used by back-to-top button)
- * Falls back to native scrollTo if Lenis is disabled.
- */
 export function scrollTo(
   target: string | number | HTMLElement,
   options?: { offset?: number; duration?: number }
 ) {
+  const lenis = (window as any).lenis;
   if (lenis) {
     lenis.scrollTo(target as any, {
       offset: options?.offset ?? 0,
-      duration: options?.duration ?? 1.2,
+      duration: options?.duration ?? 1.15,
     });
   } else {
     if (typeof target === 'number') {

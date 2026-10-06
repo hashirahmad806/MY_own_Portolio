@@ -278,6 +278,20 @@ export function initManifestoScroll(): void {
   window.addEventListener('resize', pruefenStrich);
   pruefenStrich();
 
+  // Sync directly with Lenis smooth virtual scroll stream
+  const hookLenis = () => {
+    const l = (window as any).lenis;
+    if (l) {
+      l.on('scroll', () => {
+        updateBoldMask();
+        pruefenStrich();
+      });
+    } else {
+      setTimeout(hookLenis, 50);
+    }
+  };
+  hookLenis();
+
   // ── 6. Revolving Satellite Magnetic Cursor Attraction (#mfRing) ──
   const feld = document.getElementById('mfRing');
   if (feld) {
