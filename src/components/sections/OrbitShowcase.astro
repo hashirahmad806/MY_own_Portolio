@@ -1,0 +1,525 @@
+---
+/**
+ * OrbitShowcase.astro
+ *
+ * Authentic 3D Orbit Universe from gravity-design.de:
+ * - Dual-layer 3D perspective world (#orbitBack / #orbitFront)
+ * - Ingests public/projekte.json dynamically
+ * - Radial cylindrical orbit calculation with CSS preserve-3d
+ * - Touch & pointer drag physics with rotational momentum & inertia
+ * - Heureka badges, AI labels, video loops, and depth shading
+ * - Floating caption overlay (#karteBu)
+ * - View switcher button (#galerieSchalter) to toggle linear gallery mode
+ */
+---
+
+<div class="orbit-system-wrapper" id="orbitSystem">
+  <!-- Back 3D Orbit Layer (renders behind content) -->
+  <div class="orbit-layer" id="orbitBack" aria-hidden="true">
+    <div class="orbit-stage">
+      <div class="orbit-world" id="orbitWorldBack"></div>
+    </div>
+  </div>
+
+  <!-- Front 3D Orbit Layer (interactive, renders in front of content) -->
+  <div class="orbit-layer" id="orbitFront">
+    <div class="orbit-stage">
+      <div class="orbit-world" id="orbitWorldFront"></div>
+    </div>
+  </div>
+
+  <!-- Floating Active Card Caption -->
+  <div class="om-karte-bu om-bu" id="karteBu" aria-live="polite"></div>
+
+  <!-- View Mode Switcher Button (3D Orbit <-> Linear Gallery) -->
+  <button
+    class="om-galerie-schalter"
+    id="galerieSchalter"
+    type="button"
+    aria-pressed="false"
+    aria-label="Zwischen 3D-Orbit und Reihenansicht wechseln"
+    data-cursor-hover
+  >
+    <!-- Icon: Grid / Row view -->
+    <svg class="zeichen-reihe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 10V14M18 10V14M2 8.2L2 15.8C2 16.9201 2 17.4802 2.21799 17.908C2.40973 18.2843 2.71569 18.5903 3.09202 18.782C3.51984 19 4.07989 19 5.2 19L18.8 19C19.9201 19 20.4802 19 20.908 18.782C21.2843 18.5903 21.5903 18.2843 21.782 17.908C22 17.4802 22 16.9201 22 15.8V8.2C22 7.0799 22 6.51984 21.782 6.09202C21.5903 5.7157 21.2843 5.40974 20.908 5.21799C20.4802 5 19.9201 5 18.8 5L5.2 5C4.0799 5 3.51984 5 3.09202 5.21799C2.7157 5.40973 2.40973 5.71569 2.21799 6.09202C2 6.51984 2 7.07989 2 8.2ZM14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z"></path>
+    </svg>
+    <!-- Icon: Orbital ring -->
+    <svg class="zeichen-orbit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M17.1153 15.3582C16.8446 15.6642 16.5606 15.9665 16.2635 16.2635C11.9678 20.5593 6.58585 22.1422 4.2427 19.7991C2.6363 18.1926 2.8752 15.158 4.56847 12.0242M6.88967 8.72526C7.17138 8.40495 7.46772 8.08875 7.77824 7.77824C12.074 3.48247 17.4559 1.89956 19.7991 4.2427C21.4066 5.85021 21.1662 8.88795 19.4698 12.024M16.2635 7.77824C20.5593 12.074 22.1422 17.4559 19.7991 19.7991C17.4559 22.1422 12.074 20.5593 7.77824 16.2635C3.48247 11.9678 1.89956 6.58585 4.2427 4.2427C6.58585 1.89956 11.9678 3.48247 16.2635 7.77824ZM13.0001 12C13.0001 12.5523 12.5523 13 12.0001 13C11.4478 13 11.0001 12.5523 11.0001 12C11.0001 11.4477 11.4478 11 12.0001 11C12.5523 11 13.0001 11.4477 13.0001 12Z"></path>
+    </svg>
+  </button>
+
+  <!-- Linear Gallery Alternative View -->
+  <div class="om-galerie" id="galerie" aria-hidden="true"></div>
+</div>
+
+<style>
+  .orbit-system-wrapper {
+    position: relative;
+    pointer-events: none;
+  }
+
+  .orbit-layer {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  #orbitBack {
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #orbitFront {
+    z-index: 3;
+    pointer-events: auto;
+    cursor: grab;
+  }
+
+  #orbitFront.is-dragging {
+    cursor: grabbing;
+  }
+
+  .orbit-stage {
+    position: absolute;
+    inset: 0;
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbit-world {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+  }
+
+  /* Card 3D Styling */
+  :global(.orbit-card) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+    transform-origin: center center;
+    will-change: transform, filter;
+    cursor: pointer;
+  }
+
+  :global(.orbit-card img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+
+  /* Shading for distance in 3D */
+  :global(.orbit-shade) {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Heureka Certification Badge */
+  :global(.orbit-card.is-heureka::after) {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    left: 4%;
+    bottom: 3.5%;
+    width: 14%;
+    aspect-ratio: 428.765 / 85.17;
+    background-color: #EDEBE6;
+    -webkit-mask: url('/heureka-logo-white.svg') no-repeat left bottom / contain;
+            mask: url('/heureka-logo-white.svg') no-repeat left bottom / contain;
+    pointer-events: none;
+  }
+
+  /* AI Technology Badge */
+  :global(.orbit-card.is-ki::before) {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    right: 4%;
+    bottom: 3.5%;
+    width: 7%;
+    aspect-ratio: 1;
+    background: url('/ai-label-white.svg') no-repeat right bottom / contain;
+    pointer-events: none;
+  }
+
+  /* Video Loop Container */
+  :global(.orbit-film) {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  :global(.orbit-film video) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Floating Caption */
+  .om-karte-bu {
+    position: fixed;
+    z-index: 4;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #F2F0EC;
+    text-align: center;
+    max-width: min(54ch, 92vw);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .om-karte-bu.is-da {
+    opacity: 1;
+  }
+
+  :global(.om-karte-title) {
+    font-size: clamp(14px, 1.2vw, 17px);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  :global(.om-karte-role) {
+    font-size: clamp(11px, 0.95vw, 13px);
+    opacity: 0.72;
+    display: block;
+  }
+
+  :global(.om-karte-award) {
+    font-size: clamp(11px, 0.95vw, 13px);
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Mode Switcher Button */
+  .om-galerie-schalter {
+    position: fixed;
+    left: 50%;
+    top: calc(50% + clamp(138px, 13vh, 170px));
+    transform: translateX(-50%);
+    z-index: 4;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 2px solid color-mix(in srgb, #F2F0EC 52%, transparent);
+    border-radius: 50%;
+    background: rgba(16, 16, 16, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #F2F0EC;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    transition: opacity 0.45s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .om-galerie-schalter:hover {
+    border-color: #F2F0EC;
+    background: rgba(180, 129, 248, 0.2);
+  }
+
+  .om-galerie-schalter.is-da {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .om-galerie-schalter svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .om-galerie-schalter .zeichen-orbit {
+    display: none;
+  }
+
+  :global(body.is-galerie-mode) .om-galerie-schalter .zeichen-orbit {
+    display: block;
+  }
+
+  :global(body.is-galerie-mode) .om-galerie-schalter .zeichen-reihe {
+    display: none;
+  }
+
+  /* Linear Gallery Mode */
+  .om-galerie {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    overflow-x: auto;
+    overflow-y: hidden;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 10vw;
+    background: rgba(16, 16, 16, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    pointer-events: auto;
+  }
+
+  :global(body.is-galerie-mode) .om-galerie {
+    visibility: visible;
+  }
+
+  @media (pointer: coarse) {
+    .om-galerie-schalter {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * 3D Orbit Perspective Universe Engine
+   */
+  interface ProjektItem {
+    projekt: string;
+    rolle: string;
+    award?: string | null;
+    heureka?: boolean;
+    bilder?: Array<{
+      datei: string;
+      w: number;
+      h: number;
+      orbit?: boolean;
+      ki?: boolean;
+      loop?: string;
+      video?: string;
+    }>;
+    link?: string;
+  }
+
+  const initOrbitSystem = async () => {
+    const orbitBack = document.getElementById('orbitBack');
+    const orbitFront = document.getElementById('orbitFront');
+    const worldBack = document.getElementById('orbitWorldBack');
+    const worldFront = document.getElementById('orbitWorldFront');
+    const captionEl = document.getElementById('karteBu');
+    const switcher = document.getElementById('galerieSchalter');
+    const boldScroll = document.getElementById('boldScroll');
+
+    if (!orbitBack || !orbitFront || !worldBack || !worldFront || !boldScroll) return;
+
+    // Fetch authentic projects dataset
+    let projekte: ProjektItem[] = [];
+    try {
+      const res = await fetch('/projekte.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      projekte = await res.json();
+    } catch (e) {
+      console.warn('Could not load projekte.json:', e);
+      return;
+    }
+
+    if (!projekte.length) return;
+
+    // Filter cards designed for orbit
+    const orbitItems = projekte.filter(p => p.bilder && p.bilder.length > 0);
+    const N = orbitItems.length;
+
+    // Orbital Geometry
+    let currentAngle = 0;
+    let targetAngle = 0;
+    let angularVelocity = 0.0008;
+    let isDragging = false;
+    let startX = 0;
+    let lastX = 0;
+    let animationFrameId: number | null = null;
+    let isVisible = false;
+
+    const cards: HTMLElement[] = [];
+
+    // Create cards
+    orbitItems.forEach((item, idx) => {
+      const b = item.bilder![0];
+      const card = document.createElement('div');
+      card.className = `orbit-card ${item.heureka ? 'is-heureka' : ''} ${b.ki ? 'is-ki' : ''}`;
+      card.dataset.index = idx.toString();
+
+      // Aspect card size
+      const cardW = 320;
+      const cardH = Math.round((b.h / b.w) * cardW) || 320;
+      card.style.width = `${cardW}px`;
+      card.style.height = `${cardH}px`;
+      card.style.marginLeft = `-${cardW / 2}px`;
+      card.style.marginTop = `-${cardH / 2}px`;
+
+      // Main image
+      const img = document.createElement('img');
+      img.src = `/${b.datei}`;
+      img.alt = item.projekt;
+      img.loading = idx < 6 ? 'eager' : 'lazy';
+      card.appendChild(img);
+
+      // Video loop if available
+      if (b.loop) {
+        const film = document.createElement('div');
+        film.className = 'orbit-film';
+        const vid = document.createElement('video');
+        vid.src = `/${b.loop}`;
+        vid.autoplay = true;
+        vid.loop = true;
+        vid.muted = true;
+        vid.playsInline = true;
+        film.appendChild(vid);
+        card.appendChild(film);
+      }
+
+      // Shade overlay
+      const shade = document.createElement('div');
+      shade.className = 'orbit-shade';
+      card.appendChild(shade);
+
+      cards.push(card);
+      worldFront.appendChild(card);
+    });
+
+    // Compute and distribute cards in 3D orbit
+    const update3DPositions = () => {
+      const radius = Math.min(window.innerWidth * 0.48, 860);
+      let closestIdx = 0;
+      let maxZ = -Infinity;
+
+      cards.forEach((card, i) => {
+        const theta = currentAngle + (i / N) * Math.PI * 2;
+        const x = Math.sin(theta) * radius;
+        const z = Math.cos(theta) * radius;
+        const rotY = (theta * 180) / Math.PI;
+
+        // Partition between front and back DOM layers for proper depth stacking
+        if (z < 0) {
+          if (card.parentElement !== worldBack) worldBack.appendChild(card);
+        } else {
+          if (card.parentElement !== worldFront) worldFront.appendChild(card);
+        }
+
+        // Apply 3D coordinate transform
+        card.style.transform = `translate3d(${x.toFixed(1)}px, 0px, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg)`;
+
+        // Depth shading: cards in the back get darker
+        const shade = card.querySelector('.orbit-shade') as HTMLElement;
+        if (shade) {
+          const depthAlpha = Math.max(0, Math.min(0.72, (radius - z) / (radius * 2)));
+          shade.style.opacity = depthAlpha.toFixed(2);
+        }
+
+        if (z > maxZ) {
+          maxZ = z;
+          closestIdx = i;
+        }
+      });
+
+      // Update active caption
+      if (captionEl && orbitItems[closestIdx]) {
+        const cur = orbitItems[closestIdx];
+        captionEl.innerHTML = `
+          <span class="om-karte-title">${cur.projekt}</span>
+          <span class="om-karte-role">${cur.rolle}</span>
+          ${cur.award ? `<span class="om-karte-award">★ ${cur.award}</span>` : ''}
+        `;
+      }
+    };
+
+    // Render loop with physics inertia
+    const tick = () => {
+      if (isVisible) {
+        if (!isDragging) {
+          currentAngle += angularVelocity;
+          angularVelocity *= 0.96;
+          if (Math.abs(angularVelocity) < 0.0006) {
+            angularVelocity = 0.0006; // Continuous subtle ambient orbit
+          }
+        }
+        update3DPositions();
+      }
+      animationFrameId = requestAnimationFrame(tick);
+    };
+
+    // Drag Interaction Listeners
+    orbitFront.addEventListener('pointerdown', (e: PointerEvent) => {
+      isDragging = true;
+      startX = e.clientX;
+      lastX = e.clientX;
+      orbitFront.classList.add('is-dragging');
+      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    });
+
+    window.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      const sensitivity = 0.0035;
+      currentAngle -= dx * sensitivity;
+      angularVelocity = -dx * sensitivity;
+    });
+
+    const stopDrag = () => {
+      if (isDragging) {
+        isDragging = false;
+        orbitFront.classList.remove('is-dragging');
+      }
+    };
+
+    window.addEventListener('pointerup', stopDrag);
+    window.addEventListener('pointercancel', stopDrag);
+
+    // Scroll visibility toggle: Orbit visible while scrolling through manifesto (#boldScroll)
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      isVisible = entry.isIntersecting;
+      orbitBack.style.visibility = isVisible ? 'visible' : 'hidden';
+      orbitFront.style.visibility = isVisible ? 'visible' : 'hidden';
+      captionEl.classList.toggle('is-da', isVisible);
+      switcher?.classList.toggle('is-da', isVisible);
+    }, { threshold: 0.05 });
+
+    observer.observe(boldScroll);
+
+    // View Switcher Button Toggle
+    switcher?.addEventListener('click', () => {
+      const isGalerie = document.body.classList.toggle('is-galerie-mode');
+      switcher.setAttribute('aria-pressed', isGalerie.toString());
+    });
+
+    animationFrameId = requestAnimationFrame(tick);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOrbitSystem);
+  } else {
+    initOrbitSystem();
+  }
+  document.addEventListener('astro:page-load', initOrbitSystem);
+</script>

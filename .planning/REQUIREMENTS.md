@@ -29,9 +29,9 @@ Requirements for initial release. Each maps directly to roadmap phases.
 
 ### Manifesto & Hybrid AI (CONT)
 
-- [ ] **CONT-01**: Manifesto section ("AgenturohneAgentur. 35 Jahre Erfahrung. Kein Overhead.") features scroll-linked kinetic text illumination.
-- [ ] **CONT-02**: Agentive By Design / Hybrid AI section clearly articulates the Human Experience + Artificial Intelligence partnership with local models and fast iteration.
-- [ ] **CONT-03**: Quotes and key philosophies ("Gute Ideen sind am Anfang oft fragil...", "Möglich ist inzwischen fast alles...") are emphasized in editorial pull-quote callouts.
+- [x] **CONT-01**: Manifesto section ("AgenturohneAgentur. 35 Jahre Erfahrung. Kein Overhead.") features scroll-linked kinetic text illumination.
+- [x] **CONT-02**: Agentive By Design / Hybrid AI section clearly articulates the Human Experience + Artificial Intelligence partnership with local models and fast iteration.
+- [x] **CONT-03**: Quotes and key philosophies ("Gute Ideen sind am Anfang oft fragil...", "Möglich ist inzwischen fast alles...") are emphasized in editorial pull-quote callouts.
 
 ### Bio, Clients & Awards Showcase (SHOW)
 

@@ -1,30 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
+import Manifesto from '../components/sections/Manifesto.astro';
+import OrbitShowcase from '../components/sections/OrbitShowcase.astro';
+import HybridAI from '../components/sections/HybridAI.astro';
 ---
 
 <Layout>
-  <!-- Marquee Kinetic Hero & Gravitize Physics Section -->
+  <!-- 01: Hero Marquee & Gravitize Physics Section -->
   <Hero />
 
-  <!-- Section Anchor: Manifesto (Phase 4 Target) -->
-  <section id="manifesto" class="preview-section container" aria-label="Manifesto Preview">
-    <div class="glass-panel preview-card">
-      <span class="text-meta text-accent">01 · Manifest</span>
-      <h2 class="preview-title">Agentur ohne Agentur.</h2>
-      <p class="preview-text">
-        35 Jahre Erfahrung. Kein Overhead. Gute Ideen sind am Anfang oft fragil. Zu viele Abstimmungen und Prozesse nehmen ihnen den Mut. Strategie gibt Halt — Erfahrung zeigt, was funktioniert.
-      </p>
-    </div>
-  </section>
+  <!-- 02: Full-Bleed Lilac Manifesto with Bold Curve & Rotating Ring -->
+  <Manifesto />
 
-  <!-- Section Anchor: Bio (Phase 5 Target) -->
+  <!-- 03: Interactive 3D Perspective Orbit Universe with Real Case Studies -->
+  <OrbitShowcase />
+
+  <!-- 04: Hybrid AI Narrative & Interactive Constellation Plexus -->
+  <HybridAI />
+
+  <!-- 05: Bio & Hall of Awards Preview (Phase 5 Target) -->
   <section id="bio" class="preview-section container" aria-label="Bio Preview">
     <div class="glass-panel preview-card">
-      <span class="text-meta text-accent">02 · My Story</span>
+      <span class="text-meta text-accent">05 · My Story & Awards</span>
       <h2 class="preview-title">Visual Strategist & Creative Visualizer.</h2>
       <p class="preview-text">
-        Vom Mediengestalter zum Creative Director und Mitinhaber der Agentur heureka GmbH (unter den Top 50 PAGE-Agenturen Deutschlands) bis zum Neustart mit gravity.
+        ’72 geboren als „irgendwas mit kreativ“. Danach Mediengestalter, Diplom Grafik-Designer FH, Creative Director und Mitinhaber der heureka GmbH (unter den Top 50 PAGE-Agenturen Deutschlands). Gewinner des Red Dot Grand Prix 2025, Best of the Best, ADC 2023 & 2025 und German Design Award Gold.
       </p>
     </div>
   </section>
@@ -37,6 +38,8 @@ import Hero from '../components/sections/Hero.astro';
     align-items: center;
     padding-top: var(--section-gap);
     padding-bottom: var(--section-gap);
+    position: relative;
+    z-index: 2;
   }
 
   .preview-card {
