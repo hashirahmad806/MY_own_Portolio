@@ -41,7 +41,7 @@ Requirements for initial release. Each maps directly to roadmap phases.
 
 ### Conversion, SEO & Polish (POLISH)
 
-- [ ] **POLISH-01**: Prominent Chemistry Meeting Call to Action ("Let’s meet up!") with magnetic hover animation connects to `mailto:losgehts@gravity-design.de?subject=Chemistry-Meeting`.
-- [ ] **POLISH-02**: Smooth back-to-top button utilizes Lenis `lenis.scrollTo(0)` with custom easing.
-- [ ] **POLISH-03**: Comprehensive SEO meta tags, OpenGraph preview cards, Twitter cards, and JSON-LD Person/Organization structured data are fully configured.
-- [ ] **POLISH-04**: Production build succeeds with 0 errors and verified responsive layout across mobile, tablet, and desktop viewports.
+- [x] **POLISH-01**: Prominent Chemistry Meeting Call to Action ("Let’s meet up!") with magnetic hover animation connects to `mailto:losgehts@gravity-design.de?subject=Chemistry-Meeting`.
+- [x] **POLISH-02**: Smooth back-to-top button utilizes Lenis `lenis.scrollTo(0)` with custom easing.
+- [x] **POLISH-03**: Comprehensive SEO meta tags, OpenGraph preview cards, Twitter cards, and JSON-LD Person/Organization structured data are fully configured.
+- [x] **POLISH-04**: Production build succeeds with 0 errors and verified responsive layout across mobile, tablet, and desktop viewports.

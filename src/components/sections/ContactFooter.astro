@@ -1,0 +1,633 @@
+---
+// src/components/sections/ContactFooter.astro
+// Authentic 100% replica of gravity-design.de Contact Stage (#kontakt) & Difference Blend Footer (#fuss)
+---
+
+<section class="om-kontakt-wrap" id="kontakt" aria-label="Kontakt und Chemistry-Meeting">
+  <div class="om-kontakt-grund" aria-hidden="true"></div>
+  <div class="om-kontakt-buehne">
+    <div class="om-kontakt-woelbung" aria-hidden="true"></div>
+    <div class="om-kontakt-feld" aria-hidden="true">
+      <div class="om-kontakt-ring"></div>
+    </div>
+
+    <!-- Magnetic Rising Contact Ball -->
+    <a
+      class="om-kontakt-kugel"
+      href="mailto:losgehts@gravity-design.de?subject=Chemistry-Meeting"
+      aria-label="Chemistry-Meeting anfragen: Let’s meet up!"
+    >
+      <span>Let’s<br /><em>meet</em><br />up!</span>
+    </a>
+
+    <!-- Lenis / Smooth Back to Top Trigger -->
+    <a class="om-kontakt-hoch" href="#" id="backToTopBtn" aria-label="Nach oben scrollen">Back to top</a>
+  </div>
+</section>
+
+<!-- Fixed Difference Blend Footer -->
+<footer class="om-fuss" id="fuss" aria-label="Impressum, Datenschutz und Social Links">
+  <div class="om-fuss-innen">
+    <div class="om-fuss-tick" aria-hidden="true"><i></i></div>
+    <div class="om-fuss-zeile">
+      <p>&copy; <span class="om-marke">gravity</span> 2026<span class="om-fuss-lang"> &mdash; created with passion, experience &amp; AI.</span></p>
+      <p><a href="#impressum">Impressum &amp; Datenschutz</a></p>
+      <p class="om-fuss-sozial">
+        <a href="https://www.linkedin.com/in/gorden-koschel-789812227" target="_blank" rel="noopener" aria-label="gravity bei LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.83v1.64h.05c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.79 2.66 4.79 6.12V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4V9Z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/gkoschel2026/" target="_blank" rel="noopener" aria-label="gravity bei Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .om-marke {
+    font-weight: 700;
+  }
+
+  .om-kontakt-wrap {
+    position: relative;
+    --kontakt-halt: 30vh;
+    height: calc(50vh + var(--kontakt-halt));
+    color: var(--bg);
+  }
+
+  .om-kontakt-grund {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: calc(-1 * var(--hub-max, 0px));
+    background: var(--fg);
+  }
+
+  .om-kontakt-buehne {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0;
+    z-index: 5;
+    transform: translate3d(0, var(--halt, 0px), 0);
+  }
+
+  .om-kontakt-woelbung {
+    display: none;
+  }
+
+  .om-kontakt-hoch {
+    display: none;
+  }
+
+  @media (max-width: 640px), (pointer: coarse) {
+    .om-kontakt-wrap {
+      --kontakt-halt: 30vh;
+    }
+
+    .om-kontakt-buehne {
+      position: sticky;
+      top: 50vh;
+      transform: none;
+    }
+
+    .om-kontakt-woelbung {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: calc(100vh + var(--hub-max, 0px));
+      z-index: 0;
+      background: var(--bg);
+      --kante: 100vh;
+      -webkit-mask-image: linear-gradient(#000, #000),
+        radial-gradient(
+          circle var(--kugel-r, 1px) at 50% calc(var(--kante) + var(--kugel-k, 0px) - var(--kugel-r, 1px)),
+          #000 calc(var(--kugel-r, 1px) - 1px),
+          transparent var(--kugel-r, 1px)
+        );
+      mask-image: linear-gradient(#000, #000),
+        radial-gradient(
+          circle var(--kugel-r, 1px) at 50% calc(var(--kante) + var(--kugel-k, 0px) - var(--kugel-r, 1px)),
+          #000 calc(var(--kugel-r, 1px) - 1px),
+          transparent var(--kugel-r, 1px)
+        );
+      -webkit-mask-size: 100% var(--kante), 100% 100%;
+      mask-size: 100% var(--kante), 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .om-kontakt-hoch {
+      display: block;
+      position: absolute;
+      z-index: 4;
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin-inline: auto;
+      top: calc(20vh - 12px);
+      padding: 12px 16px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-indent: 0.18em;
+      color: color-mix(in srgb, var(--fg) 66%, var(--bg));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .om-kontakt-buehne.is-ende .om-kontakt-hoch {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .om-kontakt-feld {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 50vh;
+    overflow: clip;
+  }
+
+  .om-kontakt-ring {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: calc(var(--ring-r) * 2);
+    height: calc(var(--ring-r) * 2);
+    margin-left: calc(var(--ring-r) * -1);
+    background: radial-gradient(
+      circle at 50% 50%,
+      transparent calc(var(--ring-r) * 0.423 - 0.5px),
+      var(--bg) calc(var(--ring-r) * 0.423 + 0.5px),
+      var(--bg) calc(var(--ring-r) - 0.5px),
+      transparent calc(var(--ring-r) + 0.5px)
+    );
+    --ring-r: 50vh;
+    transform: translateY(calc((1 - var(--kontakt-f, 0)) * 100vh));
+    will-change: transform;
+  }
+
+  .om-kontakt-kugel {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 0;
+    width: calc(var(--kugel2-r, 0px) * 2);
+    height: calc(var(--kugel2-r, 0px) * 2);
+    margin: calc(var(--kugel2-r, 0px) * -1) 0 0 calc(var(--kugel2-r, 0px) * -1);
+    border-radius: 50%;
+    background: var(--accent);
+    color: #101010;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    transform: translateY(var(--kugel2-y, 100vh));
+    scale: 1;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, scale 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .om-kontakt-kugel::after,
+  .om-kontakt-kugel::before {
+    content: '';
+    position: absolute;
+    inset: -19%;
+    border-radius: 50%;
+    border: 2px solid var(--fg);
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .om-kontakt-kugel::before {
+    inset: -30%;
+  }
+
+  .om-kontakt-kugel:hover::after,
+  .om-kontakt-kugel:focus-visible::after {
+    opacity: 1;
+    animation: om-cta-reif 5s linear infinite;
+  }
+
+  .om-kontakt-kugel:hover::before,
+  .om-kontakt-kugel:focus-visible::before {
+    opacity: 1;
+    animation: om-cta-reif-zwei 7s linear infinite;
+  }
+
+  .om-kontakt-kugel:hover,
+  .om-kontakt-kugel:focus-visible {
+    background: color-mix(in srgb, var(--accent) 90%, var(--bg));
+    scale: 1.07;
+    outline: none;
+  }
+
+  @keyframes om-cta-reif {
+    from {
+      transform: rotateZ(0deg) rotateX(0deg);
+    }
+    to {
+      transform: rotateZ(360deg) rotateX(720deg);
+    }
+  }
+
+  @keyframes om-cta-reif-zwei {
+    from {
+      transform: rotateZ(-24deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateZ(-384deg) rotateY(720deg);
+    }
+  }
+
+  .om-kontakt-kugel.is-vorn {
+    z-index: 3;
+  }
+
+  .om-kontakt-kugel span {
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.04;
+    font-size: calc(var(--kugel2-r, 0px) * 0.32);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: #101010;
+  }
+
+  .om-kontakt-kugel em {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.2em;
+  }
+
+  .om-kontakt-kugel.is-cta span {
+    opacity: 1;
+  }
+
+  /* Fixed Blend Footer */
+  .om-fuss {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    border-top: 1px solid var(--fuss-linie);
+    mix-blend-mode: difference;
+    --fuss-text: color-mix(in srgb, var(--fg) 62%, var(--bg));
+    --fuss-linie: color-mix(in srgb, var(--fg) 30%, var(--bg));
+  }
+
+  :global(.om-fuss.is-da) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .om-fuss-innen {
+    position: relative;
+    padding: 0 var(--rand);
+  }
+
+  .om-fuss-zeile {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 13px 0 17px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--fuss-text);
+  }
+
+  .om-fuss-zeile > p {
+    margin: 0;
+  }
+
+  .om-fuss-zeile > :nth-child(2) {
+    justify-self: center;
+  }
+
+  .om-fuss-zeile > :nth-child(3) {
+    justify-self: end;
+  }
+
+  .om-fuss a {
+    color: inherit;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .om-fuss a:hover {
+    color: var(--fg);
+  }
+
+  .om-fuss-sozial {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .om-fuss-zeile > .om-fuss-sozial {
+    margin-right: -2px;
+  }
+
+  .om-fuss-sozial a {
+    display: flex;
+  }
+
+  .om-fuss-sozial svg {
+    position: static;
+    inset: auto;
+    width: 22px;
+    height: 22px;
+    display: block;
+    overflow: visible;
+  }
+
+  .om-fuss-tick {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    width: 1px;
+    height: 92px;
+    margin-left: -0.5px;
+    background: var(--fuss-linie);
+    transition: opacity 0.4s ease;
+  }
+
+  :global(.om-fuss.is-ende .om-fuss-tick) {
+    opacity: 0;
+  }
+
+  .om-fuss-tick i {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--fg);
+    opacity: 0;
+    animation: om-fuss-lauf 2.6s cubic-bezier(0.55, 0.06, 0.45, 0.94) infinite;
+  }
+
+  @keyframes om-fuss-lauf {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.9;
+    }
+    80% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(87px);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .om-fuss-lang {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .om-fuss-zeile {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      gap: 12px;
+      padding: 11px 0 14px;
+    }
+
+    .om-fuss-sozial {
+      gap: 14px;
+    }
+
+    .om-fuss-sozial svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .om-fuss-tick {
+      height: 64px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .om-kontakt-kugel {
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .om-kontakt-kugel:hover,
+    .om-kontakt-kugel:focus-visible {
+      scale: 1;
+    }
+    .om-kontakt-kugel:hover::after,
+    .om-kontakt-kugel:focus-visible::after,
+    .om-kontakt-kugel:hover::before,
+    .om-kontakt-kugel:focus-visible::before {
+      animation: none;
+    }
+    .om-kontakt-kugel span {
+      opacity: 1;
+      transition: none;
+    }
+    .om-fuss-tick i {
+      animation: none;
+      opacity: 0.9;
+      transform: translateY(44px);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Contact Sphere Flight & Curvature Math
+    const wrap = document.getElementById('kontakt');
+    const kugel = document.querySelector<HTMLElement>('.om-kontakt-kugel');
+    const buehne = document.querySelector<HTMLElement>('.om-kontakt-buehne');
+    const bio = document.getElementById('bio');
+    const licht = document.querySelector<HTMLElement>('.om-bio-licht');
+    if (wrap && kugel && buehne) {
+      const VORLAUF = 0.1;
+      const HALT = 0.5;
+      const K_START = 0.55;
+      const K_SCHEITEL = 0.28;
+      const G_SCHEITEL = 0.62;
+      const K_KLEIN = 0.02;
+      const K_GROSS = 0.125;
+
+      function bahn(g: number): number {
+        if (g <= G_SCHEITEL) {
+          const a = g / G_SCHEITEL;
+          return K_START - (K_START + K_SCHEITEL) * (1 - Math.pow(1 - a, 2));
+        }
+        const b = (g - G_SCHEITEL) / (1 - G_SCHEITEL);
+        return -K_SCHEITEL * (1 - (b < 0.5 ? 2 * b * b : 1 - Math.pow(-2 * b + 2, 2) / 2));
+      }
+
+      function klemmen(x: number): number {
+        return Math.max(0, Math.min(1, x));
+      }
+
+      const FLUG_MS = 1500;
+      let flugAb = 0;
+      let flugRaf = 0;
+      const flugSanft = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function kugelSetzen(g: number) {
+        const vh = window.innerHeight;
+        const y = bahn(g) * vh;
+        const rad = (K_KLEIN + (K_GROSS - K_KLEIN) * Math.pow(g, 1.6)) * vh;
+        kugel!.style.setProperty('--kugel2-y', `${y.toFixed(1)}px`);
+        kugel!.style.setProperty('--kugel2-r', `${rad.toFixed(1)}px`);
+
+        kugel!.classList.toggle('is-vorn', g >= G_SCHEITEL);
+        kugel!.classList.toggle('is-cta', g > 0.86);
+        buehne!.classList.toggle('is-ende', g > 0.86);
+      }
+
+      function flugSchritt(jetzt: number) {
+        flugRaf = 0;
+        if (!flugAb) return;
+        const g = klemmen((jetzt - flugAb) / FLUG_MS);
+        kugelSetzen(g);
+        if (g < 1) flugRaf = requestAnimationFrame(flugSchritt);
+      }
+
+      function flugStarten() {
+        if (flugAb) return;
+        if (!flugSanft) {
+          flugAb = 1;
+          kugelSetzen(1);
+          return;
+        }
+        flugAb = window.performance?.now?.() || Date.now();
+        flugRaf = requestAnimationFrame(flugSchritt);
+      }
+
+      function flugZurueck() {
+        if (!flugAb) return;
+        if (flugRaf) {
+          cancelAnimationFrame(flugRaf);
+          flugRaf = 0;
+        }
+        flugAb = 0;
+        kugelSetzen(0);
+      }
+
+      const OHNE_HALT = window.matchMedia('(max-width: 640px), (pointer: coarse)').matches;
+
+      function pruefen() {
+        const vh = window.innerHeight;
+        const r = wrap!.getBoundingClientRect();
+        const wurzel = document.documentElement;
+
+        const t = klemmen((vh * (1 + VORLAUF) - r.top) / (vh * (1 + VORLAUF - HALT)));
+        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        wurzel.style.setProperty('--kontakt-f', e.toFixed(4));
+
+        const b = window.innerWidth;
+        const tief = e * b * 0.134;
+        if (tief < 0.5) {
+          wurzel.style.setProperty('--kugel-k', '0px');
+          wurzel.style.setProperty('--kugel-r', '1px');
+        } else {
+          wurzel.style.setProperty('--kugel-k', `${tief.toFixed(1)}px`);
+          wurzel.style.setProperty(
+            '--kugel-r',
+            `${((b * b / 4 + tief * tief) / (2 * tief)).toFixed(1)}px`
+          );
+        }
+
+        const weg = r.height - vh * HALT;
+        const halt = Math.max(0, Math.min(weg, vh * HALT - r.top));
+        if (OHNE_HALT) {
+          buehne!.style.setProperty('--halt', '0px');
+        } else {
+          if (bio) bio.style.transform = `translate3d(0, ${halt.toFixed(1)}px, 0)`;
+          if (licht) licht.style.transform = `translate3d(0, ${(-halt).toFixed(1)}px, 0)`;
+          buehne!.style.setProperty('--halt', `${halt.toFixed(1)}px`);
+        }
+
+        if (e > 0.999) flugStarten();
+        else if (e < 0.99) flugZurueck();
+      }
+
+      let geplant = false;
+      function anstossen() {
+        if (geplant) return;
+        geplant = true;
+        requestAnimationFrame(() => {
+          geplant = false;
+          pruefen();
+        });
+      }
+
+      pruefen();
+      window.addEventListener('scroll', OHNE_HALT ? pruefen : anstossen, { passive: true });
+      window.addEventListener('resize', anstossen);
+    }
+
+    // 2. Back to Top Smooth Trigger
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 3. Fixed Blend Footer Visibility at Top & Bottom
+    const fuss = document.getElementById('fuss');
+    if (fuss) {
+      const OBEN = 24;
+      const UNTEN = 4;
+      function pruefenFuss() {
+        const y = window.pageYOffset || document.documentElement.scrollTop;
+        const oben = y <= OBEN;
+        const ende = y + window.innerHeight >= document.documentElement.scrollHeight - UNTEN;
+        fuss!.classList.toggle('is-da', oben || ende);
+        fuss!.classList.toggle('is-ende', ende && !oben);
+      }
+      let geplantFuss = false;
+      function anstossenFuss() {
+        if (geplantFuss) return;
+        geplantFuss = true;
+        requestAnimationFrame(() => {
+          geplantFuss = false;
+          pruefenFuss();
+        });
+      }
+      pruefenFuss();
+      window.addEventListener('scroll', anstossenFuss, { passive: true });
+      window.addEventListener('resize', anstossenFuss);
+    }
+  });
+</script>
