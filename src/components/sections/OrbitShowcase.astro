@@ -37,7 +37,7 @@
     id="galerieSchalter"
     type="button"
     aria-pressed="false"
-    aria-label="Zwischen 3D-Orbit und Reihenansicht wechseln"
+    aria-label="Toggle between 3D orbit and gallery view"
     data-cursor-hover
   >
     <!-- Icon: Grid / Row view -->
@@ -402,6 +402,12 @@
       shade.className = 'orbit-shade';
       card.appendChild(shade);
 
+      if (item.link) {
+        card.addEventListener('click', () => {
+          if (!isDragging) window.open(item.link, '_blank');
+        });
+      }
+
       cards.push(card);
       worldFront.appendChild(card);
     });
@@ -451,6 +457,7 @@
           <span class="om-karte-title">${cur.projekt}</span>
           <span class="om-karte-role">${cur.rolle}</span>
           ${cur.award ? `<span class="om-karte-award">★ ${cur.award}</span>` : ''}
+          ${cur.link ? `<span class="om-bu-link-zeile"><a class="om-bu-link" href="${cur.link}" target="_blank" rel="noopener">Explore on GitHub &rarr;</a></span>` : ''}
         `;
       }
     };

@@ -174,7 +174,7 @@ export function initOrbitEngine(){
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  var NAMEN = /(gravity|Gorden Koschel|heureka)/g;
+  var NAMEN = /(hashir ahmad|Hashir Ahmad|heureka)/gi;
   function namenSetzen(s){
     return maskieren(s).replace(NAMEN, '<span class="om-marke">$1</span>');
   }
@@ -183,6 +183,7 @@ export function initOrbitEngine(){
             '<span class="om-bu-zeile">' + namenSetzen(p.rolle) + '</span>';
     if (p.award)      h += '<span class="om-bu-zeile">' + namenSetzen(p.award) + '</span>';
     if (p.fotocredit) h += '<span class="om-bu-credit">' + namenSetzen(p.fotocredit) + '</span>';
+    if (p.link)       h += '<span class="om-bu-link-zeile"><a class="om-bu-link" href="' + maskieren(p.link) + '" target="_blank" rel="noopener">Explore on GitHub &rarr;</a></span>';
     return h;
   }
 
@@ -368,7 +369,7 @@ export function initOrbitEngine(){
       a.href = link;
       a.target = '_blank';
       a.rel = 'noopener';
-      a.setAttribute('aria-label', 'Projekt online ansehen');
+      a.setAttribute('aria-label', 'View project on GitHub');
       a.innerHTML = zeichenLink();
       a.addEventListener('click', function(e){ e.stopPropagation(); });
       leiste.appendChild(a);
@@ -454,11 +455,11 @@ export function initOrbitEngine(){
     var laeuft = !filmSpur(satz).paused;
     satz.tasteLauf.classList.toggle('is-pause', laeuft);
     satz.tasteLauf.classList.toggle('is-play', !laeuft);
-    satz.tasteLauf.setAttribute('aria-label', laeuft ? 'Film anhalten' : 'Film abspielen');
+    satz.tasteLauf.setAttribute('aria-label', laeuft ? 'Pause video' : 'Play video');
     if (satz.tasteTon){
       satz.tasteTon.classList.toggle('is-laut', satz.an);
       satz.tasteTon.classList.toggle('is-stumm', !satz.an);
-      satz.tasteTon.setAttribute('aria-label', satz.an ? 'Ton ausschalten' : 'Ton einschalten');
+      satz.tasteTon.setAttribute('aria-label', satz.an ? 'Mute audio' : 'Unmute audio');
     }
   }
 
@@ -923,8 +924,8 @@ export function initOrbitEngine(){
         });
         return b;
       }
-      var zurueck = pfeilBauen(-1, 'Vorheriges Bild');
-      var vor = pfeilBauen(1, 'Naechstes Bild');
+      var zurueck = pfeilBauen(-1, 'Previous project');
+      var vor = pfeilBauen(1, 'Next project');
       pfeile.appendChild(zurueck);
       pfeile.appendChild(vor);
       streifen.parentNode.insertBefore(pfeile, streifen.nextSibling);
@@ -1404,7 +1405,15 @@ export function initOrbitEngine(){
   layerFront.addEventListener('pointerup', function(e){
     if (movedPx > CLICK_SLOP) return;
 
-    if (focused){ orbitTonAus(); focused = null; clickConsumed = true; return; }
+    if (focused){
+      var hitAgain = cardAt(e.clientX, e.clientY);
+      if (hitAgain && hitAgain === focused && hitAgain.daten && hitAgain.daten.link){
+        window.open(hitAgain.daten.link, '_blank');
+        clickConsumed = true;
+        return;
+      }
+      orbitTonAus(); focused = null; clickConsumed = true; return;
+    }
     var hit = cardAt(e.clientX, e.clientY);
 
     if ((!hit || !hit.inFront) && ueberManifest(e.clientX, e.clientY)) return;
@@ -1469,7 +1478,7 @@ export function initOrbitEngine(){
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'om-galerie-pfeil';
-      b.setAttribute('aria-label', richtung < 0 ? 'Vorheriges Bild' : 'Naechstes Bild');
+      b.setAttribute('aria-label', richtung < 0 ? 'Previous project' : 'Next project');
       b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
         ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round"' +
         ' aria-hidden="true"><path d="' +
@@ -1763,7 +1772,7 @@ export function initOrbitEngine(){
     if (schalter){
       schalter.setAttribute('aria-pressed', an ? 'true' : 'false');
       schalter.setAttribute('aria-label',
-        an ? 'Zur Orbit-Ansicht wechseln' : 'Zur Reihenansicht wechseln');
+        an ? 'Switch to Orbit view' : 'Switch to Gallery view');
     }
     if (an){
       if (!gPosten.length) galerieBauen();

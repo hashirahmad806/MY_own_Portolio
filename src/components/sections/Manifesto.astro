@@ -48,7 +48,7 @@
   id="galerieSchalter"
   type="button"
   aria-pressed="false"
-  aria-label="Galerieansicht umschalten"
+  aria-label="Toggle gallery view"
   data-cursor-hover
 >
   <!-- Icon: Linear Row view -->
@@ -78,14 +78,14 @@
     </div>
 
     <!-- Category Label -->
-    <div class="mf-label">Manifest</div>
+    <div class="mf-label">Manifesto</div>
 
     <!-- Manifesto Typography Grid -->
     <div class="om-manifesto" id="manifesto">
-      <!-- Line 1: Developer ohne Overhead -->
+      <!-- Line 1: Developer without Overhead -->
       <div class="mf-line">
         <span>Developer</span>
-        <span>ohne</span>
+        <span>without</span>
         <span><span class="mf-strike">Overhead</span>.</span>
       </div>
 
@@ -98,13 +98,13 @@
         <span>Engineering.</span>
       </div>
 
-      <!-- Line 3: Kein Overhead & Editorial Stack -->
+      <!-- Line 3: Zero Overhead & Editorial Stack -->
       <div class="mf-line mf-line--stapel">
-        <span class="mf-phrase">Kein Overhead.</span>
+        <span class="mf-phrase">Zero Overhead.</span>
         <div class="mf-stapel">
-          <p class="mf-copy">Gute Softwarearchitektur braucht Klarheit. Committed to lifelong learning and adopting emerging technologies that drive business value and exceptional user experiences.</p>
-          <p class="mf-copy">Moderne Webarchitektur mit React, Node.js, Express, MongoDB, TypeScript und Astro. Von Microservices und WebSockets bis hin zu nahtlosem State Management und interaktiven Interfaces.</p>
-          <p class="mf-copy">Präzise Umsetzung mit Clean Code, CI/CD Pipelines, Unit Testing, SEO-Optimierung und Barrierefreiheit (A11y) von Grund auf gedacht. Höchste Performance für Produkte, die überzeugen.</p>
+          <p class="mf-copy">Great software architecture demands clarity. Committed to lifelong learning and adopting emerging technologies that drive business value and exceptional user experiences.</p>
+          <p class="mf-copy">Modern full-stack engineering with React, Node.js, Express, MongoDB, TypeScript, and Astro. From resilient microservices and WebSockets to seamless state management and interactive interfaces.</p>
+          <p class="mf-copy">Precision delivery with clean code, automated CI/CD pipelines, unit testing, SEO optimization, and accessibility (A11y) built in from day one. Engineered for uncompromising performance and scale.</p>
         </div>
       </div>
 
@@ -129,7 +129,7 @@
 </div>
 
 <!-- Horizontal Filmstrip for Mobile / Overflow Layouts -->
-<div class="om-streifen" id="streifen" aria-label="Arbeiten" data-lenis-prevent=""></div>
+<div class="om-streifen" id="streifen" aria-label="Featured Projects" data-lenis-prevent=""></div>
 
 <style>
   /* ── Bold Transition Curve ── */
@@ -293,10 +293,32 @@
     text-align: center;
   }
 
-  :global(.om-karte-bu.is-da) { opacity: 1; }
+  :global(.om-karte-bu.is-da) { opacity: 1; pointer-events: auto; }
   :global(.om-karte-bu b) { display: block; font-size: 15px; margin-bottom: 3px; }
   :global(.om-bu-zeile) { display: block; font-size: 12px; opacity: 0.75; }
   :global(.om-bu-credit) { display: block; font-size: 11px; opacity: 0.55; margin-top: 2px; }
+  :global(.om-bu-link-zeile) { display: block; margin-top: 8px; }
+  :global(.om-bu-link) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0b0b0f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(180, 129, 248, 0.45);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  :global(.om-bu-link:hover) {
+    transform: scale(1.05) translateY(-1px);
+    box-shadow: 0 6px 20px rgba(180, 129, 248, 0.7);
+  }
 
   :global(.om-karte-aufl) {
     position: fixed;
