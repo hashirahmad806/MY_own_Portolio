@@ -27,18 +27,20 @@ See: .planning/PROJECT.md (updated 2026-10-06)
 ## Current Position
 
 Phase: 3 of 6 (Hero & Gravitize Physics Interaction)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-10-06 — Phase 2 complete, transitioned to Phase 3
+Plan: Ready to plan
+Status: Ready to plan Phase 3
+Last activity: 2026-10-06 — Phase 2 completed & verified (02-01-SUMMARY.md, 02-VERIFICATION.md)
 
-Progress: [██░░░░░░░░] 17%
+Progress: [███░░░░░░░] 33%
 
 ## Accumulated Learnings & Decisions
 
 - Tech Stack: Astro 7 + Lenis 1.1 + GSAP 3.12 + Vanilla CSS3.
-- Design System: Obsidian dark theme (`#101010`), warm ivory (`#EDEBE6`), celestial lilac (`#B481F8`), fluid clamp typography (*Syne* + *Plus Jakarta Sans*), procedural SVG noise overlay.
-- Build Status: Clean static generation verified in ~2s with zero TypeScript/CSS errors.
+- Motion Engine: Lenis RAF synchronized with GSAP ScrollTrigger via ticker (`lagSmoothing(0)`), avoiding scroll jitter.
+- Cursor & Physics: Dual-layer custom cursor driven by `gsap.quickTo` with automatic fallback on touch devices (`pointer: coarse`). Reusable `MagneticWrapper` for interactive hover snapping.
+- Navigation: Luxury fixed editorial header with responsive layout and brand lockup.
+- Build Status: Clean static generation verified with zero TypeScript/CSS errors.
 
 ## Blockers & Risks
 
-- None active. Ready to plan Phase 2.
+- None active. Ready to plan Phase 3 (Hero & Gravitize Physics Interaction).
