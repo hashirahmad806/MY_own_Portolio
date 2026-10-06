@@ -1,0 +1,43 @@
+{
+  "contract": "1.0.0",
+  "flavor": "core",
+  "milestone": null,
+  "phases": [
+    {
+      "number": "1",
+      "name": "Foundation & Design System",
+      "status": "complete"
+    },
+    {
+      "number": "2",
+      "name": "Motion Engine & Global Architecture",
+      "status": "pending"
+    },
+    {
+      "number": "3",
+      "name": "Hero & Gravitize Physics Interaction",
+      "status": "pending"
+    },
+    {
+      "number": "4",
+      "name": "Editorial Manifesto & Hybrid AI Showcase",
+      "status": "pending"
+    },
+    {
+      "number": "5",
+      "name": "Bio, Client Marquee & Awards Vault",
+      "status": "pending"
+    },
+    {
+      "number": "6",
+      "name": "Conversion, SEO & Launch Verification",
+      "status": "pending"
+    }
+  ],
+  "next": {
+    "command": "/gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 1 of 6 · 0% · executing"
+  },
+  "updated_at": "2026-10-06T09:37:58.837Z"
+}

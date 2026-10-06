@@ -9,10 +9,10 @@ Requirements for initial release. Each maps directly to roadmap phases.
 
 ### Foundation & Design System (FOUND)
 
-- [ ] **FOUND-01**: Astro project is initialized with clean directory structure, TypeScript, and zero runtime dependencies.
-- [ ] **FOUND-02**: Modern CSS design system is established with deep dark palette (`#080808`), ivory typography, metallic accents, and fluid scale tokens using `clamp()`.
-- [ ] **FOUND-03**: Tactile procedural grain/noise overlay is applied across the viewport to create luxury physical editorial feel.
-- [ ] **FOUND-04**: High-end typography is configured using modern editorial serif for titles and precision Swiss grotesk for body/metadata.
+- [x] **FOUND-01**: Astro project is initialized with clean directory structure, TypeScript, and zero runtime dependencies.
+- [x] **FOUND-02**: Modern CSS design system is established with deep dark palette (`#080808`), ivory typography, metallic accents, and fluid scale tokens using `clamp()`.
+- [x] **FOUND-03**: Tactile procedural grain/noise overlay is applied across the viewport to create luxury physical editorial feel.
+- [x] **FOUND-04**: High-end typography is configured using modern editorial serif for titles and precision Swiss grotesk for body/metadata.
 
 ### Motion Engine & Smooth Scrolling (MOTN)
 

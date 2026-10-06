@@ -1,0 +1,46 @@
+:root {
+  /* ==========================================================================
+     Color Palette & Theming (Obsidian & Celestial Gravity)
+     ========================================================================== */
+  --bg: #101010;
+  --bg-surface: #171717;
+  --bg-elevated: #1e1e20;
+  --fg: #EDEBE6;
+  --fg-muted: rgba(237, 235, 230, 0.65);
+  --fg-faint: rgba(237, 235, 230, 0.35);
+  
+  /* Celestial Lilac Accent from gravity-design.de */
+  --accent: #B481F8;
+  --accent-light: #C9A4FA;
+  --accent-dim: rgba(180, 129, 248, 0.15);
+  --accent-glow: rgba(180, 129, 248, 0.35);
+
+  /* Overlays & Shadows */
+  --overlay-1: rgba(16, 16, 16, 0.72);
+  --overlay-2: rgba(16, 16, 16, 0.38);
+  --overlay-3: rgba(16, 16, 16, 0.12);
+  --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 30px rgba(180, 129, 248, 0.25);
+
+  /* ==========================================================================
+     Layout, Margins & Grids
+     ========================================================================== */
+  --content-max: 1920px;
+  --rand: clamp(24px, 4vw, 56px);
+  --section-gap: clamp(80px, 12vh, 180px);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Animation Easing & Durations
+     ========================================================================== */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.8s;
+  --duration-cinematic: 1.2s;
+}

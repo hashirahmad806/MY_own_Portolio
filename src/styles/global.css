@@ -1,0 +1,51 @@
+@import './tokens.css';
+@import './reset.css';
+@import './typography.css';
+
+/* ==========================================================================
+   Luxury Editorial Global Layout Utilities
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--rand);
+  padding-right: var(--rand);
+}
+
+.section-padding {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* Depth background using authentic tiefe texture */
+.ambient-depth {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg) url('/tiefe.png') 0 0 / 100% 100% no-repeat;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* Glass card styling */
+.glass-panel {
+  background: rgba(23, 23, 23, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(237, 235, 230, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.glass-panel-accent {
+  border-color: rgba(180, 129, 248, 0.25);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Selection aesthetics */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}

@@ -6,7 +6,7 @@ A phased journey to build a world-class, luxury editorial portfolio for Gorden K
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Design System** - Initialize Astro, bespoke CSS tokens, typography, and luxury grain overlay.
+- [x] **Phase 1: Foundation & Design System** - Initialize Astro, bespoke CSS tokens, typography, and luxury grain overlay.
 - [ ] **Phase 2: Motion Engine & Global Architecture** - Integrate Lenis smooth scrolling, GSAP ScrollTrigger RAF loop, and header navigation.
 - [ ] **Phase 3: Hero & Gravitize Physics Interaction** - Build kinetic hero titles and the interactive "click to gravitize" coordinate physics simulation.
 - [ ] **Phase 4: Editorial Manifesto & Hybrid AI Showcase** - Implement scroll-linked text scrubbing for the manifesto and agentic AI workflow section.
@@ -27,7 +27,7 @@ A phased journey to build a world-class, luxury editorial portfolio for Gorden K
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: Initialize Astro project, configure styling architecture, design tokens, typography, and base layout.
+- [x] 01-01: Initialize Astro project, configure styling architecture, design tokens, typography, and base layout.
 
 ---
 
