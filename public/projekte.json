@@ -1,0 +1,428 @@
+[
+  {
+    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2021 — Gewobag, Berlin",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2023",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gewobag_2021_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true,
+        "ki": true
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2021_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2021_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2021_04.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "videos/gewobag-2021-poster.jpg",
+        "w": 1600,
+        "h": 1046,
+        "loop": "videos/gewobag-2021-loop.mp4",
+        "video": "videos/gewobag-2021-voll.mp4"
+      }
+    ],
+    "link": "https://berichte.gewobag.de/2021"
+  },
+  {
+    "projekt": "Antibody-Drug Conjugate — Wirkprinzip in Bewegung",
+    "rolle": "Konzept, Animation und Umsetzung Gorden Koschel — gravity",
+    "award": null,
+    "fotocredit": null,
+    "heureka": false,
+    "groesse": 2.6,
+    "bilder": [
+      {
+        "datei": "videos/adc-poster.jpg",
+        "w": 1280,
+        "h": 720,
+        "orbit": true,
+        "ki": true,
+        "loop": "videos/adc-loop.mp4",
+        "video": "videos/adc.mp4"
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2022 „Zukunft im Gleichgewicht“ — Gewobag, Berlin",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2024",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "link": "https://berichte.gewobag.de/2022",
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gewobag_2022_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2022_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2022_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2022_04.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2022_05.webp",
+        "w": 1600,
+        "h": 1600
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2023 „Impuls der Zeit“ — Gewobag, Berlin",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot: Best of the Best 2025 · Red Dot: Grand Prix 2025",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "link": "https://berichte.gewobag.de/2023",
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gewobag_2023_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2023_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2023_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2023_04.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gewobag_2023_05.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "videos/gewobag-2023-poster.jpg",
+        "w": 800,
+        "h": 800,
+        "loop": "videos/gewobag-2023-loop.mp4",
+        "video": "videos/gewobag-2023-voll.mp4",
+        "ton": false
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2017/2018 — GESCO AG, Wuppertal",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": null,
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gesco_2017_01.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_04.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_05.webp",
+        "w": 1600,
+        "h": 1600
+      }
+    ]
+  },
+  {
+    "projekt": "„virtuos“ — Mitgliedermagazin der GEMA, Berlin/München",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": null,
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gema_virtuos_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_03.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_04.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_05.webp",
+        "w": 2670,
+        "h": 2670
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2013/2014 — GESCO AG, Wuppertal",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2014",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gesco_2013_01.webp",
+        "w": 2048,
+        "h": 2048,
+        "orbit": true,
+        "ki": true
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2013_02.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2013_03.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2013_04.webp",
+        "w": 2048,
+        "h": 2048
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2011/2012 — GESCO AG, Wuppertal",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2013",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gesco_2011_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2011_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2011_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2011_04.webp",
+        "w": 1600,
+        "h": 1600
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2017 „Digital me. Digital us.“ — Telefónica Deutschland",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2018",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "videos/telefonica-2017-poster.jpg",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true,
+        "loop": "videos/telefonica-2017-loop.mp4",
+        "video": "videos/telefonica-2017-voll.mp4",
+        "ton": false
+      },
+      {
+        "datei": "orbit-images-opt/telefonica_2017_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/telefonica_2017_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "videos/telefonica-2017-scroll-poster.jpg",
+        "w": 1280,
+        "h": 788,
+        "loop": "videos/telefonica-2017-scroll-loop.mp4",
+        "video": "videos/telefonica-2017-scroll-voll.mp4",
+        "ton": false
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2015 — MLP AG, Wiesloch",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2016",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/mlp_2015_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/mlp_2015_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/mlp_2015_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/mlp_2015_04.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/mlp_2015_05.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "videos/mlp-2015-poster.jpg",
+        "w": 1600,
+        "h": 1600,
+        "loop": "videos/mlp-2015-loop.mp4",
+        "video": "videos/mlp-2015-voll.mp4",
+        "ton": false
+      }
+    ]
+  },
+  {
+    "projekt": "Geschäftsbericht 2015 „Simply.Connected.“ — Robert Bosch GmbH, Stuttgart",
+    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
+    "award": "Red Dot Winner 2016",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/bosch_2015_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_00.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "videos/bosch-2015-poster.jpg",
+        "w": 1600,
+        "h": 1600,
+        "loop": "videos/bosch-2015-loop.mp4",
+        "video": "videos/bosch-2015-voll.mp4",
+        "ton": false
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_04.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_05.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_06.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_07.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_08.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_09.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/bosch_2015_mems.webp",
+        "w": 1600,
+        "h": 1600
+      }
+    ]
+  }
+]

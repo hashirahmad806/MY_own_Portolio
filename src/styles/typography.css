@@ -1,11 +1,41 @@
 /* ==========================================================================
-   Editorial Typography System
+   Authentic MG12 Typography System (gravity-design.de)
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap');
+
+@font-face {
+  font-family: 'MG12';
+  src: url('/fonts/mg12-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'MG12';
+  src: url('/fonts/mg12-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'MG12';
+  src: url('/fonts/mg12-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
 
 :root {
-  --font-display-family: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family: 'MG12', Helvetica, Arial, sans-serif;
+  --font-display-family: 'MG12', Helvetica, Arial, sans-serif;
+  --font-body-family: 'MG12', Helvetica, Arial, sans-serif;
+
+  /* Optical letter-spacing tokens matching live gravity-design.de */
+  --tracking-normal: 0.06em;
+  --tracking-wide: 0.1em;
+  --tracking-widest: 0.14em;
+  --tracking-label: 0.22em;
 
   /* Fluid typography clamp scales */
   --font-hero: clamp(2.75rem, 7vw + 1rem, 7.5rem);
@@ -17,21 +47,15 @@
   --font-body: clamp(0.95rem, 0.4vw + 0.85rem, 1.15rem);
   --font-meta: clamp(0.75rem, 0.25vw + 0.7rem, 0.875rem);
 
-  /* Letter spacing */
-  --tracking-tight: -0.04em;
-  --tracking-normal: -0.01em;
-  --tracking-wide: 0.08em;
-  --tracking-widest: 0.16em;
-
   /* Line heights */
-  --leading-tight: 1.05;
+  --leading-tight: 0.95;
   --leading-snug: 1.25;
-  --leading-normal: 1.5;
+  --leading-normal: 1.45;
   --leading-relaxed: 1.75;
 }
 
-body {
-  font-family: var(--font-body-family);
+html, body {
+  font-family: var(--font-family);
   font-size: var(--font-body);
   letter-spacing: var(--tracking-normal);
   line-height: var(--leading-normal);
@@ -41,18 +65,13 @@ h1, h2, h3, h4, .font-display {
   font-family: var(--font-display-family);
   font-weight: 700;
   line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
 }
 
 .text-hero {
   font-size: var(--font-hero);
-  line-height: 0.95;
-  letter-spacing: var(--tracking-tight);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-transform: lowercase;
-}
-
-.text-display {
-  font-size: var(--font-display);
 }
 
 .text-meta {
@@ -64,10 +83,4 @@ h1, h2, h3, h4, .font-display {
 
 .text-accent {
   color: var(--accent);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--fg) 20%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
