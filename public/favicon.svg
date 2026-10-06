@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="gravity">
+  <!-- Die Bildmarke aus Logo_gravity.svg, unveraendert in Lage, Groesse und
+       Farbe. Aufgeraeumt ist nur der Aufbau: die beiden Clip-Pfade aus der
+       Zeichnung umschliessen ein Rechteck, das alle drei Koerper ohnehin
+       vollstaendig enthaelt - sie schneiden also nichts ab und sind hier
+       weggelassen. Die Klassen sind durch die Farbwerte selbst ersetzt,
+       damit die Datei allein steht.
+       Der Grund ist auf volle 800 x 800 gezogen (in der Vorlage begann er
+       bei y=1.24 und war 798.76 hoch) - bei einem Zeichen, das quadratisch
+       eingesetzt wird, waere der Rest eine haarfeine helle Kante. -->
+  <rect width="800" height="800" fill="#edebe6"/>
+  <!-- Masse -->
+  <path fill="#b481f8" d="M531.169,266.248c0,83.133-66.998,150.528-149.641,150.528s-149.641-67.395-149.641-150.528,66.998-150.528,149.641-150.528,149.641,67.395,149.641,150.528"/>
+  <!-- Reif -->
+  <path fill="#231f20" d="M381.529,435.591c-82.644,0-149.641,67.392-149.641,150.528s66.998,150.528,149.641,150.528,149.641-67.395,149.641-150.528-66.998-150.528-149.641-150.528M381.529,522.489c34.877,0,63.255,28.543,63.255,63.63s-28.378,63.63-63.255,63.63-63.255-28.546-63.255-63.63,28.375-63.63,63.255-63.63"/>
+  <!-- Trabant -->
+  <path fill="#231f20" d="M618.928,130.381c0,32.605-26.274,59.034-58.687,59.034s-58.689-26.43-58.689-59.034,26.277-59.034,58.689-59.034,58.687,26.43,58.687,59.034"/>
+</svg>
