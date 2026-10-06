@@ -3,12 +3,13 @@
  * Manifesto.astro
  *
  * Authentic Manifesto Section from gravity-design.de:
- * - SVG Bold Curve transition (M0,0 Q500,-140 1000,0 L1000,160 L0,160 Z)
- * - Full-bleed celestial lilac background (#B481F8) with circular clip-path reveal
- * - Rotating orbital satellite ring (.mf-ring-feld, .mf-ring-bahn, .mf-punkt)
- * - Masked typographic slide-ups (.mf-maske, .mf-hoch)
- * - Dynamic strike-through on "Agentur ohne Agentur" and underline on "bold"
- * - Drag to orbit teaser hint
+ * - Organic SVG Bold Curve Transition (#boldCurve, #boldCurvePath) with spring bounce
+ * - Pinned #boldScroll with sticky #boldSection (circular clip-path reveal)
+ * - Revolving satellite orbital ring (#mfRing) with magnetic cursor attraction
+ * - Categorical label "Manifest"
+ * - Staggered masked editorial typography (.om-manifesto) with 3D perspective zoom
+ * - Strike-through animation on "Agentur" and underline on "bold"
+ * - "Drag to orbit" teaser hint
  */
 ---
 
@@ -19,7 +20,7 @@
 
 <div class="om-bold-scroll" id="boldScroll">
   <section class="om-bold" id="boldSection">
-    <!-- Orbital Ring & Revolving Satellite Dot -->
+    <!-- Orbital Ring & Revolving Satellite Dot with Magnetic Cursor Physics -->
     <div class="mf-ring-feld" id="mfRing" aria-hidden="true">
       <div class="mf-ring"></div>
       <div class="mf-ring-kreisel">
@@ -36,23 +37,23 @@
     <div class="om-manifesto" id="manifesto">
       <!-- Line 1: Agentur ohne Agentur -->
       <div class="mf-line">
-        <span class="mf-maske"><span class="mf-hoch">Agentur</span></span>
-        <span class="mf-maske"><span class="mf-hoch">ohne</span></span>
-        <span class="mf-maske"><span class="mf-hoch"><span class="mf-strike">Agentur</span>.</span></span>
+        <span>Agentur</span>
+        <span>ohne</span>
+        <span><span class="mf-strike">Agentur</span>.</span>
       </div>
 
       <!-- Line 2: 35 Jahre Erfahrung -->
       <div class="mf-line">
         <span class="mf-paar">
-          <span class="mf-maske"><span class="mf-hoch">35</span></span>
-          <span class="mf-maske"><span class="mf-hoch">Jahre</span></span>
+          <span>35</span>
+          <span>Jahre</span>
         </span>
-        <span class="mf-maske"><span class="mf-hoch">Erfahrung.</span></span>
+        <span>Erfahrung.</span>
       </div>
 
       <!-- Line 3: Kein Overhead & Editorial Stack -->
       <div class="mf-line mf-line--stapel">
-        <span class="mf-maske"><span class="mf-hoch"><span class="mf-phrase">Kein Overhead.</span></span></span>
+        <span class="mf-phrase">Kein Overhead.</span>
         <div class="mf-stapel">
           <p class="mf-copy">Gute Ideen sind am Anfang oft fragil. Zu viele Abstimmungen, Kompromisse und Prozesse können ihnen genau das nehmen, was sie stark macht: ihren Mut und ihr Momentum.</p>
           <p class="mf-copy">Strategie gibt einer Idee Halt. Erfahrung zeigt, was funktioniert. Und Intuition sagt manchmal: genau so – auch wenn das Naheliegende in eine andere Richtung zeigt. So wird aus einer mutigen Idee eine mit echter Anziehungskraft. Eine, die trägt.</p>
@@ -62,7 +63,7 @@
 
       <!-- Line 4: Just bold ideas -->
       <div class="mf-line mf-line--ende">
-        <span class="mf-maske"><span class="mf-hoch"><span class="mf-phrase mf-schluss">Just <span class="om-bold-underline">bold</span> ideas.</span></span></span>
+        <span class="mf-phrase mf-schluss">Just <span class="om-bold-underline">bold</span> ideas.</span>
 
         <span class="mf-anhang">
           <span class="mf-strich" aria-hidden="true"></span>
@@ -81,7 +82,6 @@
 </div>
 
 <style>
-  /* SVG Bold Curve Transition */
   .om-bold-curve {
     position: relative;
     z-index: 3;
@@ -96,39 +96,34 @@
 
   .om-bold-scroll {
     position: relative;
-    height: 380vh;
+    height: 430vh;
   }
 
-  @media (pointer: coarse) {
-    .om-bold-scroll {
-      height: 320vh;
-    }
-  }
-
-  /* Sticky Marquee Section */
   .om-bold {
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
     height: 100vh;
-    height: 100dvh;
     background: var(--accent);
     color: var(--bg);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 64px clamp(24px, 4vw, 56px);
+    padding: 64px 56px;
     text-align: center;
+    transition: background .3s ease;
     clip-path: circle(80vmax at 50% 50%);
     -webkit-clip-path: circle(80vmax at 50% 50%);
     overflow: hidden;
     perspective: 1400px;
     --ring-d: 80vmin;
-    --mf-line-h: 0.12em;
   }
 
-  /* Orbital Ring Background */
+  .om-bold.is-collapsing {
+    transition: none;
+  }
+
   .mf-ring-feld {
     position: absolute;
     z-index: 0;
@@ -153,9 +148,9 @@
     inset: 0;
     border-radius: 50%;
     transform: scale(var(--ring-s, 1));
-    background: linear-gradient(to bottom, rgba(242, 240, 236, 0.45), rgba(242, 240, 236, 0.65));
+    background: linear-gradient(to bottom, rgba(242, 240, 236, .45), rgba(242, 240, 236, .65));
     -webkit-mask: radial-gradient(closest-side, transparent 39.8%, #000 40.4%);
-            mask: radial-gradient(closest-side, transparent 39.8%, #000 40.4%);
+    mask: radial-gradient(closest-side, transparent 39.8%, #000 40.4%);
   }
 
   .mf-ring-bahn {
@@ -164,42 +159,46 @@
     animation: mf-bahn 26s linear infinite;
   }
 
+  @keyframes mf-bahn {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   .mf-punkt {
     position: absolute;
+    top: -8px;
     left: 50%;
-    top: calc(var(--ring-d) * -0.06);
-    width: clamp(10px, 1.65vmin, 22px);
-    height: clamp(10px, 1.65vmin, 22px);
-    margin-left: calc(clamp(10px, 1.65vmin, 22px) / -2);
+    margin-left: -8px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: #F2F0EC;
-    will-change: transform;
+    display: block;
+    box-shadow: 0 0 12px rgba(242, 240, 236, 0.45);
+    transition: transform 0.1s ease-out;
   }
 
-  @keyframes mf-bahn {
-    to { transform: rotate(360deg); }
-  }
-
-  /* Typography Structure */
-  .mf-label,
-  .om-manifesto {
+  .mf-label, .om-manifesto {
     position: relative;
     z-index: 1;
   }
 
   .mf-label {
-    max-width: var(--content-max);
-    margin: 0 auto 20px;
-    text-align: left;
-    font-weight: 700;
     text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.22em;
-    color: #F2F0EC;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(16, 16, 16, 0.55);
+    margin-bottom: 2rem;
+    text-align: left;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    width: 100%;
   }
 
   .om-manifesto {
     max-width: var(--content-max);
+    width: 100%;
     margin: 0 auto;
     text-align: left;
     font-weight: 700;
@@ -207,113 +206,106 @@
     font-size: clamp(34px, min(6.4vw, 11vh), 108px);
     letter-spacing: 0.005em;
     line-height: 0.92;
+    --mf-line-h: 0.12em;
   }
 
   .mf-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transform-origin: 50% 50%;
+    will-change: transform, opacity, filter;
   }
 
-  .mf-maske {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
-    padding: 0.3em 0;
-    margin: -0.3em 0;
-  }
-
-  .mf-hoch {
-    display: inline-block;
-    will-change: transform;
-    transform: translateY(calc(100% + 0.55em));
-    transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .om-manifesto.is-auf .mf-hoch {
-    transform: none;
-  }
-
-  .mf-paar,
-  .mf-paar .mf-hoch {
+  .mf-paar {
     display: inline-flex;
     gap: 0.28em;
+  }
+
+  :global(.mf-maske) {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  :global(.mf-hoch) {
+    display: inline-block;
+    transform: translateY(115%);
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .om-manifesto.is-auf :global(.mf-hoch) {
+    transform: none;
   }
 
   .mf-line--stapel {
     align-items: flex-start;
   }
 
+  .mf-phrase {
+    white-space: nowrap;
+  }
+
   .mf-stapel {
-    flex: 1 1 0;
-    min-width: 0;
-    margin-top: 0.25em;
-    margin-left: 2.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 480px;
+    margin-left: 2rem;
+    text-transform: none;
   }
 
   .mf-copy {
-    flex: 0 0 auto;
-    font-weight: 700;
-    text-transform: none;
-    letter-spacing: 0.01em;
+    font-size: clamp(13px, 0.95vw, 15px);
+    font-weight: 400;
     line-height: 1.45;
-    font-size: clamp(11px, max(1.3vw, 1.3vh), 17px);
+    letter-spacing: 0.01em;
+    color: rgba(16, 16, 16, 0.78);
     margin: 0;
-  }
-
-  .mf-copy + .mf-copy {
-    margin-top: 1.45em;
   }
 
   .mf-line--ende {
     justify-content: flex-start;
     align-items: center;
     margin-top: 0.5em;
+    gap: 2rem;
+  }
+
+  .mf-line--ende .mf-phrase {
+    color: var(--fg);
+    transition: color .3s ease;
   }
 
   .mf-anhang {
     display: inline-flex;
     align-items: center;
-    align-self: center;
-    flex: 1 1 auto;
-    min-width: 0;
-    margin-bottom: 0.14em;
+    gap: 1.2rem;
+    text-transform: none;
   }
 
   .mf-strich {
-    flex: 1 1 0;
-    align-self: center;
-    width: auto;
-    min-width: 24px;
+    width: 48px;
     height: 2px;
-    background: var(--fg);
+    background: currentColor;
     opacity: 0;
-    margin: 0 clamp(14px, 1.4vw, 28px);
-    transition: opacity 0.8s ease 0.45s;
+    transition: opacity 0.6s ease;
   }
 
   .om-manifesto.is-auf .mf-strich {
-    opacity: 0.55;
+    opacity: .55;
   }
 
   .mf-nachsatz {
-    flex: 0 0 auto;
-    align-self: center;
-    color: var(--fg);
-    text-transform: none;
-    font-size: clamp(12px, 1.05vw, 17px);
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    line-height: 1.4;
+    font-size: clamp(14px, 1.1vw, 18px);
+    font-weight: 500;
     opacity: 0;
-    transition: opacity 0.8s ease 0.45s;
+    transition: opacity 0.6s ease 0.2s;
   }
 
   .om-manifesto.is-auf .mf-nachsatz {
     opacity: 1;
   }
 
-  /* Live Strikethrough & Underline Animation */
   .mf-strike {
     position: relative;
   }
@@ -356,7 +348,6 @@
     transform: scaleX(1);
   }
 
-  /* Drag Hint */
   .orbit-hint {
     position: absolute;
     left: 50%;
@@ -371,97 +362,55 @@
     letter-spacing: 0.01em;
     color: #F2F0EC;
     font-size: clamp(13px, 1.15vw, 17px);
-    transition: opacity 0.4s ease;
-  }
-
-  .orbit-hint.is-da {
-    opacity: 1;
+    transition: opacity 0.3s ease;
   }
 
   .orbit-hint span {
     display: block;
   }
 
-  /* Mobile Portrait Adjustments */
-  @media (max-width: 900px) {
+  @media (max-width: 640px) {
+    .om-bold-scroll {
+      height: 348vh;
+    }
+    .om-bold {
+      padding: clamp(40px, 9vh, 96px) var(--rand) 40px;
+    }
     .om-manifesto {
-      font-size: clamp(32px, 7.8vw, 68px);
+      font-size: clamp(26px, 9.4vw, 52px);
+      line-height: 0.7;
     }
-
-    .mf-line--stapel {
-      flex-direction: column;
+    .mf-line {
+      justify-content: flex-start;
+      gap: 0.28em;
+      flex-wrap: wrap;
     }
-
     .mf-stapel {
       margin-left: 0;
-      margin-top: 1rem;
-    }
-
-    .mf-copy {
-      font-size: 14px;
+      margin-top: 0.7em;
     }
   }
 
-  /* Reduced Motion Accessibility */
   @media (prefers-reduced-motion: reduce) {
     .mf-ring-feld { transform: none; }
     .mf-ring-bahn { animation: none; }
-    .mf-hoch { transform: none; transition: none; }
+    :global(.mf-hoch) { transform: none; transition: none; }
     .mf-strich, .mf-nachsatz { opacity: 1; transition: none; }
     .mf-strike::after, .om-bold-underline::after { transform: scaleX(1); transition: none; }
   }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initManifestoScroll } from '../../scripts/manifesto-scroll';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const initManifesto = () => {
-    const scroller = document.getElementById('boldScroll');
-    const boldSection = document.getElementById('boldSection');
-    const manifesto = document.getElementById('manifesto');
-    const strike = document.querySelector('.mf-strike');
-    const underline = document.querySelector('.om-bold-underline');
-    const orbitHint = document.getElementById('orbitHint');
-
-    if (!scroller || !boldSection || !manifesto) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      manifesto.classList.add('is-auf');
-      strike?.classList.add('is-struck');
-      underline?.classList.add('is-struck');
-      return;
-    }
-
-    // ── Reveal on entering section ──
-    ScrollTrigger.create({
-      trigger: scroller,
-      start: 'top 75%',
-      onEnter: () => manifesto.classList.add('is-auf'),
-    });
-
-    // ── Strikethrough & Underline progression on scroll ──
-    ScrollTrigger.create({
-      trigger: scroller,
-      start: 'top top',
-      end: 'bottom bottom',
-      onUpdate: (self) => {
-        const p = self.progress;
-        if (strike) strike.classList.toggle('is-struck', p >= 0.05);
-        if (underline) underline.classList.toggle('is-struck', p >= 0.15);
-        if (orbitHint) orbitHint.classList.toggle('is-da', p >= 0.35 && p <= 0.85);
-      },
-    });
+  const startManifesto = () => {
+    initManifestoScroll();
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initManifesto);
+    document.addEventListener('DOMContentLoaded', startManifesto);
   } else {
-    initManifesto();
+    startManifesto();
   }
-  document.addEventListener('astro:page-load', initManifesto);
+  document.addEventListener('astro:page-load', startManifesto);
 </script>

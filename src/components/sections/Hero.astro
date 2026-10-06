@@ -2,493 +2,348 @@
 /**
  * Hero.astro
  *
- * Primary Marquee Section for Gorden Koschel
- *
- * Features:
- * - Bold editorial display typography: "gorden koschel"
- * - Role & claim: "visual strategist & creative visualizer" / "strategy · concept · design"
- * - High-art portrait presentation with duotone depth, glass frame, and ambient backlight
- * - Three core proof pills: "35 Jahre Erfahrung", "0 Kein Overhead", "2025 Red Dot Grand Prix"
- * - Embedded GravitizeInteractive coordinate physics module
- * - GSAP entrance timeline + ScrollTrigger parallax scrub
- * - Full prefers-reduced-motion support
+ * Full-Bleed 1080p Celestial Hero Stage from gravity-design.de:
+ * - High-contrast black & white portrait backdrop (#bg) with WebGL depth map parallax (#bgTiefe)
+ * - 1920x1080 fixed coordinate stage (#stage, #scene) with adaptive aspect ratio layout
+ * - Celestial atomic structure: gold sun (#mass), doughnut ring (#ring), white satellite (#small), attractor (#attractor)
+ * - Concentric guide ellipses (#guide-small, #guide-ring) and focal points (#focus-small, #focus-ring)
+ * - Dynamic live telemetry HUD monospace readouts (#coord-small, #coord-ring)
+ * - "strategy · concept · design" claim (#claim)
+ * - Editorial name and role lockup with scroll character scrub (#lockup)
+ * - Interactive Click to Gravitize: Keplerian orbital mechanics with spring return
+ * - Seamless scroll docking to header wordmark (#svg -> #brand)
  */
-import GravitizeInteractive from './GravitizeInteractive.astro';
 ---
 
-<section class="hero-section container" id="hero" aria-label="Vorstellung Gorden Koschel">
-  <div class="hero-grid">
-    <!-- Left Column: Typographic Command & Proof Pills -->
-    <div class="hero-content">
-      <!-- Eyebrow Status Badge -->
-      <div class="hero-eyebrow" data-hero-anim="badge">
-        <span class="eyebrow-pulse" aria-hidden="true"></span>
-        <span class="eyebrow-text">Agentur ohne Agentur · Essen, DE</span>
+<!-- Ambient Depth Texture -->
+<div class="om-tiefe" aria-hidden="true"></div>
+
+<!-- Full-Stage Portrait Backdrop with WebGL 2.5D Depth Displacement Canvas -->
+<div class="om-bg" id="bg">
+  <canvas class="om-bg-tiefe" id="bgTiefe" aria-hidden="true"></canvas>
+</div>
+
+<!-- 1920x1080 Celestial Stage -->
+<header class="stage" id="stage" aria-label="Gorden Koschel — Celestial Stage">
+  <div class="scene" id="scene">
+    <div class="om-mark" id="mark">
+      <div class="om-lockup" id="lockup">
+        <h1 class="om-name">gorden koschel</h1>
+        <p class="om-role">visual strategist &amp; <span class="om-rolle-zwei">creative visualizer</span></p>
       </div>
 
-      <!-- Marquee Title Lockup -->
-      <header class="hero-header">
-        <h1 class="hero-title" data-hero-anim="title">
-          <span class="hero-title-line">gorden</span>
-          <span class="hero-title-line">koschel</span>
-        </h1>
-
-        <p class="hero-role" data-hero-anim="role">
-          visual strategist & creative visualizer
-        </p>
-
-        <p class="hero-claim text-accent" data-hero-anim="claim">
-          strategy · concept · design
-        </p>
-      </header>
-
-      <!-- Proof Metric Cards -->
-      <div class="hero-metrics" data-hero-anim="metrics">
-        <div class="glass-panel metric-card" data-cursor-hover>
-          <div class="metric-value">35</div>
-          <div class="metric-label">Jahre Erfahrung</div>
-        </div>
-
-        <div class="glass-panel metric-card" data-cursor-hover>
-          <div class="metric-value metric-accent">0</div>
-          <div class="metric-label">Kein Overhead</div>
-        </div>
-
-        <div class="glass-panel metric-card" data-cursor-hover>
-          <div class="metric-value">2025</div>
-          <div class="metric-label">Red Dot Grand Prix</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column: Atmospheric Portrait Card -->
-    <div class="hero-portrait-wrapper" data-hero-anim="portrait">
-      <div class="portrait-ambient-glow" aria-hidden="true"></div>
-
-      <div class="portrait-card" id="hero-portrait-card">
-        <img
-          src="/portrait.jpg"
-          alt="Gorden Koschel — Visual Strategist & Creative Visualizer"
-          class="portrait-img"
-          width="480"
-          height="600"
-          loading="eager"
-          decoding="async"
-        />
-        <div class="portrait-overlay" aria-hidden="true"></div>
-
-        <div class="portrait-badge">
-          <span class="portrait-badge-dot"></span>
-          <span class="portrait-badge-text">Gorden Koschel</span>
-        </div>
-      </div>
+      <p class="om-claim" id="claim">strategy · concept · design</p>
     </div>
   </div>
 
-  <!-- Bottom: Signature Gravitize Coordinates & Physics Simulation -->
-  <div class="hero-interactive" data-hero-anim="interactive">
-    <GravitizeInteractive />
-  </div>
-</section>
+  <!-- Primary Celestial Orbital SVG Structure -->
+  <svg id="svg" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs></defs>
+
+    <!-- Concentric Orbital Ellipse Guides -->
+    <ellipse id="guide-small" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0"></ellipse>
+    <ellipse id="guide-ring" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0"></ellipse>
+
+    <!-- Celestial Focus Points -->
+    <circle id="focus-small" r="5" fill="var(--accent)" opacity="0"></circle>
+    <circle id="focus-ring" r="5" fill="var(--accent)" opacity="0"></circle>
+
+    <!-- Telemetry HUD Monospace Coordinates -->
+    <text font-size="16" font-family="monospace" fill="var(--accent)" opacity="0" id="coord-small">
+      <tspan id="coord-small-xy">0, 0</tspan>
+      <tspan id="coord-small-a">a 0.0</tspan>
+    </text>
+    <text font-size="16" font-family="monospace" fill="var(--accent)" opacity="0" id="coord-ring">
+      <tspan id="coord-ring-xy">0, 0</tspan>
+      <tspan id="coord-ring-a">a 0.0</tspan>
+    </text>
+
+    <!-- Click-to-Gravitize Dynamic Attractor Marker -->
+    <circle id="attractor" r="9" fill="var(--accent)" opacity="0"></circle>
+
+    <!-- Planetary Orbital Bodies -->
+    <circle id="mass" fill="var(--accent)"></circle>
+    <circle id="small" fill="var(--fg)" opacity="0"></circle>
+    <circle id="ring" fill="none" stroke="var(--fg)" opacity="0"></circle>
+  </svg>
+
+  <!-- Interactive Gravitize Hint -->
+  <div class="om-hint" id="hint">click to gravitize</div>
+</header>
 
 <style>
-  .hero-section {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: clamp(90px, 14vh, 140px);
-    padding-bottom: clamp(60px, 8vh, 100px);
-    z-index: 10;
+  #mass, #small, #ring {
+    transition: fill .4s ease, stroke .4s ease;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    align-items: center;
-    gap: clamp(2rem, 5vw, 5rem);
-    width: 100%;
-  }
-
-  /* Eyebrow Badge */
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 16px;
-    border-radius: var(--radius-full);
-    background: rgba(23, 23, 23, 0.75);
-    border: 1px solid rgba(180, 129, 248, 0.28);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    width: fit-content;
-    margin-bottom: 2rem;
-  }
-
-  .eyebrow-pulse {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulseOrb 2.2s infinite ease-in-out;
-  }
-
-  @keyframes pulseOrb {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.35); opacity: 0.5; }
-  }
-
-  .eyebrow-text {
-    font-size: var(--font-meta);
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: rgba(237, 235, 230, 0.85);
-    font-weight: 500;
-  }
-
-  /* Headline & Titles */
-  .hero-header {
-    margin-bottom: 2.75rem;
-  }
-
-  .hero-title {
-    font-family: var(--font-display-family);
-    font-size: clamp(3.2rem, 8vw, 7.5rem);
-    font-weight: 800;
-    line-height: 0.92;
-    letter-spacing: -0.04em;
-    color: var(--fg);
-    text-transform: lowercase;
-    margin: 0 0 1.5rem 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-title-line {
-    display: block;
-    will-change: transform, opacity;
-  }
-
-  .hero-role {
-    font-family: var(--font-body-family);
-    font-size: clamp(1.15rem, 1.8vw, 1.65rem);
-    font-weight: 400;
-    letter-spacing: var(--tracking-wide);
-    color: var(--fg-muted);
-    margin: 0 0 0.65rem 0;
-    line-height: 1.3;
-  }
-
-  .hero-claim {
-    font-family: var(--font-display-family);
-    font-size: clamp(1.35rem, 2.2vw, 2.2rem);
-    font-weight: 700;
-    letter-spacing: var(--tracking-normal);
-    margin: 0;
-    line-height: 1.25;
-  }
-
-  /* Metric Cards */
-  .hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.5rem);
-    max-width: 620px;
-  }
-
-  .metric-card {
-    padding: clamp(1.1rem, 2vw, 1.6rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    transition:
-      transform var(--duration-normal) var(--ease-standard),
-      border-color var(--duration-normal) var(--ease-standard),
-      box-shadow var(--duration-normal) var(--ease-standard);
-  }
-
-  .metric-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(180, 129, 248, 0.45);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 18px rgba(180, 129, 248, 0.15);
-  }
-
-  .metric-value {
-    font-family: var(--font-display-family);
-    font-size: clamp(1.75rem, 3.2vw, 2.85rem);
-    font-weight: 800;
-    line-height: 1;
-    color: var(--fg);
-  }
-
-  .metric-accent {
-    color: var(--accent);
-  }
-
-  .metric-label {
-    font-size: clamp(10px, 0.9vw, 12px);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--fg-muted);
-    line-height: 1.3;
-  }
-
-  /* Portrait Card */
-  .hero-portrait-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .portrait-ambient-glow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 380px;
-    background: radial-gradient(circle, rgba(180, 129, 248, 0.22) 0%, rgba(180, 129, 248, 0.04) 50%, transparent 75%);
-    filter: blur(40px);
-    pointer-events: none;
+  .om-tiefe {
+    position: fixed;
+    inset: 0;
     z-index: 0;
+    background: var(--bg) var(--tiefe, url('/tiefe.png') 0 0 / 100% 100% no-repeat);
+    pointer-events: none;
+    transform: translateZ(0);
   }
 
-  .portrait-card {
+  .om-bg {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     width: 100%;
-    max-width: 380px;
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: #141414;
-    border: 1px solid rgba(237, 235, 230, 0.12);
-    box-shadow:
-      0 24px 60px rgba(0, 0, 0, 0.65),
-      0 0 1px 1px rgba(237, 235, 230, 0.06);
-    transition: transform 0.4s var(--ease-standard), border-color 0.4s var(--ease-standard);
+    height: 150vh;
+    background: var(--bg);
+    --photo: url('/portrait.jpg');
   }
 
-  .portrait-card:hover {
-    border-color: rgba(180, 129, 248, 0.45);
-  }
-
-  .portrait-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-    filter: grayscale(12%) contrast(106%) brightness(96%);
-    transition: transform 0.8s var(--ease-standard), filter 0.8s var(--ease-standard);
-  }
-
-  .portrait-card:hover .portrait-img {
-    transform: scale(1.03);
-    filter: grayscale(0%) contrast(108%) brightness(100%);
-  }
-
-  /* Soft Vignette Overlay */
-  .portrait-overlay {
+  .om-bg::after {
+    content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(16, 16, 16, 0.05) 0%,
-      rgba(16, 16, 16, 0.1) 50%,
-      rgba(16, 16, 16, 0.75) 100%
-    );
+    z-index: 0;
+    pointer-events: none;
+    background: var(--photo) var(--photo-x, 100%) var(--photo-y, 0px) / max(128%, 150vh) auto no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .om-bg.is-loaded::after {
+    opacity: 1;
+  }
+
+  .om-bg-tiefe {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateZ(0);
+  }
+
+  .om-bg.is-loaded .om-bg-tiefe {
+    opacity: 1;
+  }
+
+  .om-bg.is-tiefe::after {
+    opacity: 0;
+    transition: none;
+  }
+
+  .om-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    transition: background .4s ease;
+    background: linear-gradient(100deg, var(--overlay-1) 0%, var(--overlay-2) 45%, var(--overlay-3) 75%);
+  }
+
+  .stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 6;
+    overflow: hidden;
+    background: transparent;
+    cursor: crosshair;
+  }
+
+  .scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: 0 0;
     pointer-events: none;
   }
 
-  .portrait-badge {
+  #svg {
     position: absolute;
-    bottom: 18px;
-    left: 18px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    background: rgba(16, 16, 16, 0.75);
-    border: 1px solid rgba(237, 235, 230, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    inset: auto;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: 0 0;
+    pointer-events: none;
   }
 
-  .portrait-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
+  :global(html.logo-gedockt) #svg {
+    pointer-events: none;
   }
 
-  .portrait-badge-text {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
+  .om-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    transform: scale(0.7);
+    transform-origin: 960px 536px;
+  }
+
+  .om-lockup {
+    position: absolute;
+    left: -58px;
+    top: 943px;
+    white-space: nowrap;
     color: var(--fg);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: color .4s ease, opacity 1s ease .3s, transform 1s ease .3s;
+    pointer-events: auto;
   }
 
-  /* Interactive Gravitize Module Placement */
-  .hero-interactive {
-    width: 100%;
-    margin-top: clamp(2rem, 4vw, 3.5rem);
+  .om-lockup.is-da {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  /* Responsive Breakpoints */
-  @media (max-width: 960px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+  :global(.om-lz) {
+    display: inline-block;
+  }
 
-    .hero-portrait-wrapper {
-      order: -1;
-      justify-content: flex-start;
-    }
+  .om-name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin: 0;
+    text-transform: lowercase;
+  }
 
-    .portrait-card {
-      max-width: 280px;
-    }
+  .om-role {
+    font-size: 20px;
+    font-weight: 400;
+    opacity: .66;
+    letter-spacing: 0.1em;
+    margin: 0.6em 0 0;
+  }
 
-    .hero-metrics {
-      max-width: 100%;
+  .om-claim {
+    position: absolute;
+    left: 1120px;
+    top: 646px;
+    white-space: nowrap;
+    margin: 0;
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateY(calc(-50% + 18px));
+    transition: opacity 1s ease .3s, transform 1s ease .3s, color .3s ease;
+    pointer-events: auto;
+  }
+
+  .om-claim.is-da {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .om-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 38px;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(237, 235, 230, 0.65);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.6s ease;
+  }
+
+  #guide-small, #guide-ring {
+    stroke: var(--accent);
+    transition: stroke .3s ease;
+  }
+
+  #focus-small, #focus-ring, #attractor, #mass {
+    fill: var(--accent);
+    transition: fill .3s ease;
+  }
+
+  #coord-small, #coord-ring {
+    fill: var(--accent);
+    transition: fill .3s ease;
+  }
+
+  :global(html.mass-on-accent) #mass {
+    fill: var(--logo-on-accent, var(--bg));
+  }
+
+  :global(html.mass-on-light) #mass,
+  :global(html.mass-on-light) #small {
+    fill: var(--bg);
+  }
+
+  :global(html.mass-on-light) #ring {
+    stroke: var(--bg);
+  }
+
+  @media (orientation: portrait) {
+    .om-bg {
+      --photo-x: 38%;
+    }
+    .om-lockup {
+      left: 109px;
+      top: 1003px;
+    }
+    .om-name, .om-role {
+      font-size: 30px;
+    }
+    .om-claim {
+      font-size: 48px;
     }
   }
 
-  @media (max-width: 540px) {
-    .hero-metrics {
-      grid-template-columns: 1fr;
+  @media (max-width: 640px) {
+    .om-name, .om-role {
+      font-size: 48px;
+    }
+    .om-claim {
+      top: 985px;
+      font-size: 60px;
+      letter-spacing: 0.04em;
+    }
+    .om-lockup {
+      top: 1108px;
+    }
+    .om-rolle-zwei {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .om-bg::after {
+      opacity: 1;
+      transition: none;
     }
   }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initDepthCanvas } from '../../scripts/depth-canvas';
+  import { initHeroStage } from '../../scripts/hero-stage';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const initHeroAnimations = () => {
-    const heroSection = document.getElementById('hero');
-    if (!heroSection) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      // Instant reveal for accessibility
-      gsap.set('[data-hero-anim]', { opacity: 1, y: 0, scale: 1 });
-      return;
-    }
-
-    // ── Initial State for Staggered Entrance ──
-    gsap.set('.hero-eyebrow', { opacity: 0, y: -16 });
-    gsap.set('.hero-title-line', { opacity: 0, y: 50 });
-    gsap.set('.hero-role', { opacity: 0, y: 24 });
-    gsap.set('.hero-claim', { opacity: 0, y: 24 });
-    gsap.set('.metric-card', { opacity: 0, y: 20 });
-    gsap.set('.hero-portrait-wrapper', { opacity: 0, scale: 0.96 });
-    gsap.set('.hero-interactive', { opacity: 0, y: 30 });
-
-    // ── Entrance Master Timeline ──
-    const tl = gsap.timeline({ delay: 0.3 });
-
-    tl.to('.hero-eyebrow', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    })
-    .to('.hero-title-line', {
-      opacity: 1,
-      y: 0,
-      duration: 1.1,
-      stagger: 0.12,
-      ease: 'power4.out',
-    }, '-=0.5')
-    .to('.hero-role', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    }, '-=0.7')
-    .to('.hero-claim', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    }, '-=0.6')
-    .to('.hero-portrait-wrapper', {
-      opacity: 1,
-      scale: 1,
-      duration: 1.2,
-      ease: 'power3.out',
-    }, '-=0.9')
-    .to('.metric-card', {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'back.out(1.2)',
-    }, '-=0.8')
-    .to('.hero-interactive', {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power3.out',
-    }, '-=0.6');
-
-    // ── Subtle 3D Mouse Tilt on Portrait ──
-    if (window.matchMedia('(pointer: fine)').matches) {
-      const portraitCard = document.getElementById('hero-portrait-card');
-      if (portraitCard) {
-        portraitCard.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = portraitCard.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-          gsap.to(portraitCard, {
-            rotationY: x * 8,
-            rotationX: -y * 8,
-            transformPerspective: 800,
-            duration: 0.4,
-            ease: 'power2.out',
-          });
-        });
-
-        portraitCard.addEventListener('mouseleave', () => {
-          gsap.to(portraitCard, {
-            rotationY: 0,
-            rotationX: 0,
-            duration: 0.7,
-            ease: 'power3.out',
-          });
-        });
-      }
-    }
-
-    // ── ScrollTrigger Parallax Shift as user scrolls down ──
-    ScrollTrigger.create({
-      trigger: heroSection,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1,
-      animation: gsap.to('.hero-content', {
-        y: -40,
-        opacity: 0.35,
-        ease: 'none',
-      }),
-    });
+  const startHero = () => {
+    initDepthCanvas();
+    initHeroStage();
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroAnimations);
+    document.addEventListener('DOMContentLoaded', startHero);
   } else {
-    initHeroAnimations();
+    startHero();
   }
-  document.addEventListener('astro:page-load', initHeroAnimations);
+  document.addEventListener('astro:page-load', startHero);
 </script>
