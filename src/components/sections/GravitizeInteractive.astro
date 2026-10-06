@@ -1,0 +1,565 @@
+---
+/**
+ * GravitizeInteractive.astro
+ *
+ * Interactive gravitational coordinates module and physics simulation.
+ * Coordinate lockup: "945, 592 a 0.4 1003, 575 a 1.5 [gravıty]"
+ * Interactive trigger: "click to gravitize"
+ *
+ * Features:
+ * - High-DPR HTML5 Canvas particle simulation with 90 celestial coordinate nodes
+ * - Newtonian inverse-square gravitational collapse toward singularity epicenter
+ * - Damped harmonic spring rebound and shockwave flare
+ * - Interactive cursor gravitational deflection on pointer move
+ * - Magnetic wrapper on the trigger CTA
+ * - Graceful fallback on prefers-reduced-motion
+ */
+import MagneticWrapper from '../ui/MagneticWrapper.astro';
+---
+
+<div class="gravitize-container" id="gravitize-module">
+  <!-- Interactive Canvas Physics Field -->
+  <canvas id="gravitize-canvas" class="gravitize-canvas" aria-hidden="true"></canvas>
+
+  <!-- HUD Control Bar -->
+  <div class="gravitize-hud">
+    <!-- Left: Authentic Coordinate Lockup -->
+    <div class="coordinate-lockup" aria-label="Koordinaten-Signatur">
+      <span class="coord-numbers">945, 592 a 0.4 1003, 575 a 1.5</span>
+      <span class="coord-tag">[gravıty]</span>
+    </div>
+
+    <!-- Center/Right: Interactive Trigger & Status -->
+    <div class="hud-controls">
+      <div class="hud-status" aria-live="polite">
+        <span class="status-dot" id="gravitize-status-dot"></span>
+        <span class="status-label" id="gravitize-status-text">ORBITAL EQUILIBRIUM</span>
+      </div>
+
+      <MagneticWrapper strength={0.4}>
+        <button
+          type="button"
+          id="btn-gravitize"
+          class="btn-gravitize"
+          data-cursor-hover
+          aria-label="Gravitations-Kollaps auslösen"
+        >
+          <span class="btn-ripple" aria-hidden="true"></span>
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+            <circle cx="12" cy="12" r="8" stroke-dasharray="3 3"></circle>
+            <circle cx="12" cy="12" r="11" stroke-opacity="0.5"></circle>
+          </svg>
+          <span class="btn-text">click to gravitize</span>
+        </button>
+      </MagneticWrapper>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gravitize-container {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(237, 235, 230, 0.08);
+    background: radial-gradient(circle at 50% 100%, rgba(180, 129, 248, 0.04) 0%, rgba(16, 16, 16, 0.6) 80%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .gravitize-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    z-index: 1;
+    display: block;
+  }
+
+  .gravitize-hud {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: 1.25rem clamp(1.25rem, 3vw, 2.25rem);
+    background: linear-gradient(180deg, rgba(16, 16, 16, 0) 0%, rgba(16, 16, 16, 0.85) 40%, rgba(16, 16, 16, 0.95) 100%);
+    border-top: 1px solid rgba(237, 235, 230, 0.06);
+    pointer-events: auto;
+  }
+
+  /* Coordinate Lockup */
+  .coordinate-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body-family);
+    font-size: clamp(12px, 1.1vw, 15px);
+    letter-spacing: 0.08em;
+    color: rgba(237, 235, 230, 0.65);
+    white-space: nowrap;
+  }
+
+  .coord-numbers {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .coord-tag {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  /* Controls & Status */
+  .hud-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hud-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(237, 235, 230, 0.55);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hud-status.is-collapsing .status-dot {
+    background: #FF5E7E;
+    box-shadow: 0 0 12px #FF5E7E;
+    animation: rapidPulse 0.3s infinite alternate;
+  }
+
+  .hud-status.is-collapsing .status-label {
+    color: #FF8EA3;
+  }
+
+  @keyframes rapidPulse {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.6); opacity: 0.7; }
+  }
+
+  /* Trigger Button */
+  .btn-gravitize {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: var(--radius-full);
+    background: rgba(23, 23, 23, 0.85);
+    border: 1px solid rgba(180, 129, 248, 0.4);
+    color: var(--fg);
+    font-family: var(--font-body-family);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      background var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+
+  .btn-gravitize:hover {
+    background: rgba(180, 129, 248, 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(180, 129, 248, 0.28);
+  }
+
+  .btn-gravitize:active {
+    transform: scale(0.96);
+  }
+
+  .btn-icon {
+    color: var(--accent);
+    transition: transform 0.6s var(--ease-out-back);
+  }
+
+  .btn-gravitize:hover .btn-icon {
+    transform: rotate(180deg) scale(1.15);
+  }
+
+  .btn-text {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Shockwave Ripple on Active Collapse */
+  .btn-ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(180, 129, 248, 0.5) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .btn-gravitize.is-triggering .btn-ripple {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  /* Responsive layout adjustments */
+  @media (max-width: 768px) {
+    .gravitize-hud {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem 1rem;
+    }
+
+    .hud-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * High-Performance Celestial Gravitational Physics Simulation
+   */
+  interface Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    homeX: number;
+    homeY: number;
+    radius: number;
+    baseAlpha: number;
+    alpha: number;
+    color: string;
+    orbitSpeed: number;
+    orbitAngle: number;
+    orbitRadius: number;
+  }
+
+  const initGravitize = () => {
+    const canvas = document.getElementById('gravitize-canvas') as HTMLCanvasElement;
+    const button = document.getElementById('btn-gravitize') as HTMLButtonElement;
+    const hudContainer = document.querySelector('.hud-status') as HTMLElement;
+    const statusText = document.getElementById('gravitize-status-text') as HTMLElement;
+
+    if (!canvas || !button) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let animationFrameId: number | null = null;
+    let isVisible = true;
+
+    // Simulation Mode: 'orbital' | 'collapsing' | 'rebounding'
+    let mode: 'orbital' | 'collapsing' | 'rebounding' = 'orbital';
+    let singularityX = 0;
+    let singularityY = 0;
+    let collapseTimer = 0;
+    let shockwaveRadius = 0;
+    let shockwaveAlpha = 0;
+
+    // Mouse coordinates inside canvas for local attraction
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let isMouseOver = false;
+
+    const PARTICLE_COUNT = 90;
+    const particles: Particle[] = [];
+
+    // Resize handler with High-DPI support
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.scale(dpr, dpr);
+
+      // Re-center singularity point
+      singularityX = width * 0.5;
+      singularityY = height * 0.45;
+
+      // Re-anchor home positions
+      particles.forEach((p, idx) => {
+        p.homeX = (idx / PARTICLE_COUNT) * width + (Math.sin(idx) * 20);
+        p.homeY = (Math.cos(idx * 2) * 0.35 + 0.45) * height;
+      });
+    };
+
+    // Initialize particles
+    const initParticles = () => {
+      particles.length = 0;
+      const palette = [
+        'rgba(237, 235, 230, ', // Warm Ivory
+        'rgba(180, 129, 248, ', // Celestial Lilac
+        'rgba(216, 180, 254, ', // Soft Violet
+      ];
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const homeX = Math.random() * (width || 800);
+        const homeY = Math.random() * (height || 200);
+        const radius = Math.random() < 0.2 ? 2.2 : Math.random() * 1.5 + 0.8;
+        const baseAlpha = Math.random() * 0.5 + 0.3;
+        const color = palette[Math.floor(Math.random() * palette.length)];
+
+        particles.push({
+          x: homeX,
+          y: homeY,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          homeX,
+          homeY,
+          radius,
+          baseAlpha,
+          alpha: baseAlpha,
+          color,
+          orbitSpeed: (Math.random() * 0.015 + 0.005) * (Math.random() < 0.5 ? 1 : -1),
+          orbitAngle: Math.random() * Math.PI * 2,
+          orbitRadius: Math.random() * 30 + 10,
+        });
+      }
+    };
+
+    // Render loop
+    const render = () => {
+      if (!isVisible) return;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // ── Render active shockwave ring ──
+      if (shockwaveAlpha > 0.01) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(singularityX, singularityY, shockwaveRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(180, 129, 248, ${shockwaveAlpha})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(singularityX, singularityY, shockwaveRadius * 0.65, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(237, 235, 230, ${shockwaveAlpha * 0.6})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.restore();
+
+        shockwaveRadius += 4.5;
+        shockwaveAlpha *= 0.94;
+      }
+
+      // ── Update and draw particles ──
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (mode === 'collapsing') {
+          // Strong Newtonian inverse-square gravitation toward singularity
+          const dx = singularityX - p.x;
+          const dy = singularityY - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+          const force = Math.min(32, 1800 / (dist + 30));
+          const angle = Math.atan2(dy, dx);
+
+          p.vx += Math.cos(angle) * force * 0.12;
+          p.vy += Math.sin(angle) * force * 0.12;
+
+          // Drag to prevent infinite velocity
+          p.vx *= 0.92;
+          p.vy *= 0.92;
+
+          p.alpha = Math.min(1, p.baseAlpha + (1 - dist / width) * 0.7);
+
+          // Near event horizon
+          if (dist < 18) {
+            p.x += (Math.random() - 0.5) * 8;
+            p.y += (Math.random() - 0.5) * 8;
+          }
+        } else if (mode === 'rebounding') {
+          // Spring return to home position (Hooke's Law with damping)
+          const dx = p.homeX - p.x;
+          const dy = p.homeY - p.y;
+
+          const springK = 0.045;
+          const damping = 0.88;
+
+          p.vx = (p.vx + dx * springK) * damping;
+          p.vy = (p.vy + dy * springK) * damping;
+
+          p.alpha += (p.baseAlpha - p.alpha) * 0.05;
+        } else {
+          // Normal 'orbital' harmonic drift
+          p.orbitAngle += p.orbitSpeed;
+          const targetX = p.homeX + Math.cos(p.orbitAngle) * p.orbitRadius;
+          const targetY = p.homeY + Math.sin(p.orbitAngle) * p.orbitRadius;
+
+          p.vx += (targetX - p.x) * 0.02;
+          p.vy += (targetY - p.y) * 0.02;
+          p.vx *= 0.95;
+          p.vy *= 0.95;
+
+          // Soft local cursor gravitational attraction
+          if (isMouseOver) {
+            const mdx = mouseX - p.x;
+            const mdy = mouseY - p.y;
+            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mdist < 140 && mdist > 5) {
+              const mForce = (1 - mdist / 140) * 0.45;
+              p.vx += (mdx / mdist) * mForce;
+              p.vy += (mdy / mdist) * mForce;
+            }
+          }
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.color}${p.alpha})`;
+        ctx.fill();
+
+        // Delicate coordinate node connectors between nearby neighbors
+        for (let j = i + 1; j < Math.min(i + 8, particles.length); j++) {
+          const p2 = particles[j];
+          const cdx = p2.x - p.x;
+          const cdy = p2.y - p.y;
+          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+
+          if (cdist < 48) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(180, 129, 248, ${(1 - cdist / 48) * 0.18 * p.alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Handle collapse timing transitions
+      if (mode === 'collapsing') {
+        collapseTimer++;
+        if (collapseTimer > 55) {
+          // Switch to rebound
+          mode = 'rebounding';
+          collapseTimer = 0;
+          shockwaveRadius = 15;
+          shockwaveAlpha = 0.85;
+
+          if (statusText) statusText.textContent = 'RESTABILIZING ORBITS';
+
+          setTimeout(() => {
+            mode = 'orbital';
+            button.classList.remove('is-triggering');
+            hudContainer?.classList.remove('is-collapsing');
+            if (statusText) statusText.textContent = 'ORBITAL EQUILIBRIUM';
+          }, 1200);
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    // Click handler to trigger Gravitize Singularity
+    button.addEventListener('click', () => {
+      if (mode === 'collapsing') return;
+
+      const rect = button.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
+      singularityX = rect.left + rect.width / 2 - canvasRect.left;
+      singularityY = rect.top + rect.height / 2 - canvasRect.top;
+
+      mode = 'collapsing';
+      collapseTimer = 0;
+      button.classList.add('is-triggering');
+      hudContainer?.classList.add('is-collapsing');
+      if (statusText) statusText.textContent = 'SINGULARITY COLLAPSE: 9.81 m/s²';
+
+      // Give particles tangential rotational impulse
+      particles.forEach(p => {
+        const dx = p.x - singularityX;
+        const dy = p.y - singularityY;
+        p.vx += -dy * 0.02;
+        p.vy += dx * 0.02;
+      });
+    });
+
+    // Pointer move listener for local attraction
+    canvas.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+      isMouseOver = true;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+      mouseX = -9999;
+      mouseY = -9999;
+    });
+
+    // Pause canvas when out of viewport
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && !animationFrameId && !prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
+
+    window.addEventListener('resize', resize);
+    resize();
+    initParticles();
+
+    if (!prefersReducedMotion) {
+      animationFrameId = requestAnimationFrame(render);
+    } else {
+      // Static starfield render for reduced motion
+      render();
+    }
+  };
+
+  // Run on load and after Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGravitize);
+  } else {
+    initGravitize();
+  }
+  document.addEventListener('astro:page-load', initGravitize);
+</script>

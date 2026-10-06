@@ -1,157 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
 ---
 
 <Layout>
-  <div class="foundation-hero container">
-    <div class="foundation-badge">
-      <span class="pulse-dot"></span>
-      <span class="text-meta">Phase 2: Motion Engine & Global Architecture Active</span>
-    </div>
+  <!-- Marquee Kinetic Hero & Gravitize Physics Section -->
+  <Hero />
 
-    <header class="foundation-header">
-      <h1 class="text-hero">
-        gorden koschel
-      </h1>
-      <p class="role-title">
-        visual strategist & creative visualizer
-      </p>
-      <p class="claim-title text-accent">
-        strategy · concept · design
-      </p>
-    </header>
-
-    <div class="foundation-grid">
-      <div class="glass-panel stat-card">
-        <span class="stat-number">35</span>
-        <span class="stat-label">Jahre Erfahrung</span>
-      </div>
-      <div class="glass-panel stat-card">
-        <span class="stat-number text-accent">0</span>
-        <span class="stat-label">Kein Overhead</span>
-      </div>
-      <div class="glass-panel stat-card">
-        <span class="stat-number">2025</span>
-        <span class="stat-label">Red Dot Grand Prix</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Anchor Section: Manifesto (Phase 4 target) -->
-  <section id="manifesto" class="preview-section container">
+  <!-- Section Anchor: Manifesto (Phase 4 Target) -->
+  <section id="manifesto" class="preview-section container" aria-label="Manifesto Preview">
     <div class="glass-panel preview-card">
-      <span class="text-meta text-accent">Section Anchor: #manifesto</span>
-      <h2 class="preview-title">Manifest der Klarheit</h2>
+      <span class="text-meta text-accent">01 · Manifest</span>
+      <h2 class="preview-title">Agentur ohne Agentur.</h2>
       <p class="preview-text">
-        Design ohne Agentur-Ballast. Direkte Partnerschaft zwischen Entscheidern und Kreativen.
+        35 Jahre Erfahrung. Kein Overhead. Gute Ideen sind am Anfang oft fragil. Zu viele Abstimmungen und Prozesse nehmen ihnen den Mut. Strategie gibt Halt — Erfahrung zeigt, was funktioniert.
       </p>
     </div>
   </section>
 
-  <!-- Anchor Section: Bio (Phase 5 target) -->
-  <section id="bio" class="preview-section container">
+  <!-- Section Anchor: Bio (Phase 5 Target) -->
+  <section id="bio" class="preview-section container" aria-label="Bio Preview">
     <div class="glass-panel preview-card">
-      <span class="text-meta text-accent">Section Anchor: #bio</span>
-      <h2 class="preview-title">Über Gorden Koschel</h2>
+      <span class="text-meta text-accent">02 · My Story</span>
+      <h2 class="preview-title">Visual Strategist & Creative Visualizer.</h2>
       <p class="preview-text">
-        35 Jahre Expertise an der Schnittstelle von visueller Identität, Corporate Publishing und zukunftsweisenden KI-Workflows.
+        Vom Mediengestalter zum Creative Director und Mitinhaber der Agentur heureka GmbH (unter den Top 50 PAGE-Agenturen Deutschlands) bis zum Neustart mit gravity.
       </p>
     </div>
   </section>
 </Layout>
 
 <style>
-  .foundation-hero {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: var(--section-gap);
-    padding-bottom: var(--section-gap);
-    position: relative;
-  }
-
-  .foundation-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 18px;
-    background: rgba(23, 23, 23, 0.7);
-    border: 1px solid rgba(180, 129, 248, 0.25);
-    border-radius: var(--radius-full);
-    width: fit-content;
-    margin-bottom: 2rem;
-  }
-
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px var(--accent);
-    animation: pulse 2s infinite ease-in-out;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.6; }
-  }
-
-  .foundation-header {
-    margin-bottom: 3.5rem;
-  }
-
-  .role-title {
-    font-size: var(--font-h3);
-    color: var(--fg-muted);
-    margin-top: 1rem;
-    font-weight: 400;
-    letter-spacing: var(--tracking-wide);
-  }
-
-  .claim-title {
-    font-size: var(--font-h2);
-    font-weight: 700;
-    margin-top: 0.75rem;
-    letter-spacing: var(--tracking-normal);
-  }
-
-  .foundation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    max-width: 900px;
-  }
-
-  .stat-card {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform var(--duration-normal) var(--ease-standard),
-                border-color var(--duration-normal) var(--ease-standard);
-  }
-
-  .stat-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(180, 129, 248, 0.4);
-  }
-
-  .stat-number {
-    font-family: var(--font-display-family);
-    font-size: var(--font-h1);
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: var(--font-meta);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--fg-muted);
-  }
-
   .preview-section {
     min-height: 80vh;
     display: flex;
@@ -162,21 +41,29 @@ import Layout from '../layouts/Layout.astro';
 
   .preview-card {
     padding: clamp(2rem, 4vw, 4rem);
-    max-width: 820px;
+    max-width: 860px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    transition: transform var(--duration-normal) var(--ease-standard),
+                border-color var(--duration-normal) var(--ease-standard);
+  }
+
+  .preview-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(180, 129, 248, 0.35);
   }
 
   .preview-title {
     font-size: var(--font-h2);
     font-weight: 700;
+    line-height: 1.2;
   }
 
   .preview-text {
     font-size: var(--font-body-large);
     color: var(--fg-muted);
-    line-height: 1.6;
+    line-height: 1.65;
   }
 </style>

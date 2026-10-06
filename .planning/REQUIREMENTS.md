@@ -24,8 +24,8 @@ Requirements for initial release. Each maps directly to roadmap phases.
 ### Hero & Gravitational Microinteraction (HERO)
 
 - [x] **HERO-01**: Minimalist luxury header displays `gravity — Gorden Koschel — strategy · concept · design` with navigation anchors and contact link.
-- [ ] **HERO-02**: Hero displays bold kinetic typography title `gorden koschel / visual strategist & creative visualizer`.
-- [ ] **HERO-03**: Interactive gravitational coordinates module (`945, 592 a 0.4 1003, 575 a 1.5 [gravıty]`) renders with a working "click to gravitize" physics simulation that pulls and snaps elements.
+- [x] **HERO-02**: Hero displays bold kinetic typography title `gorden koschel / visual strategist & creative visualizer`.
+- [x] **HERO-03**: Interactive gravitational coordinates module (`945, 592 a 0.4 1003, 575 a 1.5 [gravıty]`) renders with a working "click to gravitize" physics simulation that pulls and snaps elements.
 
 ### Manifesto & Hybrid AI (CONT)
 
