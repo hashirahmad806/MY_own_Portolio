@@ -22,25 +22,26 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-06)
 
 **Core value:** Deliver an unforgettable, visually stunning, and butter-smooth digital experience that reflects Gorden Koschel's 35-year creative caliber and positions gravity as an elite, high-agency partner for forward-looking brands.
-**Current focus:** Phase 4: Editorial Manifesto & Hybrid AI Showcase
+**Current focus:** Phase 5: Bio, Client Marquee & Awards Vault
 
 ## Current Position
 
 Phase: 5 of 6 (Bio, Client Marquee & Awards Vault)
 Plan: Not started
-Status: Ready to plan
-Last activity: 2026-10-06 — Phase 4 complete, transitioned to Phase 5
+Status: Ready to plan Phase 5
+Last activity: 2026-10-06 — Phase 4 complete & verified (04-01-SUMMARY.md, 04-VERIFICATION.md)
 
-Progress: [█████░░░░░] 50%
+Progress: [███████░░░] 67%
 
 ## Accumulated Learnings & Decisions
 
 - Tech Stack: Astro 7 + Lenis 1.1 + GSAP 3.12 + Vanilla CSS3.
-- Motion Engine: Lenis RAF synchronized with GSAP ScrollTrigger via ticker (`lagSmoothing(0)`).
-- Cursor & Physics: Dual-layer custom cursor driven by `gsap.quickTo` with automatic fallback on touch devices (`pointer: coarse`). Reusable `MagneticWrapper` for interactive hover snapping.
-- Hero & Gravitize: High-performance 60fps HTML5 Canvas particle simulation with inverse-square Newtonian attraction and damped harmonic rebound. 3D perspective mouse tilt on editorial portrait card.
-- Build Status: Clean static generation verified in ~1.15s with zero TypeScript/CSS errors.
+- Typography: Authentic proprietary `MG12` typeface family (Regular, Medium, Bold) installed locally with optical tracking tokens.
+- Asset Ingestion: Mirrored 100% of authentic case study media (49 WebP images, 14 video loops, `projekte.json`).
+- Manifesto & 3D Orbit: Full-bleed lilac section with circular clip-path, quadratic Bezier transition curve (`#boldCurve`), rotating orbital ring (`.mf-ring-bahn`), and masked slide-ups (`.mf-hoch`). Interactive 3D perspective universe (`perspective: 1400px; transform-style: preserve-3d;`) with drag momentum and `#galerieSchalter` view toggle.
+- Hybrid AI: Local models guarantee and interactive Constellation Plexus SVG with rotating tracks and magnetic center portal (`.om-mitte`).
+- Build Status: Clean static generation verified in ~2.10s with zero errors.
 
 ## Blockers & Risks
 
-- None active. Ready to plan Phase 4 (Editorial Manifesto & Hybrid AI Showcase).
+- None active. Ready to plan Phase 5 (Bio, Client Marquee & Awards Vault).
