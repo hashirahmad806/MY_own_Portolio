@@ -11,12 +11,12 @@ interface Props {
 }
 
 const {
-  title = "gravity — Gorden Koschel — strategy · concept · design",
-  description = "Agentur ohne Agentur: Corporate Design, Geschäfts- und Nachhaltigkeitsberichte, Creative Direction und AI Agents. 35 Jahre Erfahrung.",
+  title = "Hashir Ahmad | MERN Stack Developer — Code · Architecture · Design",
+  description = "Hashir Ahmad | MERN Stack Developer: Responsive Design, Microservices, WebSockets, State Management, CI/CD, React, Node.js, TypeScript, Astro.",
   image = "/portrait.jpg"
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gravity-design.de");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://my-portfolios-sandy.vercel.app");
 ---
 
 <!doctype html>
@@ -34,7 +34,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gravity-
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="author" content="Gorden Koschel" />
+    <meta name="author" content="Hashir Ahmad" />
     <meta name="theme-color" content="#101010" />
 
     <!-- Open Graph / Facebook -->
@@ -43,7 +43,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gravity-
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -59,17 +59,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gravity-
     <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "gravity",
-        "alternateName": "gravity design",
-        "url": "https://gravity-design.de/",
-        "email": "losgehts@gravity-design.de",
-        "founder": {
-          "@type": "Person",
-          "name": "Gorden Koschel",
-          "jobTitle": "Visual Strategist & Creative Visualizer"
-        },
-        "description": "Agentur ohne Agentur, Design aus Essen: Corporate Design, Geschäfts- und Nachhaltigkeitsberichte, Creative Direction und AI Agents."
+        "@type": "Person",
+        "name": "Hashir Ahmad",
+        "jobTitle": "MERN Stack Developer & Web Engineer",
+        "url": "https://my-portfolios-sandy.vercel.app/",
+        "sameAs": [
+          "https://github.com/hashirahmad806"
+        ],
+        "description": "MERN Stack Developer specializing in Responsive Design, Microservices, WebSockets, State Management, CI/CD, React, Node.js, and TypeScript."
       }
     </script>
   </head>

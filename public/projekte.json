@@ -1,8 +1,8 @@
 [
   {
-    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2021 — Gewobag, Berlin",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2023",
+    "projekt": "Commit Roulette — Live-Coding Platform",
+    "rolle": "React 19, TypeScript, Vite, Tailwind v4 — Hashir Ahmad",
+    "award": "Live Competition App · Real Deadlines",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -37,12 +37,12 @@
         "video": "videos/gewobag-2021-voll.mp4"
       }
     ],
-    "link": "https://berichte.gewobag.de/2021"
+    "link": "https://github.com/hashirahmad806/commit-roulette"
   },
   {
-    "projekt": "Antibody-Drug Conjugate — Wirkprinzip in Bewegung",
-    "rolle": "Konzept, Animation und Umsetzung Gorden Koschel — gravity",
-    "award": null,
+    "projekt": "MY_own_Portolio — Celestial 3D Orbit Universe",
+    "rolle": "Astro, TypeScript, WebGL 2.5D Shaders, Keplerian Physics — Hashir Ahmad",
+    "award": "Core Repository · 228 Contributions",
     "fotocredit": null,
     "heureka": false,
     "groesse": 2.6,
@@ -56,16 +56,17 @@
         "loop": "videos/adc-loop.mp4",
         "video": "videos/adc.mp4"
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806/MY_own_Portolio"
   },
   {
-    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2022 „Zukunft im Gleichgewicht“ — Gewobag, Berlin",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2024",
+    "projekt": "triostepdkhyber — High Performance Platform",
+    "rolle": "Astro, Tailwind, Responsive Architecture — Hashir Ahmad",
+    "award": "Production Web Architecture",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
-    "link": "https://berichte.gewobag.de/2022",
+    "link": "https://github.com/hashirahmad806/triostepdkhyber",
     "bilder": [
       {
         "datei": "orbit-images-opt/gewobag_2022_01.webp",
@@ -96,13 +97,13 @@
     ]
   },
   {
-    "projekt": "Geschäfts- und Nachhaltigkeitsbericht 2023 „Impuls der Zeit“ — Gewobag, Berlin",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot: Best of the Best 2025 · Red Dot: Grand Prix 2025",
+    "projekt": "Hammad_Portfolio — Minimalist Developer Showcase",
+    "rolle": "Astro, TypeScript, Modern UI/UX — Hashir Ahmad",
+    "award": "Performance Score 100 · Clean Code",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
-    "link": "https://berichte.gewobag.de/2023",
+    "link": "https://github.com/hashirahmad806/Hammad_Portfolio",
     "bilder": [
       {
         "datei": "orbit-images-opt/gewobag_2023_01.webp",
@@ -141,9 +142,9 @@
     ]
   },
   {
-    "projekt": "Geschäftsbericht 2017/2018 — GESCO AG, Wuppertal",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": null,
+    "projekt": "Portpolio_hk — Interactive Component System",
+    "rolle": "TypeScript, Modern Component Architecture — Hashir Ahmad",
+    "award": "Interactive Design System",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -174,12 +175,13 @@
         "w": 1600,
         "h": 1600
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806/Portpolio_hk"
   },
   {
-    "projekt": "„virtuos“ — Mitgliedermagazin der GEMA, Berlin/München",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": null,
+    "projekt": "Hassan_Web — Full Stack Client Experience",
+    "rolle": "TypeScript, MERN Stack Architecture — Hashir Ahmad",
+    "award": "Client Platform · End-to-End",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -210,12 +212,13 @@
         "w": 2670,
         "h": 2670
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806/Hassan_Web"
   },
   {
-    "projekt": "Geschäftsbericht 2013/2014 — GESCO AG, Wuppertal",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2014",
+    "projekt": "Microservices & WebSockets Realtime Engine",
+    "rolle": "Node.js, Express, Socket.io, Scalable Backends — Hashir Ahmad",
+    "award": "Core Competency: Realtime Systems",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -242,12 +245,13 @@
         "w": 2048,
         "h": 2048
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806"
   },
   {
-    "projekt": "Geschäftsbericht 2011/2012 — GESCO AG, Wuppertal",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2013",
+    "projekt": "State Management & CI/CD Automated Pipelines",
+    "rolle": "Redux Toolkit, Zustand, GitHub Actions, Unit Testing — Hashir Ahmad",
+    "award": "Core Competency: DevOps & Testing",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -273,12 +277,13 @@
         "w": 1600,
         "h": 1600
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806"
   },
   {
-    "projekt": "Geschäftsbericht 2017 „Digital me. Digital us.“ — Telefónica Deutschland",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2018",
+    "projekt": "Responsive Design & SEO Performance Engine",
+    "rolle": "HTML5, Semantic A11y, Modern CSS, Astro — Hashir Ahmad",
+    "award": "Core Competency: Accessibility & SEO",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -310,12 +315,13 @@
         "video": "videos/telefonica-2017-scroll-voll.mp4",
         "ton": false
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806"
   },
   {
-    "projekt": "Geschäftsbericht 2015 — MLP AG, Wiesloch",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2016",
+    "projekt": "Full Stack MERN Architecture Suite",
+    "rolle": "MongoDB, Express, React, Node.js — Hashir Ahmad",
+    "award": "Certified MERN Stack Developer",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -354,12 +360,13 @@
         "video": "videos/mlp-2015-voll.mp4",
         "ton": false
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806"
   },
   {
-    "projekt": "Geschäftsbericht 2015 „Simply.Connected.“ — Robert Bosch GmbH, Stuttgart",
-    "rolle": "heureka GmbH (Creative Director Gorden Koschel)",
-    "award": "Red Dot Winner 2016",
+    "projekt": "Meta Certified Frontend & Full Stack Specialist",
+    "rolle": "Hashir Ahmad — 228 Contributions · 42 Public Repositories",
+    "award": "Official Certification",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
@@ -423,6 +430,7 @@
         "w": 1600,
         "h": 1600
       }
-    ]
+    ],
+    "link": "https://github.com/hashirahmad806"
   }
 ]
