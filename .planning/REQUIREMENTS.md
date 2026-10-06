@@ -16,14 +16,14 @@ Requirements for initial release. Each maps directly to roadmap phases.
 
 ### Motion Engine & Smooth Scrolling (MOTN)
 
-- [ ] **MOTN-01**: Lenis smooth scroll engine is configured with buttery inertial physics and dynamic viewport height handling.
-- [ ] **MOTN-02**: GSAP and ScrollTrigger are initialized and synchronized directly into the Lenis `requestAnimationFrame` loop without jitter.
-- [ ] **MOTN-03**: Custom magnetic cursor and interactive hover physics are implemented for clickable elements.
-- [ ] **MOTN-04**: Full accessibility compliance with `prefers-reduced-motion` to smoothly disable inertia and heavy animations when requested.
+- [x] **MOTN-01**: Lenis smooth scroll engine is configured with buttery inertial physics and dynamic viewport height handling.
+- [x] **MOTN-02**: GSAP and ScrollTrigger are initialized and synchronized directly into the Lenis `requestAnimationFrame` loop without jitter.
+- [x] **MOTN-03**: Custom magnetic cursor and interactive hover physics are implemented for clickable elements.
+- [x] **MOTN-04**: Full accessibility compliance with `prefers-reduced-motion` to smoothly disable inertia and heavy animations when requested.
 
 ### Hero & Gravitational Microinteraction (HERO)
 
-- [ ] **HERO-01**: Minimalist luxury header displays `gravity — Gorden Koschel — strategy · concept · design` with navigation anchors and contact link.
+- [x] **HERO-01**: Minimalist luxury header displays `gravity — Gorden Koschel — strategy · concept · design` with navigation anchors and contact link.
 - [ ] **HERO-02**: Hero displays bold kinetic typography title `gorden koschel / visual strategist & creative visualizer`.
 - [ ] **HERO-03**: Interactive gravitational coordinates module (`945, 592 a 0.4 1003, 575 a 1.5 [gravıty]`) renders with a working "click to gravitize" physics simulation that pulls and snaps elements.
 

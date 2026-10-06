@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
   <div class="foundation-hero container">
     <div class="foundation-badge">
       <span class="pulse-dot"></span>
-      <span class="text-meta">Phase 1: Foundation Active</span>
+      <span class="text-meta">Phase 2: Motion Engine & Global Architecture Active</span>
     </div>
 
     <header class="foundation-header">
@@ -36,6 +36,28 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <!-- Anchor Section: Manifesto (Phase 4 target) -->
+  <section id="manifesto" class="preview-section container">
+    <div class="glass-panel preview-card">
+      <span class="text-meta text-accent">Section Anchor: #manifesto</span>
+      <h2 class="preview-title">Manifest der Klarheit</h2>
+      <p class="preview-text">
+        Design ohne Agentur-Ballast. Direkte Partnerschaft zwischen Entscheidern und Kreativen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Anchor Section: Bio (Phase 5 target) -->
+  <section id="bio" class="preview-section container">
+    <div class="glass-panel preview-card">
+      <span class="text-meta text-accent">Section Anchor: #bio</span>
+      <h2 class="preview-title">Über Gorden Koschel</h2>
+      <p class="preview-text">
+        35 Jahre Expertise an der Schnittstelle von visueller Identität, Corporate Publishing und zukunftsweisenden KI-Workflows.
+      </p>
+    </div>
+  </section>
 </Layout>
 
 <style>
@@ -128,5 +150,33 @@ import Layout from '../layouts/Layout.astro';
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     color: var(--fg-muted);
+  }
+
+  .preview-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+
+  .preview-card {
+    padding: clamp(2rem, 4vw, 4rem);
+    max-width: 820px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .preview-title {
+    font-size: var(--font-h2);
+    font-weight: 700;
+  }
+
+  .preview-text {
+    font-size: var(--font-body-large);
+    color: var(--fg-muted);
+    line-height: 1.6;
   }
 </style>

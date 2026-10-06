@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import GrainOverlay from '../components/ui/GrainOverlay.astro';
+import CustomCursor from '../components/ui/CustomCursor.astro';
+import Header from '../components/sections/Header.astro';
 
 interface Props {
   title?: string;
@@ -76,9 +78,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gravity-
     <!-- Tactile Grain Overlay -->
     <GrainOverlay />
 
+    <!-- Custom Dual-Layer Magnetic Cursor -->
+    <CustomCursor />
+
+    <!-- Editorial Header Navigation -->
+    <Header />
+
     <main id="app-root">
       <slot />
     </main>
+
+    <!-- Synchronized Lenis + GSAP Motion Engine -->
+    <script>
+      import '../scripts/motion.ts';
+    </script>
   </body>
 </html>
 

@@ -1,0 +1,73 @@
+---
+/**
+ * MagneticWrapper.astro
+ * Wraps any slot content and applies proportional GSAP magnetic
+ * translate physics on hover, snapping back to origin on leave.
+ *
+ * Usage:
+ *   <MagneticWrapper>
+ *     <button>Contact</button>
+ *   </MagneticWrapper>
+ */
+interface Props {
+  strength?: number; // magnetic pull strength, default 0.4
+  class?: string;
+}
+
+const { strength = 0.4, class: className = '' } = Astro.props;
+---
+
+<div class={`magnetic-wrap ${className}`} data-magnetic data-strength={strength}>
+  <div class="magnetic-inner">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .magnetic-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .magnetic-inner {
+    display: contents;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  // Only activate magnetic effect on pointer-precise (mouse) devices
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach(wrapper => {
+      const inner = wrapper.querySelector<HTMLElement>('.magnetic-inner > *') || wrapper;
+      const strength = parseFloat(wrapper.dataset.strength ?? '0.4');
+
+      wrapper.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = wrapper.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) * strength;
+        const deltaY = (e.clientY - centerY) * strength;
+
+        gsap.to(inner, {
+          x: deltaX,
+          y: deltaY,
+          duration: 0.4,
+          ease: 'power3.out',
+        });
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        gsap.to(inner, {
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          ease: 'elastic.out(1, 0.4)',
+        });
+      });
+    });
+  }
+</script>

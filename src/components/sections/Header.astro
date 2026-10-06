@@ -1,0 +1,173 @@
+---
+import MagneticWrapper from '../ui/MagneticWrapper.astro';
+---
+
+<header class="nav-header" id="site-header" role="banner">
+  <!-- Left: Brand Lockup -->
+  <div class="nav-brand">
+    <a href="#" class="brand-link" aria-label="gravity — zurück nach oben">
+      <span class="brand-gravity">gravity</span>
+      <span class="brand-separator" aria-hidden="true">—</span>
+      <span class="brand-name">Gorden Koschel</span>
+    </a>
+  </div>
+
+  <!-- Right: Navigation -->
+  <nav class="nav-links" aria-label="Site navigation">
+    <a href="#manifesto" class="nav-link" data-cursor-hover>Manifest</a>
+    <a href="#bio" class="nav-link" data-cursor-hover>Bio</a>
+    <MagneticWrapper strength={0.5}>
+      <a
+        href="mailto:losgehts@gravity-design.de?subject=Chemistry-Meeting"
+        class="nav-link nav-cta"
+        data-cursor-hover
+        aria-label="Chemistry Meeting anfragen"
+      >
+        Kontakt
+      </a>
+    </MagneticWrapper>
+  </nav>
+</header>
+
+<style>
+  .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px var(--rand);
+    pointer-events: none;
+
+    /* Opacity and transform are animated via GSAP on mount */
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  .nav-header > * {
+    pointer-events: auto;
+  }
+
+  /* Brand Lockup */
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: rgba(237, 235, 230, 0.78);
+    transition: color var(--duration-normal) var(--ease-standard);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand-link:hover {
+    color: var(--fg);
+  }
+
+  .brand-gravity {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .brand-separator {
+    opacity: 0.35;
+  }
+
+  /* Nav Links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3.5vw, 52px);
+  }
+
+  .nav-link {
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(237, 235, 230, 0.68);
+    text-decoration: none;
+    transition: color var(--duration-normal) var(--ease-standard);
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width var(--duration-normal) var(--ease-standard);
+  }
+
+  .nav-link:hover {
+    color: var(--fg);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Contact CTA link distinct accent treatment */
+  .nav-cta {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-cta:hover {
+    color: var(--accent-light);
+  }
+
+  .nav-cta::after {
+    background: var(--accent-light);
+  }
+
+  /* Mobile: collapse to compact */
+  @media (max-width: 640px) {
+    .nav-header {
+      padding: 20px var(--rand);
+    }
+
+    .brand-name,
+    .brand-separator {
+      display: none;
+    }
+
+    .nav-links {
+      gap: 20px;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Entrance animation ──────────────────────────────────────────────────
+  gsap.to('.nav-header', {
+    y: 0,
+    opacity: 1,
+    duration: 1.1,
+    ease: 'power3.out',
+    delay: 0.4,
+  });
+
+  // ── Nav style responds to scroll position ──────────────────────────────
+  ScrollTrigger.create({
+    start: 'top -80px',
+    end: 99999,
+    toggleClass: {
+      targets: '#site-header',
+      className: 'is-scrolled',
+    },
+  });
+</script>

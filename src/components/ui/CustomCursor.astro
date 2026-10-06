@@ -1,0 +1,101 @@
+---
+// Custom dual-layer magnetic cursor
+// Hidden automatically on touch devices via CSS
+---
+
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<style>
+  #cursor-dot,
+  #cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+
+  #cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    mix-blend-mode: difference;
+  }
+
+  #cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(237, 235, 230, 0.45);
+    background: transparent;
+    transition:
+      width 0.25s var(--ease-standard),
+      height 0.25s var(--ease-standard),
+      border-color 0.25s var(--ease-standard),
+      opacity 0.3s ease;
+  }
+
+  #cursor-ring.is-hover {
+    width: 58px;
+    height: 58px;
+    border-color: var(--accent);
+    background: rgba(180, 129, 248, 0.06);
+  }
+
+  #cursor-ring.is-active {
+    width: 28px;
+    height: 28px;
+    background: rgba(180, 129, 248, 0.12);
+  }
+
+  /* Hide cursor elements on touch devices */
+  @media (pointer: coarse) {
+    #cursor-dot,
+    #cursor-ring {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  // Only initialize on fine-pointer (mouse) devices
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const dot = document.getElementById('cursor-dot') as HTMLElement;
+    const ring = document.getElementById('cursor-ring') as HTMLElement;
+
+    if (!dot || !ring) throw new Error('Cursor elements not found');
+
+    // GSAP quickTo: pre-compiled setters — the most performant way to animate
+    // on mousemove without creating a new tween on every frame
+    const moveDotX = gsap.quickTo(dot, 'x', { duration: 0.08 });
+    const moveDotY = gsap.quickTo(dot, 'y', { duration: 0.08 });
+    const moveRingX = gsap.quickTo(ring, 'x', { duration: 0.35, ease: 'power3.out' });
+    const moveRingY = gsap.quickTo(ring, 'y', { duration: 0.35, ease: 'power3.out' });
+
+    window.addEventListener('mousemove', (e: MouseEvent) => {
+      moveDotX(e.clientX);
+      moveDotY(e.clientY);
+      moveRingX(e.clientX);
+      moveRingY(e.clientY);
+    });
+
+    // Magnetic hover states — scan interactive targets
+    const addHoverListeners = () => {
+      document.querySelectorAll<HTMLElement>('a, button, [data-cursor-hover]').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
+        el.addEventListener('mousedown', () => ring.classList.add('is-active'));
+        el.addEventListener('mouseup', () => ring.classList.remove('is-active'));
+      });
+    };
+
+    // Run immediately and again after any Astro view transitions
+    addHoverListeners();
+    document.addEventListener('astro:page-load', addHoverListeners);
+  }
+</script>
