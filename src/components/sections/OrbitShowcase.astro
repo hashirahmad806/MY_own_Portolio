@@ -419,10 +419,13 @@
         const rotY = (theta * 180) / Math.PI;
 
         // Partition between front and back DOM layers for proper depth stacking
+        const vid = card.querySelector('video');
         if (z < 0) {
           if (card.parentElement !== worldBack) worldBack.appendChild(card);
+          if (vid && !vid.paused) vid.pause();
         } else {
           if (card.parentElement !== worldFront) worldFront.appendChild(card);
+          if (vid && vid.paused && isVisible) vid.play().catch(() => {});
         }
 
         // Apply 3D coordinate transform
