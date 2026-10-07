@@ -10,33 +10,16 @@
     "live": "https://web-projectect-ai-assistant-x8xz.vercel.app/",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gewobag_2021_01.webp",
-        "w": 1600,
-        "h": 1600,
+        "datei": "projects/ai-assistant-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true,
         "ki": true
       },
       {
-        "datei": "orbit-images-opt/gewobag_2021_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2021_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2021_04.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "videos/gewobag-2021-poster.jpg",
-        "w": 1600,
-        "h": 1046,
-        "loop": "videos/gewobag-2021-loop.mp4",
-        "video": "videos/gewobag-2021-voll.mp4"
+        "datei": "projects/ai-assistant-02.webp",
+        "w": 1440,
+        "h": 900
       }
     ]
   },
@@ -51,30 +34,15 @@
     "live": "https://triostepdkhyber.vercel.app/",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gewobag_2022_01.webp",
-        "w": 1600,
-        "h": 1600,
+        "datei": "projects/triostep-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true
       },
       {
-        "datei": "orbit-images-opt/gewobag_2022_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2022_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2022_04.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2022_05.webp",
-        "w": 1600,
-        "h": 1600
+        "datei": "projects/triostep-02.webp",
+        "w": 1440,
+        "h": 900
       }
     ]
   },
@@ -89,30 +57,15 @@
     "live": "https://hassanbds.info",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gema_virtuos_01.webp",
-        "w": 1600,
-        "h": 1600,
+        "datei": "projects/dr-hassan-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true
       },
       {
-        "datei": "orbit-images-opt/gema_virtuos_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_03.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_04.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_05.webp",
-        "w": 2670,
-        "h": 2670
+        "datei": "projects/dr-hassan-02.webp",
+        "w": 1440,
+        "h": 900
       }
     ]
   },
@@ -127,30 +80,15 @@
     "live": "https://quick-blogs-i4xh.vercel.app/",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gesco_2017_04.webp",
-        "w": 1600,
-        "h": 1600,
+        "datei": "projects/quick-blogs-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true
       },
       {
-        "datei": "orbit-images-opt/gesco_2017_01.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_05.webp",
-        "w": 1600,
-        "h": 1600
+        "datei": "projects/quick-blogs-02.webp",
+        "w": 1440,
+        "h": 900
       }
     ]
   },
@@ -185,38 +123,11 @@
     "link": "https://github.com/hashirahmad806/commit-roulette",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gewobag_2023_01.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2023_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2023_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2023_04.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gewobag_2023_05.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "videos/gewobag-2023-poster.jpg",
-        "w": 800,
-        "h": 800,
-        "loop": "videos/gewobag-2023-loop.mp4",
-        "video": "videos/gewobag-2023-voll.mp4",
-        "ton": false
+        "datei": "projects/commit-roulette-01.jpg",
+        "w": 1920,
+        "h": 1080,
+        "orbit": true,
+        "ki": true
       }
     ]
   },
