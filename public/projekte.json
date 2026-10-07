@@ -98,18 +98,16 @@
     "award": "Core Repository · 228 Contributions",
     "fotocredit": null,
     "heureka": false,
-    "groesse": 2.6,
+    "groesse": 2.2,
     "link": "https://github.com/hashirahmad806/MY_own_Portolio",
     "live": "https://my-portfolios-sandy.vercel.app/",
     "bilder": [
       {
-        "datei": "videos/adc-poster.jpg",
-        "w": 1280,
-        "h": 720,
+        "datei": "projects/portfolio-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true,
-        "ki": true,
-        "loop": "videos/adc-loop.mp4",
-        "video": "videos/adc.mp4"
+        "ki": false
       }
     ]
   },
@@ -123,230 +121,84 @@
     "link": "https://github.com/hashirahmad806/commit-roulette",
     "bilder": [
       {
-        "datei": "projects/commit-roulette-01.jpg",
-        "w": 1920,
-        "h": 1080,
+        "datei": "projects/commit-roulette-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true,
         "ki": true
       }
     ]
   },
   {
-    "projekt": "Microservices & WebSockets Realtime Engine",
-    "rolle": "Node.js, Express, Socket.io, Scalable Backends — Hashir Ahmad",
-    "award": "Core Competency: Realtime Systems",
+    "projekt": "LinkedIn Outreach & Automation Engine",
+    "rolle": "Node.js, Headless Browser Automation, Analytics — Hashir Ahmad",
+    "award": "Real-Time Pipeline · Connection Analytics",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/linkedin-automation",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gesco_2013_01.webp",
-        "w": 2048,
-        "h": 2048,
+        "datei": "projects/linkedin-automation-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true,
         "ki": true
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2013_02.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2013_03.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2013_04.webp",
-        "w": 2048,
-        "h": 2048
       }
-    ],
-    "link": "https://github.com/hashirahmad806"
+    ]
   },
   {
-    "projekt": "State Management & CI/CD Automated Pipelines",
-    "rolle": "Redux Toolkit, Zustand, GitHub Actions, Unit Testing — Hashir Ahmad",
-    "award": "Core Competency: DevOps & Testing",
+    "projekt": "Plant Village Deep Learning Classifier",
+    "rolle": "PyTorch, CNN EfficientNet, Computer Vision — Hashir Ahmad",
+    "award": "94.7% Diagnostic Accuracy · Attention Heatmaps",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/Plant_Village_Deep_Learing_Project",
     "bilder": [
       {
-        "datei": "orbit-images-opt/gesco_2011_01.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2011_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2011_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2011_04.webp",
-        "w": 1600,
-        "h": 1600
-      }
-    ],
-    "link": "https://github.com/hashirahmad806"
-  },
-  {
-    "projekt": "Responsive Design & SEO Performance Engine",
-    "rolle": "HTML5, Semantic A11y, Modern CSS, Astro — Hashir Ahmad",
-    "award": "Core Competency: Accessibility & SEO",
-    "fotocredit": null,
-    "heureka": true,
-    "groesse": 1.28,
-    "bilder": [
-      {
-        "datei": "videos/telefonica-2017-poster.jpg",
-        "w": 1600,
-        "h": 1600,
+        "datei": "projects/plant-village-01.webp",
+        "w": 1440,
+        "h": 900,
         "orbit": true,
-        "loop": "videos/telefonica-2017-loop.mp4",
-        "video": "videos/telefonica-2017-voll.mp4",
-        "ton": false
-      },
-      {
-        "datei": "orbit-images-opt/telefonica_2017_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/telefonica_2017_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "videos/telefonica-2017-scroll-poster.jpg",
-        "w": 1280,
-        "h": 788,
-        "loop": "videos/telefonica-2017-scroll-loop.mp4",
-        "video": "videos/telefonica-2017-scroll-voll.mp4",
-        "ton": false
+        "ki": true
       }
-    ],
-    "link": "https://github.com/hashirahmad806"
+    ]
   },
   {
-    "projekt": "Full Stack MERN Architecture Suite",
-    "rolle": "MongoDB, Express, React, Node.js — Hashir Ahmad",
-    "award": "Certified MERN Stack Developer",
+    "projekt": "Next Word Predictor — LSTM NLP Engine",
+    "rolle": "TensorFlow, Keras, Recurrent Neural Networks — Hashir Ahmad",
+    "award": "Real-Time Next-Token Softmax Probabilities",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/Next_Word_Predictor_Using_Lstm_Project",
     "bilder": [
       {
-        "datei": "orbit-images-opt/mlp_2015_01.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/mlp_2015_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/mlp_2015_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/mlp_2015_04.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/mlp_2015_05.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "videos/mlp-2015-poster.jpg",
-        "w": 1600,
-        "h": 1600,
-        "loop": "videos/mlp-2015-loop.mp4",
-        "video": "videos/mlp-2015-voll.mp4",
-        "ton": false
+        "datei": "projects/lstm-predictor-01.webp",
+        "w": 1440,
+        "h": 900,
+        "orbit": true,
+        "ki": true
       }
-    ],
-    "link": "https://github.com/hashirahmad806"
+    ]
   },
   {
-    "projekt": "Meta Certified Frontend & Full Stack Specialist",
-    "rolle": "Hashir Ahmad — 228 Contributions · 42 Public Repositories",
-    "award": "Official Certification",
+    "projekt": "LangChain Agent Orchestrator & RAG Engine",
+    "rolle": "Python, LangChain, Vector Embeddings, LLM Tool Calling — Hashir Ahmad",
+    "award": "Autonomous Multi-Agent Workflow Graphs",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/Lang_Chain_Learning-",
     "bilder": [
       {
-        "datei": "orbit-images-opt/bosch_2015_01.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_00.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "videos/bosch-2015-poster.jpg",
-        "w": 1600,
-        "h": 1600,
-        "loop": "videos/bosch-2015-loop.mp4",
-        "video": "videos/bosch-2015-voll.mp4",
-        "ton": false
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_04.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_05.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_06.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_07.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_08.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_09.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/bosch_2015_mems.webp",
-        "w": 1600,
-        "h": 1600
+        "datei": "projects/langchain-agent-01.webp",
+        "w": 1440,
+        "h": 900,
+        "orbit": true,
+        "ki": true
       }
-    ],
-    "link": "https://github.com/hashirahmad806"
+    ]
   }
 ]

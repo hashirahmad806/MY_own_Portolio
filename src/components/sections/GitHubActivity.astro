@@ -272,6 +272,13 @@
           </div>
           <span class="gh-repo-tag ai">AI Tutor Engine</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://web-projectect-ai-assistant-x8xz.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Web Project AI Assistant live site">
+          <img src="/projects/ai-assistant-01.webp" alt="Web Project AI Assistant — Live UI Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge live">⚡ Live Site ↗</span>
+        </a>
+
         <p class="gh-repo-desc">
           AI Student Assistant platform featuring vision homework analysis, voice conversation mode, study history tracking, and intelligent tutoring dashboard.
         </p>
@@ -303,6 +310,13 @@
           </div>
           <span class="gh-repo-tag client">Client Project</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://triostepdkhyber.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Triostepdekhyaber live site">
+          <img src="/projects/triostep-01.webp" alt="Triostepdekhyaber — Luxury E-Commerce Atelier Live Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge live">⚡ Live Site ↗</span>
+        </a>
+
         <p class="gh-repo-desc">
           Real-world client project for Triostepdekhyaber Atelier: luxury handcrafted leather Chelsea boots e-commerce platform with catalog filters, shopping bag drawer, and edge delivery.
         </p>
@@ -334,6 +348,13 @@
           </div>
           <span class="gh-repo-tag client">Client Project</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://hassanbds.info" target="_blank" rel="noopener noreferrer" aria-label="Open Dr Hassan BDS live site">
+          <img src="/projects/dr-hassan-01.webp" alt="Dr. Muhammad Hassan BDS — Dental Healthcare Portal Live Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge live">⚡ Live Site ↗</span>
+        </a>
+
         <p class="gh-repo-desc">
           Official client healthcare portal for Dr. Muhammad Hassan (BDS): exceptional dental aesthetics, patient consultation booking, service showcase, and modern healthcare web interface.
         </p>
@@ -365,6 +386,13 @@
           </div>
           <span class="gh-repo-tag react">Content Engine</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://quick-blogs-i4xh.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Quick-Blogs live site">
+          <img src="/projects/quick-blogs-01.webp" alt="QuickBlog — High-Speed Publishing Platform Live Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge live">⚡ Live Site ↗</span>
+        </a>
+
         <p class="gh-repo-desc">
           High-velocity modern blogging platform with rapid markdown rendering, responsive typography, category sorting, and instantaneous search indexing.
         </p>
@@ -396,6 +424,13 @@
           </div>
           <span class="gh-repo-tag astro">Astro · WebGL</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://my-portfolios-sandy.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Portfolio live site">
+          <img src="/projects/portfolio-01.webp" alt="MY_own_Portolio — Celestial 3D Orbit Universe Live Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge live">⚡ Live Site ↗</span>
+        </a>
+
         <p class="gh-repo-desc">
           Celestial 3D Orbit Universe portfolio with WebGL 2.5D depth shaders, Keplerian orbital physics, and Lenis inertia.
         </p>
@@ -427,6 +462,13 @@
           </div>
           <span class="gh-repo-tag react">React 19 · Vite</span>
         </div>
+
+        <a class="gh-repo-thumb" href="https://github.com/hashirahmad806/commit-roulette" target="_blank" rel="noopener noreferrer" aria-label="Open commit-roulette code repository">
+          <img src="/projects/commit-roulette-01.webp" alt="Commit Roulette — Live-Coding Platform Visual Preview" loading="lazy" width="480" height="270" />
+          <div class="gh-repo-thumb-glow" aria-hidden="true"></div>
+          <span class="gh-repo-thumb-badge">Interactive UI</span>
+        </a>
+
         <p class="gh-repo-desc">
           Live-coding competition platform with roulette categories, synchronized global countdown, and strict deadline engine.
         </p>
@@ -1407,6 +1449,83 @@
     background: rgba(180, 129, 248, 0.12);
     color: var(--accent);
     border: 1px solid rgba(180, 129, 248, 0.25);
+  }
+
+  /* ── Featured Repository Visual Preview ── */
+  .gh-repo-thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0 14px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gh-repo-thumb:hover {
+    border-color: rgba(180, 129, 248, 0.45);
+    box-shadow: 0 8px 24px rgba(180, 129, 248, 0.2);
+  }
+
+  .gh-repo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  }
+
+  .gh-repo-card:hover .gh-repo-thumb img {
+    transform: scale(1.06);
+    filter: brightness(1.08) contrast(1.02);
+  }
+
+  .gh-repo-thumb-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(13, 13, 17, 0.8) 100%);
+    transition: opacity 0.3s ease;
+  }
+
+  .gh-repo-thumb-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(18, 18, 24, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--fg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  .gh-repo-thumb-badge.live {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #10b981;
+  }
+
+  .gh-repo-thumb:hover .gh-repo-thumb-badge.live {
+    background: rgba(16, 185, 129, 0.3);
+    border-color: #10b981;
+    transform: translateY(-1px);
   }
 
   .gh-repo-desc {
