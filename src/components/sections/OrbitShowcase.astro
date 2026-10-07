@@ -319,6 +319,7 @@
       video?: string;
     }>;
     link?: string;
+    live?: string;
   }
 
   const initOrbitSystem = async () => {
@@ -457,7 +458,12 @@
           <span class="om-karte-title">${cur.projekt}</span>
           <span class="om-karte-role">${cur.rolle}</span>
           ${cur.award ? `<span class="om-karte-award">★ ${cur.award}</span>` : ''}
-          ${cur.link ? `<span class="om-bu-link-zeile"><a class="om-bu-link" href="${cur.link}" target="_blank" rel="noopener">Explore on GitHub &rarr;</a></span>` : ''}
+          ${(cur.live || cur.link) ? `
+            <span class="om-bu-link-zeile">
+              ${cur.live ? `<a class="om-bu-link om-bu-link--live" href="${cur.live}" target="_blank" rel="noopener">⚡ Live Site ↗</a>` : ''}
+              ${cur.link ? `<a class="om-bu-link" href="${cur.link}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}
+            </span>
+          ` : ''}
         `;
       }
     };

@@ -1,11 +1,13 @@
 [
   {
-    "projekt": "Commit Roulette — Live-Coding Platform",
-    "rolle": "React 19, TypeScript, Vite, Tailwind v4 — Hashir Ahmad",
-    "award": "Live Competition App · Real Deadlines",
+    "projekt": "Web Project AI Assistant — AI Student Tutor",
+    "rolle": "React, Vite, AI Vision & Voice Engine — Hashir Ahmad",
+    "award": "AI-Powered Personal Tutor & Assistant",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/Web_Projectect_Ai_Assistant",
+    "live": "https://web-projectect-ai-assistant-x8xz.vercel.app/",
     "bilder": [
       {
         "datei": "orbit-images-opt/gewobag_2021_01.webp",
@@ -36,37 +38,17 @@
         "loop": "videos/gewobag-2021-loop.mp4",
         "video": "videos/gewobag-2021-voll.mp4"
       }
-    ],
-    "link": "https://github.com/hashirahmad806/commit-roulette"
+    ]
   },
   {
-    "projekt": "MY_own_Portolio — Celestial 3D Orbit Universe",
-    "rolle": "Astro, TypeScript, WebGL 2.5D Shaders, Keplerian Physics — Hashir Ahmad",
-    "award": "Core Repository · 228 Contributions",
-    "fotocredit": null,
-    "heureka": false,
-    "groesse": 2.6,
-    "bilder": [
-      {
-        "datei": "videos/adc-poster.jpg",
-        "w": 1280,
-        "h": 720,
-        "orbit": true,
-        "ki": true,
-        "loop": "videos/adc-loop.mp4",
-        "video": "videos/adc.mp4"
-      }
-    ],
-    "link": "https://github.com/hashirahmad806/MY_own_Portolio"
-  },
-  {
-    "projekt": "triostepdkhyber — High Performance Platform",
-    "rolle": "Astro, Tailwind, Responsive Architecture — Hashir Ahmad",
-    "award": "Production Web Architecture",
+    "projekt": "Triostepdekhyaber — Luxury E-Commerce Atelier",
+    "rolle": "Astro v6, Tailwind CSS, Responsive Architecture — Hashir Ahmad",
+    "award": "Real-World Client Project · Luxury Footwear Platform",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
     "link": "https://github.com/hashirahmad806/triostepdkhyber",
+    "live": "https://triostepdkhyber.vercel.app/",
     "bilder": [
       {
         "datei": "orbit-images-opt/gewobag_2022_01.webp",
@@ -97,13 +79,110 @@
     ]
   },
   {
-    "projekt": "Hammad_Portfolio — Minimalist Developer Showcase",
-    "rolle": "Astro, TypeScript, Modern UI/UX — Hashir Ahmad",
-    "award": "Performance Score 100 · Clean Code",
+    "projekt": "Dr. Muhammad Hassan — Dental & Healthcare Portal",
+    "rolle": "MERN Stack, React, Node.js, Express, MongoDB — Hashir Ahmad",
+    "award": "Real-World Client Project for Dr. Muhammad Hassan (BDS)",
     "fotocredit": null,
     "heureka": true,
     "groesse": 1.28,
-    "link": "https://github.com/hashirahmad806/Hammad_Portfolio",
+    "link": "https://github.com/hashirahmad806/Hassan_Web",
+    "live": "https://hassanbds.info",
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gema_virtuos_01.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_03.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_04.webp",
+        "w": 2048,
+        "h": 2048
+      },
+      {
+        "datei": "orbit-images-opt/gema_virtuos_05.webp",
+        "w": 2670,
+        "h": 2670
+      }
+    ]
+  },
+  {
+    "projekt": "QuickBlog — High-Speed Publishing Platform",
+    "rolle": "React, Vite, Markdown Engine, Modern Typography — Hashir Ahmad",
+    "award": "Modern Content Engine & Publishing Platform",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/Quick-Blogs",
+    "live": "https://quick-blogs-i4xh.vercel.app/",
+    "bilder": [
+      {
+        "datei": "orbit-images-opt/gesco_2017_04.webp",
+        "w": 1600,
+        "h": 1600,
+        "orbit": true
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_01.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_02.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_03.webp",
+        "w": 1600,
+        "h": 1600
+      },
+      {
+        "datei": "orbit-images-opt/gesco_2017_05.webp",
+        "w": 1600,
+        "h": 1600
+      }
+    ]
+  },
+  {
+    "projekt": "MY_own_Portolio — Celestial 3D Orbit Universe",
+    "rolle": "Astro, TypeScript, WebGL 2.5D Shaders, Keplerian Physics — Hashir Ahmad",
+    "award": "Core Repository · 228 Contributions",
+    "fotocredit": null,
+    "heureka": false,
+    "groesse": 2.6,
+    "link": "https://github.com/hashirahmad806/MY_own_Portolio",
+    "live": "https://my-portfolios-sandy.vercel.app/",
+    "bilder": [
+      {
+        "datei": "videos/adc-poster.jpg",
+        "w": 1280,
+        "h": 720,
+        "orbit": true,
+        "ki": true,
+        "loop": "videos/adc-loop.mp4",
+        "video": "videos/adc.mp4"
+      }
+    ]
+  },
+  {
+    "projekt": "Commit Roulette — Live-Coding Platform",
+    "rolle": "React 19, TypeScript, Vite, Tailwind v4 — Hashir Ahmad",
+    "award": "Live Competition App · Real Deadlines",
+    "fotocredit": null,
+    "heureka": true,
+    "groesse": 1.28,
+    "link": "https://github.com/hashirahmad806/commit-roulette",
     "bilder": [
       {
         "datei": "orbit-images-opt/gewobag_2023_01.webp",
@@ -140,80 +219,6 @@
         "ton": false
       }
     ]
-  },
-  {
-    "projekt": "Portpolio_hk — Interactive Component System",
-    "rolle": "TypeScript, Modern Component Architecture — Hashir Ahmad",
-    "award": "Interactive Design System",
-    "fotocredit": null,
-    "heureka": true,
-    "groesse": 1.28,
-    "bilder": [
-      {
-        "datei": "orbit-images-opt/gesco_2017_01.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_03.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_04.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/gesco_2017_05.webp",
-        "w": 1600,
-        "h": 1600
-      }
-    ],
-    "link": "https://github.com/hashirahmad806/Portpolio_hk"
-  },
-  {
-    "projekt": "Hassan_Web — Full Stack Client Experience",
-    "rolle": "TypeScript, MERN Stack Architecture — Hashir Ahmad",
-    "award": "Client Platform · End-to-End",
-    "fotocredit": null,
-    "heureka": true,
-    "groesse": 1.28,
-    "bilder": [
-      {
-        "datei": "orbit-images-opt/gema_virtuos_01.webp",
-        "w": 1600,
-        "h": 1600,
-        "orbit": true
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_02.webp",
-        "w": 1600,
-        "h": 1600
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_03.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_04.webp",
-        "w": 2048,
-        "h": 2048
-      },
-      {
-        "datei": "orbit-images-opt/gema_virtuos_05.webp",
-        "w": 2670,
-        "h": 2670
-      }
-    ],
-    "link": "https://github.com/hashirahmad806/Hassan_Web"
   },
   {
     "projekt": "Microservices & WebSockets Realtime Engine",

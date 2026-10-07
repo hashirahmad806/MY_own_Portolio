@@ -158,6 +158,7 @@ export function initOrbitEngine(){
           heureka: p.heureka !== false,
 
           link: text(p.link),
+          live: text(p.live),
 
           platzhalter: p.platzhalter === true,
 
@@ -183,7 +184,16 @@ export function initOrbitEngine(){
             '<span class="om-bu-zeile">' + namenSetzen(p.rolle) + '</span>';
     if (p.award)      h += '<span class="om-bu-zeile">' + namenSetzen(p.award) + '</span>';
     if (p.fotocredit) h += '<span class="om-bu-credit">' + namenSetzen(p.fotocredit) + '</span>';
-    if (p.link)       h += '<span class="om-bu-link-zeile"><a class="om-bu-link" href="' + maskieren(p.link) + '" target="_blank" rel="noopener">Explore on GitHub &rarr;</a></span>';
+    if (p.live || p.link) {
+      h += '<span class="om-bu-link-zeile">';
+      if (p.live) {
+        h += '<a class="om-bu-link om-bu-link--live" href="' + maskieren(p.live) + '" target="_blank" rel="noopener">⚡ Live Site ↗</a>';
+      }
+      if (p.link) {
+        h += '<a class="om-bu-link" href="' + maskieren(p.link) + '" target="_blank" rel="noopener">GitHub ↗</a>';
+      }
+      h += '</span>';
+    }
     return h;
   }
 
@@ -266,7 +276,7 @@ export function initOrbitEngine(){
     var filme = was.ohneFilm ? null : filmeBauen(rahmen, bild, was.filmSammler);
 
     var film = filme ? (filme.eigen || filme.erster) : null;
-    var leiste = was.ohneLeiste ? null : tastenBauen(rahmen, film, bild.link);
+    var leiste = was.ohneLeiste ? null : tastenBauen(rahmen, film, bild.link, bild.live);
 
     if (figur) figur.appendChild(rahmen);
     var bu = null;
@@ -335,8 +345,8 @@ export function initOrbitEngine(){
       'C19 18.7202 19 17.8802 19 16.2V14"/>');
   }
 
-  function tastenBauen(hinein, satz, link){
-    if (!satz && !link) return null;
+  function tastenBauen(hinein, satz, link, live){
+    if (!satz && !link && !live) return null;
     var leiste = document.createElement('div');
     leiste.className = 'om-film-tasten';
     function taste(klasse, zeichen, tun){
@@ -361,6 +371,17 @@ export function initOrbitEngine(){
         satz.tasteTon = taste('om-film-taste--film is-stumm', zeichenTon(),
                               function(){ filmTon(satz); });
       }
+    }
+    if (live){
+      var aLive = document.createElement('a');
+      aLive.className = 'om-film-taste om-film-taste--live';
+      aLive.href = live;
+      aLive.target = '_blank';
+      aLive.rel = 'noopener';
+      aLive.setAttribute('aria-label', 'Open live site');
+      aLive.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>';
+      aLive.addEventListener('click', function(e){ e.stopPropagation(); });
+      leiste.appendChild(aLive);
     }
     if (link){
 
@@ -1377,7 +1398,7 @@ export function initOrbitEngine(){
     if (!filmTasten) return;
     filmTasten.innerHTML = '';
 
-    var leiste = tastenBauen(filmTasten, orbitTon, c && c.daten && c.daten.link);
+    var leiste = tastenBauen(filmTasten, orbitTon, c && c.daten && c.daten.link, c && c.daten && c.daten.live);
     if (leiste) leiste.classList.add('is-da');
     if (orbitTon) filmSatzLauf(orbitTon, c.film.classList.contains('is-dia'));
   }

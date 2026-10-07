@@ -38,6 +38,18 @@
 
 ---
 
+## 🚀 Featured Client & Production Projects
+
+| Project | Category | Tech Stack | Live Demo | Source Code |
+| :--- | :--- | :--- | :--- | :--- |
+| **Web Project AI Assistant** | AI Student Tutor & Assistant | React, Vite, AI Vision & Voice | [web-projectect-ai-assistant.vercel.app](https://web-projectect-ai-assistant-x8xz.vercel.app/) | [`hashirahmad806/Web_Projectect_Ai_Assistant`](https://github.com/hashirahmad806/Web_Projectect_Ai_Assistant) |
+| **Triostepdekhyaber Atelier** | Real-World Client E-Commerce | Astro v6, Tailwind CSS | [triostepdkhyber.vercel.app](https://triostepdkhyber.vercel.app/) | [`hashirahmad806/triostepdkhyber`](https://github.com/hashirahmad806/triostepdkhyber) |
+| **Dr. Muhammad Hassan BDS** | Client Dental Healthcare Portal | MERN Stack, React, Node | [hassanbds.info](https://hassanbds.info) | [`hashirahmad806/Hassan_Web`](https://github.com/hashirahmad806/Hassan_Web) |
+| **Quick Blogs Engine** | Publishing & Content Platform | React, Vite, Markdown Engine | [quick-blogs-i4xh.vercel.app](https://quick-blogs-i4xh.vercel.app/) | [`hashirahmad806/Quick-Blogs`](https://github.com/hashirahmad806/Quick-Blogs) |
+| **Celestial Orbit Portfolio** | Interactive 3D WebGL Portfolio | Astro 7, TypeScript, WebGL | [my-portfolios-sandy.vercel.app](https://my-portfolios-sandy.vercel.app/) | [`hashirahmad806/MY_own_Portolio`](https://github.com/hashirahmad806/MY_own_Portolio) |
+
+---
+
 ## 🛠️ Tech Stack & Architecture
 
 | Layer | Technology | Purpose |

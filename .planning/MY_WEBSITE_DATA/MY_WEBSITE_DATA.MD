@@ -15,11 +15,12 @@ Hashir Ahmad | MERN Stack Developer
     ├── Contribution GridLast 365 Days
     ├── Most Used Languages
     ├── Recent Push Activity
-    └── Latest Repositories##### MY\own\Portolio
-        ├── triostepdkhyber
-        ├── Portpolio\hk
-        ├── Hammad\Portfolio
-        ├── Hassan\Web
+    └── Featured Systems & Repositories
+        ├── Web_Projectect_Ai_Assistant (Live: web-projectect-ai-assistant-x8xz.vercel.app)
+        ├── triostepdkhyber [Client Project] (Live: triostepdkhyber.vercel.app)
+        ├── Hassan_Web [Client Project - Dr Hassan BDS] (Live: hassanbds.info)
+        ├── Quick-Blogs (Live: quick-blogs-i4xh.vercel.app)
+        ├── MY_own_Portolio (Live: my-portfolios-sandy.vercel.app)
         └── commit-roulette
 ```
 
@@ -125,62 +126,44 @@ Updated project
 
 SHA: bb8766a View Commit →
 
-#### Latest Repositories##### MY\_own\_Portolio
+#### Featured Systems & Repositories
 
-Astro
+##### Web_Projectect_Ai_Assistant
+- **Role/Type**: AI Student Assistant & Personal Tutor
+- **Tech Stack**: React, Vite, AI Vision & Voice Engine
+- **Live URL**: [https://web-projectect-ai-assistant-x8xz.vercel.app/](https://web-projectect-ai-assistant-x8xz.vercel.app/)
+- **Code Repository**: [https://github.com/hashirahmad806/Web_Projectect_Ai_Assistant](https://github.com/hashirahmad806/Web_Projectect_Ai_Assistant)
+- **Description**: Personal AI tutor and student assistant. Ask questions, upload homework images for analysis, use voice conversation mode, and track full study history.
 
-No description provided.
+##### triostepdkhyber (Real-World Client Project)
+- **Role/Type**: Luxury Footwear E-Commerce Atelier (Client Work)
+- **Tech Stack**: Astro v6, Tailwind CSS, Responsive Architecture
+- **Live URL**: [https://triostepdkhyber.vercel.app/](https://triostepdkhyber.vercel.app/)
+- **Code Repository**: [https://github.com/hashirahmad806/triostepdkhyber](https://github.com/hashirahmad806/triostepdkhyber)
+- **Description**: Real-world client project for Triostepdekhyaber Atelier: luxury handcrafted leather Chelsea boots e-commerce platform with catalog filters, shopping bag drawer, wishlist, and edge delivery.
 
-00
+##### Hassan_Web (Client Project for Dr. Muhammad Hassan BDS)
+- **Role/Type**: Dental Healthcare Clinic & Practice Portal (Client Work)
+- **Tech Stack**: MERN Stack (React, Node.js, Express, MongoDB)
+- **Live URL**: [https://hassanbds.info](https://hassanbds.info)
+- **Code Repository**: [https://github.com/hashirahmad806/Hassan_Web](https://github.com/hashirahmad806/Hassan_Web)
+- **Description**: Official client clinical website for Dr. Muhammad Hassan (BDS), featuring elevated dental aesthetics, service catalog, patient consultation booking, and modern healthcare UX.
 
-Updated 10/6/2026
+##### Quick-Blogs
+- **Role/Type**: High-Velocity Blog & Content Publishing Engine
+- **Tech Stack**: React, Vite, Markdown Engine, Modern Typography
+- **Live URL**: [https://quick-blogs-i4xh.vercel.app/](https://quick-blogs-i4xh.vercel.app/)
+- **Code Repository**: [https://github.com/hashirahmad806/Quick-Blogs](https://github.com/hashirahmad806/Quick-Blogs)
+- **Description**: Modern high-speed blogging platform engineered for swift article publishing, clean responsive typography, category sorting, and instant search indexing.
 
-##### triostepdkhyber
-
-Astro
-
-No description provided.
-
-00
-
-Updated 10/6/2026
-
-##### Portpolio\_hk
-
-TypeScript
-
-No description provided.
-
-00
-
-Updated 9/30/2026
-
-##### Hammad\_Portfolio
-
-Astro
-
-No description provided.
-
-00
-
-Updated 9/29/2026
-
-##### Hassan\_Web
-
-TypeScript
-
-No description provided.
-
-00
-
-Updated 9/27/2026
+##### MY_own_Portolio
+- **Role/Type**: Celestial 3D Orbit Universe Portfolio
+- **Tech Stack**: Astro, TypeScript, WebGL 2.5D Shaders, Keplerian Physics
+- **Live URL**: [https://my-portfolios-sandy.vercel.app/](https://my-portfolios-sandy.vercel.app/)
+- **Code Repository**: [https://github.com/hashirahmad806/MY_own_Portolio](https://github.com/hashirahmad806/MY_own_Portolio)
 
 ##### commit-roulette
-
-Plain
-
-Real bugs. Real deadlines. One room, one clock. Frontend for Commit Roulette — live-coding competition with a category roulette, a shared clock, and PRD scoring. React 19 + TypeScript + Vite + Tailwind v4, running entirely on mock data.
-
-00
-
-Updated 9/26/2026
+- **Role/Type**: Live-Coding Competition Platform
+- **Tech Stack**: React 19, TypeScript, Vite, Tailwind v4
+- **Code Repository**: [https://github.com/hashirahmad806/commit-roulette](https://github.com/hashirahmad806/commit-roulette)
+- **Description**: Real bugs. Real deadlines. Live-coding competition with a category roulette, a shared clock, and PRD scoring. React 19 + TypeScript + Vite + Tailwind v4.
