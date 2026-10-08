@@ -1,11 +1,11 @@
 ---
-gsd_state_version: "1.0"
+gsd_state_version: "1.1"
 current_phase: 6
-current_phase_name: Conversion, SEO & Launch Verification
+current_phase_name: GitHub Cockpit & Authentic Project Showcase
 status: complete
-last_updated: "2026-10-06T13:42:00.000Z"
-last_activity: 2026-10-06
-last_activity_desc: Phase 6 completed — 100% replica of gravity-design.de fully built and verified
+last_updated: "2026-10-08T05:45:00.000Z"
+last_activity: 2026-10-08
+last_activity_desc: GitHub Telemetry Cockpit, Authentic Project Screenshots, 16:9 Thumbnail Cards, and Mobile Verification Completed
 state_head: HEAD
 progress:
   total_phases: 6
@@ -15,36 +15,31 @@ progress:
   percent: 100
 ---
 
-# Project State
+# Project State — Hashir Ahmad Portfolio
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-10-06)
+See: `.planning/PROJECT.md` and `.planning/HANDOFF.md` (updated 2026-10-08)
 
-**Core value:** Deliver an unforgettable, visually stunning, and butter-smooth digital experience that reflects Gorden Koschel's 35-year creative caliber and positions gravity as an elite, high-agency partner for forward-looking brands.
-**Current focus:** Project Complete (All 6 Phases Delivered)
+**Core Value:** Premium, celestial 3D Orbit Universe portfolio delivering an unforgettable digital experience that highlights Hashir Ahmad's MERN Stack and full-stack engineering caliber.
+**Current Focus:** Production Ready & Verified (GitHub Cockpit + Authentic Project Visuals Active)
 
 ## Current Position
 
-Phase: 6 of 6 (Conversion, SEO & Launch Verification)
-Plan: All 6 plans complete
-Status: Project complete — 100% authentic gravity replica operational
-Last activity: 2026-10-06 — Phase 6 completed and end-to-end launch verified
+Phase: All Phases Complete + GitHub Cockpit & Project Ingestion Integrated
+Status: Production ready — fully verified on mobile (390×844) and desktop (1440×900)
+Last Activity: 2026-10-08 — Project screenshots captured from live sites, 16:9 thumbnail preview cards added to `GitHubActivity.astro`, and `GITHUB_ISSUES_BACKLOG.md` updated.
 
 Progress: [██████████] 100%
 
 ## Accumulated Learnings & Decisions
 
-- Tech Stack: Astro 7 + Lenis 1.1 + GSAP 3.12 + Vanilla CSS3.
-- Typography: Authentic proprietary `MG12` typeface family (Regular, Medium, Bold) installed locally with optical tracking tokens.
-- Asset Ingestion: Mirrored 100% of authentic case study media (49 WebP images, 14 video loops, `projekte.json`, `awards-ausstellung.jpg`).
-- Hero Stage & Physics: Newtonian inverse-square collapse canvas simulation, fluid kinetic typography, and 3D card tilt.
-- Manifesto & 3D Orbit: Full-bleed lilac section with circular clip-path, quadratic Bezier transition curve (`#boldCurve`), rotating orbital ring (`.mf-ring-bahn`), and masked slide-ups (`.mf-hoch`). Interactive 3D perspective universe (`perspective: 1400px; transform-style: preserve-3d;`) with drag momentum and `#galerieSchalter` view toggle.
-- Hybrid AI: Local models guarantee and interactive Constellation Plexus SVG with rotating tracks and magnetic center portal (`.om-mitte`).
-- Bio & Awards Vault: 3-column sticky layout (`.om-bio-grid`), character scrub wave illumination (`FENSTER = 14`, `.z.is-hot`), sticky key tracking (`.is-current`), animated underline `.om-unterstrich`, exhibition image parallax (`--bild-weg`), and masked invitation reveal (`#bioEinladung`).
-- Contact Stage & Footer: Parabolic ball trajectory flight (`bahn(g)`), rotating orbital rings on hover, difference-blend fixed footer with vertical tick animation, and Lenis smooth back-to-top.
-- Build Status: Clean static generation verified in ~1.64s with zero errors.
+- **Package Manager & Runtime**: Bun v1.4.2 provides ultra-fast static builds (~1.39s - 2.81s) and dependency execution.
+- **Project Assets**: All 15 visual assets are in `public/projects/`. Live captures (`ai-assistant-01`, `triostep-01`, `dr-hassan-01`, `quick-blogs-01`, `portfolio-01`) reflect real production deployments.
+- **Zero Placeholder Policy**: All legacy German corporate template imagery in `public/projekte.json` was purged and replaced with Hashir's authentic client projects and open-source systems.
+- **Cockpit Telemetry**: `src/components/sections/GitHubActivity.astro` renders live REST telemetry, 52-week matrix, language radar, commit feed, terminal, and 16:9 hoverable project cards.
+- **Responsiveness**: Fully responsive down to 360px mobile viewports with clean 1-column layout.
 
-## Blockers & Risks
+## Next Steps When Resuming
 
-- None. All roadmap phases complete. Ready for production deployment!
+See `.planning/HANDOFF.md` and `GITHUB_ISSUES_BACKLOG.md` (Issues 5–8 ready to implement).
