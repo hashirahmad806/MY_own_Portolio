@@ -62,6 +62,17 @@ This document catalogs all implemented milestones and upcoming work as ready-to-
 
 ---
 
+### Issue 5.1: [RESOLVED] Mobile Showcase Responsiveness & Zero-CPU Animation Throttling (`PERF-MOBILE`)
+**Labels:** `completed`, `mobile`, `performance`, `responsive`
+- **Mobile Filmstrip Visibility Restored**: Fixed missing `@media (max-width: 640px)` display rules in `Manifesto.astro` that caused the entire mobile featured project showcase (`.om-streifen`, `.om-streifen-pfeile`) to render as `display: none`.
+- **Responsive Card Geometry**: Configured `--strf-bild: min(42vh, 320px)` and dynamic gallery card scaling (`kurz <= 640 ? 0.84 : G_GROSS`) so cards fill mobile phone viewports with room for captions and CTA buttons.
+- **Touch-Scrolling & Gestures**: Added `-webkit-overflow-scrolling: touch` and responsive previous/next navigation buttons.
+- **Zero-CPU Idle Throttle for 3D Orbit Engine**: Added RAF lifecycle management (`startLoop` / `stopLoop`) in `orbit-engine.js` so `requestAnimationFrame` is cancelled when the orbit section is out of viewport or document is hidden.
+- **Zero-CPU Idle Throttle for Hero Keplerian Engine**: Added resting state and viewport boundary checks in `hero-stage.ts` to pause the physics calculation and SVG attribute updates when satellites settle or scroll offscreen.
+- **Tab Background Throttling**: Wired `visibilitychange` listeners across all animation controllers to pause when tabs are backgrounded.
+
+---
+
 ## 🚀 Upcoming Backlog Issues (Ready for Next Sessions)
 
 ### Issue 6: 3D Orbit Universe WebGL Custom Shader Enhancements (`ORBIT-SHADERS`)
