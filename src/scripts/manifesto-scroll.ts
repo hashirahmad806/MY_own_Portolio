@@ -256,6 +256,7 @@ export function initManifestoScroll(): void {
       const hintIn = clamp01((progress - HINT_FADE_START) / (1 - HINT_FADE_START));
       const hintOut = 1 - clamp01((col - 0.18) / 0.12);
       orbitHint.style.opacity = String(hintIn * hintOut);
+      document.body.classList.toggle('is-orbit-bereit', (hintIn * hintOut) > 0.5);
     }
   }
 

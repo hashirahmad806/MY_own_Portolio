@@ -208,6 +208,7 @@ export function initOrbitEngine(){
   var worldFront = document.getElementById('orbitWorldFront');
   var scrollWrap = document.getElementById('boldScroll');
   var maskSection = document.getElementById('boldSection');
+  var orbitHintEl = document.getElementById('orbitHint');
   if (!layerBack || !layerFront || !worldBack || !worldFront || !scrollWrap) return;
 
   function maskeOffen(){
@@ -1372,7 +1373,10 @@ export function initOrbitEngine(){
     dragging = (focused === null);
     lastPX = e.clientX; lastPY = e.clientY;
     velY = 0; velX = 0;
-    if (dragging) { layerFront.classList.add('is-dragging'); }
+    if (dragging) {
+      layerFront.classList.add('is-dragging');
+      if (orbitHintEl) orbitHintEl.style.opacity = '0';
+    }
     layerFront.setPointerCapture(e.pointerId);
   });
   layerFront.addEventListener('pointermove', function(e){
@@ -1468,6 +1472,7 @@ export function initOrbitEngine(){
     var m = Math.hypot(velY, velX);
     if (m > 0.0001){ autoDirY = velY / m; autoDirX = velX / m; }
   }
+
   layerFront.addEventListener('pointerup', endDrag);
   layerFront.addEventListener('pointercancel', endDrag);
   layerFront.addEventListener('pointerleave', endDrag);
@@ -1890,6 +1895,8 @@ export function initOrbitEngine(){
         if (galerie.style.transform !== t) galerie.style.transform = t;
       }
     }
+
+
   }
   window.addEventListener('scroll', checkActive, { passive: true });
   window.addEventListener('resize', checkActive);
