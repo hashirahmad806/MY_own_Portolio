@@ -199,13 +199,23 @@
       window.addEventListener('resize', measureOrbit);
 
       const ORBIT_PERIOD_SEC = 3.4;
+      let headerRaf: number | null = null;
       function frame(now: number): void {
+        if (document.hidden) {
+          headerRaf = null;
+          return;
+        }
         const theta = ((now / 1000) / ORBIT_PERIOD_SEC) * 2 * Math.PI;
         dot?.setAttribute('cx', String(midX + radius * Math.cos(theta)));
         dot?.setAttribute('cy', String(midY + radius * Math.sin(theta)));
-        requestAnimationFrame(frame);
+        headerRaf = requestAnimationFrame(frame);
       }
-      requestAnimationFrame(frame);
+      headerRaf = requestAnimationFrame(frame);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !headerRaf) {
+          headerRaf = requestAnimationFrame(frame);
+        }
+      });
     }
 
     // ── 2. Awwwards Nominee Ribbon Scroll Fade ──

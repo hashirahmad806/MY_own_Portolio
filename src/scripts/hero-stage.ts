@@ -435,6 +435,7 @@ export function initHeroStage(): void {
 
   function onStageClick(clientX: number, clientY: number): void {
     if (!stage) return;
+    startHeroLoop();
     const rect = stage.getBoundingClientRect();
     const rawX = (clientX - rect.left - offX) / scale;
     const rawY = (clientY - rect.top - offY) / scale;
@@ -515,6 +516,7 @@ export function initHeroStage(): void {
   function dockLogo(): void {
     if (docked || transitioning || !elSvg) return;
     transitioning = true;
+    startHeroLoop();
     docked = true;
     document.documentElement.classList.add('logo-gedockt');
 
@@ -571,6 +573,7 @@ export function initHeroStage(): void {
   function undockLogo(): void {
     if (!docked || transitioning || !elSvg) return;
     transitioning = true;
+    startHeroLoop();
     docked = false;
     document.documentElement.classList.remove('logo-gedockt');
 
@@ -621,6 +624,7 @@ export function initHeroStage(): void {
 
   function checkScrollState(): void {
     const y = window.scrollY;
+    if (y < window.innerHeight * 1.3 || transitioning) { startHeroLoop(); }
     if (transitioning && !docked && elSvg) { elSvg.style.top = (-y) + 'px'; }
     if (!docked && !transitioning && y > DOCK_THRESHOLD) { dockLogo(); }
     else if (docked && !transitioning && y < UNDOCK_THRESHOLD) { undockLogo(); }
@@ -645,6 +649,26 @@ export function initHeroStage(): void {
 
   let revealed = false;
   let lastFrame = performance.now();
+  let heroRaf: number | null = null;
+
+  function startHeroLoop(): void {
+    if (!heroRaf && !document.hidden) {
+      lastFrame = performance.now();
+      heroRaf = requestAnimationFrame(frame);
+    }
+  }
+
+  function stopHeroLoop(): void {
+    if (heroRaf) {
+      cancelAnimationFrame(heroRaf);
+      heroRaf = null;
+    }
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopHeroLoop();
+    else if (window.scrollY < window.innerHeight * 1.3 || transitioning) startHeroLoop();
+  });
 
   function frame(now: number): void {
     const dt = Math.min(0.033, (now - lastFrame) / 1000);
@@ -694,7 +718,15 @@ export function initHeroStage(): void {
       elAttractor.setAttribute('opacity', String(Math.min(0.9, env * 1.8)));
     }
 
-    requestAnimationFrame(frame);
+    const isResting = small.resting && ring.resting && env === 0 && !transitioning;
+    const stageOffscreen = window.scrollY > window.innerHeight * 1.3 && !transitioning;
+
+    if ((isResting && (docked || stageOffscreen)) || document.hidden) {
+      heroRaf = null;
+      return;
+    }
+
+    heroRaf = requestAnimationFrame(frame);
   }
 
   elMass.setAttribute('cx', String(CX));
@@ -703,7 +735,7 @@ export function initHeroStage(): void {
   stepSat(ring, 0.016, 0, 0, 0);
   resolveCoreDistance(small);
   resolveCoreDistance(ring);
-  requestAnimationFrame(frame);
+  startHeroLoop();
 
   // ── Reveal Sequence on Image Load ──
   let gezeigt = false;

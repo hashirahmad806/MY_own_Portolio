@@ -614,6 +614,8 @@
     overflow: auto hidden;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    --strf-bild: min(42vh, 320px);
   }
 
   :global(.om-streifen::-webkit-scrollbar) { display: none; }
@@ -975,6 +977,15 @@
   }
 
   @media (max-width: 640px) {
+    :global(.om-streifen) {
+      display: block;
+    }
+    :global(.om-streifen-pfeile) {
+      display: flex;
+    }
+    .orbit-hint {
+      display: none !important;
+    }
     .om-bold-scroll {
       height: 348vh;
     }

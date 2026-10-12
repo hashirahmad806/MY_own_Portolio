@@ -1521,8 +1521,9 @@ export function initOrbitEngine(){
 
   function galerieMasse(){
     var kurz = Math.min(window.innerWidth, window.innerHeight);
+    var dynGross = kurz <= 640 ? 0.84 : G_GROSS;
     gPosten.forEach(function(p){
-      var f = kurz * G_GROSS / Math.max(p.w, p.h);
+      var f = kurz * dynGross / Math.max(p.w, p.h);
       p.gb = p.w * f; p.gh = p.h * f;
       p.rahmen.style.width = Math.round(p.gb) + 'px';
       p.rahmen.style.height = Math.round(p.gh) + 'px';
@@ -1868,12 +1869,27 @@ export function initOrbitEngine(){
   var nurReihe = window.matchMedia &&
                  window.matchMedia('(pointer: coarse)').matches;
 
+  var orbitRaf = null;
+  function startLoop(){
+    if (!orbitRaf && active && !document.hidden){
+      lastFrameT = null;
+      orbitRaf = requestAnimationFrame(frame);
+    }
+  }
+  function stopLoop(){
+    if (orbitRaf){
+      cancelAnimationFrame(orbitRaf);
+      orbitRaf = null;
+    }
+  }
+
   function checkActive(){
     var rect = scrollWrap.getBoundingClientRect();
     var computing = rect.bottom > -200 && rect.top < WARM_UP;
     var visible = rect.top <= 0 && rect.bottom > -200;
     if (computing !== active){
       active = computing;
+      if (active) startLoop(); else stopLoop();
     }
 
     var vis = (visible && !galerieAn && !flug) ? 'visible' : 'hidden';
@@ -1900,6 +1916,10 @@ export function initOrbitEngine(){
   }
   window.addEventListener('scroll', checkActive, { passive: true });
   window.addEventListener('resize', checkActive);
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) stopLoop();
+    else if (active) startLoop();
+  });
   checkActive();
 
   if (nurReihe) galerieSchalten(true);
@@ -2156,8 +2176,12 @@ export function initOrbitEngine(){
       }
     }
 
-    requestAnimationFrame(frame);
+    if (active && !document.hidden){
+      orbitRaf = requestAnimationFrame(frame);
+    } else {
+      orbitRaf = null;
+    }
   }
-  requestAnimationFrame(frame);
+  checkActive();
   }
 }
