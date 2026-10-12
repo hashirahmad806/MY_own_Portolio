@@ -53,17 +53,16 @@ This document catalogs all implemented milestones and upcoming work as ready-to-
 
 ---
 
-## 🚀 Upcoming Backlog Issues (Ready for Next Sessions)
-
-### Issue 5: Stage SVG Orbital Parametric Telemetry Layer (`HERO-STAGE`)
-**Labels:** `ui`, `motion`, `priority: medium`
-#### Description
-Integrate the 1920×1080 stage SVG coordinate calculation engine from Script 1 of gravity-design.de into `src/components/sections/Hero.astro`.
-#### Tasks
-- [ ] Connect parametric SVG coordinate displays (`#guide-small`, `#guide-ring`, `#coord-small`, `#coord-ring`) showing live numerical coordinates (`945, 592 a 0.4 1003, 575 a 1.5`).
-- [ ] Implement responsive auto-scaling for mobile and ultra-wide displays.
+### Issue 5: [RESOLVED] Stage SVG Orbital Parametric Telemetry Layer (`HERO-STAGE`)
+**Labels:** `completed`, `ui`, `motion`
+- Connected parametric SVG coordinate displays (`#guide-small`, `#guide-ring`, `#coord-small`, `#coord-ring`) showing live numerical coordinates (`coord-small-xy`, `coord-small-a`).
+- Implemented adaptive 1920×1080 stage coordinate engine with fluid scroll docking to brand header.
+- Added Orbit Universe film controls styling (`.om-film-tasten`, `.om-film-taste`) with play/pause/mute toggles.
+- Integrated automatic drag-hint dismissal and center portal direct anchor navigation to `#bio`.
 
 ---
+
+## 🚀 Upcoming Backlog Issues (Ready for Next Sessions)
 
 ### Issue 6: 3D Orbit Universe WebGL Custom Shader Enhancements (`ORBIT-SHADERS`)
 **Labels:** `webgl`, `shaders`, `3d`
