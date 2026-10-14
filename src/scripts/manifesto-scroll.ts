@@ -46,8 +46,8 @@ export function initManifestoScroll(): void {
   }
 
   // ── 2. Manifesto Line Word-Mask Preparation ──
-  const mfEl = document.querySelector('.om-manifesto');
-  const mfSchmal = window.matchMedia ? matchMedia('(max-width: 640px)') : null;
+  const mfEl = document.querySelector<HTMLElement>('.om-manifesto');
+  const mfSchmal = typeof window.matchMedia === 'function' ? window.matchMedia('(max-width: 640px)') : null;
   if (mfEl) {
     let nr = 0;
     const spans = mfEl.querySelectorAll('.mf-line > span');
@@ -148,30 +148,65 @@ export function initManifestoScroll(): void {
   const RING_VERZUG = 0.10;
   const RING_KLEIN = 0.62;
 
+  // Static theme colours: resolve once, never per scroll frame.
+  const ACCENT_RGB = accentRGB();
+  const FG_RGB = fgRGB();
+
+  // Write caches — skip a style write when its value is unchanged so a still
+  // frame performs zero style invalidation.
+  const rowState = mfRows.map(() => ({ t: '', o: '' }));
+  let lastRingY = '', lastRingS = '', lastPunktS = '', lastBg = '', lastClip = '', lastBlur = '';
+  let lastHint = -1;
+  let lastRawProgress = 0;
+  let lastThemeBrand: boolean | null = null;
+  let lastThemeMass: boolean | null = null;
+  let lastThemeNav: boolean | null = null;
+
+  function punktAufFarbe(cx: number, cy: number, secRect: DOMRect, curveRect: DOMRect | null, r: number): boolean {
+    if (curveRect && cx > curveRect.left && cx < curveRect.right && cy > curveRect.top && cy < curveRect.bottom) return true;
+    if (cy > secRect.top && cy < secRect.bottom) {
+      const d = Math.hypot(cx - (secRect.left + secRect.width / 2), cy - (secRect.top + secRect.height / 2));
+      if (d < r) return true;
+    }
+    return false;
+  }
+
+  function overAccent(rc: DOMRect | null, secRect: DOMRect, curveRect: DOMRect | null, r: number): boolean {
+    if (!rc || (!rc.width && !rc.height)) return false;
+    return punktAufFarbe((rc.left + rc.right) / 2, (rc.top + rc.bottom) / 2, secRect, curveRect, r);
+  }
+
   function updateBoldMask(): void {
     if (!boldScroll || !boldSection) return;
+
+    // ── Read phase: gather every layout value before writing any style, so a
+    // single scroll frame costs one reflow instead of several forced ones. ──
     const rect = boldScroll.getBoundingClientRect();
     const vh = window.innerHeight;
+    const secRect = boldSection.getBoundingClientRect();
+    const curveRect = elCurve ? elCurve.getBoundingClientRect() : null;
+    const brandRect = elBrandMark ? elBrandMark.getBoundingClientRect() : null;
+    const massRect = elMassMark ? elMassMark.getBoundingClientRect() : null;
+    const navRect = elNav ? elNav.getBoundingClientRect() : null;
+
     const reserve = rect.height - vh;
     const rawProgress = reserve > 0 ? clamp01(-rect.top / reserve) : (rect.top <= 0 ? 1 : 0);
-
+    lastRawProgress = rawProgress;
     const progress = clamp01((rawProgress - MASK_START_AT) / (MASK_DONE_AT - MASK_START_AT));
 
     const ringStrecke = vh + MASK_START_AT * Math.max(0, reserve);
     const ringT = ringStrecke > 0 ? clamp01((vh - rect.top) / ringStrecke) : 1;
     const ringE = 1 - Math.pow(1 - ringT, 3);
-    boldSection.style.setProperty('--ring-y', ((1 - ringE) * RING_WEG * vh).toFixed(1) + 'px');
 
     const ringU = clamp01(1 - progress / RING_SCHWUND);
     const punktU = clamp01(1 - Math.max(0, progress - RING_VERZUG) / RING_SCHWUND);
     const wachsen = RING_KLEIN + (1 - RING_KLEIN) * ringE;
-    boldSection.style.setProperty('--ring-s', (Math.pow(ringU, 1.3) * wachsen).toFixed(4));
-    boldSection.style.setProperty('--punkt-s', (Math.pow(punktU, 1.3) * wachsen).toFixed(4));
 
     const maxR = Math.hypot(window.innerWidth, vh) / 2 * 1.05;
     let r = maxR + (MASK_MIN_R - maxR) * progress;
 
     const col = collapseAmount(rawProgress);
+    let bg = '';
     if (col > 0) {
       if (col < FLASH_PEAK) {
         const up = clamp01((col - FLASH_START) / (FLASH_PEAK - FLASH_START));
@@ -185,108 +220,135 @@ export function initManifestoScroll(): void {
       }
 
       const white = clamp01((col - FLASH_START) / (FLASH_PEAK - FLASH_START));
-      const rgb = accentRGB();
-      let rr = rgb[0] + (255 - rgb[0]) * white;
-      let gg = rgb[1] + (255 - rgb[1]) * white;
-      let bb = rgb[2] + (255 - rgb[2]) * white;
+      let rr = ACCENT_RGB[0] + (255 - ACCENT_RGB[0]) * white;
+      let gg = ACCENT_RGB[1] + (255 - ACCENT_RGB[1]) * white;
+      let bb = ACCENT_RGB[2] + (255 - ACCENT_RGB[2]) * white;
 
       if (col > FLASH_PEAK) {
         const toFg = clamp01((col - FLASH_PEAK) / (EXPLODE_START - FLASH_PEAK));
-        const fg = fgRGB();
-        rr += (fg[0] - rr) * toFg;
-        gg += (fg[1] - gg) * toFg;
-        bb += (fg[2] - bb) * toFg;
+        rr += (FG_RGB[0] - rr) * toFg;
+        gg += (FG_RGB[1] - gg) * toFg;
+        bb += (FG_RGB[2] - bb) * toFg;
       }
-      boldSection.style.backgroundColor = `rgb(${Math.round(rr)},${Math.round(gg)},${Math.round(bb)})`;
-      boldSection.classList.add('is-collapsing');
-    } else if (boldSection.classList.contains('is-collapsing')) {
+      bg = `rgb(${Math.round(rr)},${Math.round(gg)},${Math.round(bb)})`;
+    }
+
+    // ── Derived values ──
+    const growT = clamp01((progress - TEXT_GROW_START) / (1 - TEXT_GROW_START));
+    const eased = growT * growT * growT;
+    const scaleVal = 1 + eased * TEXT_GROW_MAX;
+    const finalFadeT = clamp01((progress - TEXT_FINAL_FADE_START) / (1 - TEXT_FINAL_FADE_START));
+    const textOpacity = 1 - finalFadeT;
+    const textBlur = eased < 0.6 ? eased * TEXT_BLUR_MAX : 0;
+
+    const hintIn = clamp01((progress - HINT_FADE_START) / (1 - HINT_FADE_START));
+    const hintOut = 1 - clamp01((col - 0.18) / 0.12);
+    const hintOpacity = hintIn * hintOut;
+
+    const brandOn = overAccent(brandRect, secRect, curveRect, r);
+    const massOn = overAccent(massRect, secRect, curveRect, r);
+    const navOn = overAccent(navRect, secRect, curveRect, r);
+
+    // ── Write phase: mutate only what actually changed. ──
+    const ringY = ((1 - ringE) * RING_WEG * vh).toFixed(1) + 'px';
+    if (ringY !== lastRingY) { boldSection.style.setProperty('--ring-y', ringY); lastRingY = ringY; }
+
+    const ringS = (Math.pow(ringU, 1.3) * wachsen).toFixed(4);
+    if (ringS !== lastRingS) { boldSection.style.setProperty('--ring-s', ringS); lastRingS = ringS; }
+
+    const punktS = (Math.pow(punktU, 1.3) * wachsen).toFixed(4);
+    if (punktS !== lastPunktS) { boldSection.style.setProperty('--punkt-s', punktS); lastPunktS = punktS; }
+
+    const clip = `circle(${Math.max(0, r)}px at 50% 50%)`;
+    if (clip !== lastClip) { boldSection.style.clipPath = clip; lastClip = clip; }
+
+    if (col > 0) {
+      if (bg !== lastBg) { boldSection.style.backgroundColor = bg; lastBg = bg; }
+      if (!boldSection.classList.contains('is-collapsing')) boldSection.classList.add('is-collapsing');
+    } else if (lastBg !== '' || boldSection.classList.contains('is-collapsing')) {
       boldSection.style.backgroundColor = '';
+      lastBg = '';
       boldSection.classList.remove('is-collapsing');
     }
 
-    const clip = `circle(${Math.max(0, r)}px at 50% 50%)`;
-    boldSection.style.clipPath = clip;
-
-    // Theme color inversion triggers
-    const secRect = boldSection.getBoundingClientRect();
-    const curveRect = elCurve ? elCurve.getBoundingClientRect() : null;
-
-    function punktAufFarbe(cx: number, cy: number): boolean {
-      if (curveRect && cx > curveRect.left && cx < curveRect.right && cy > curveRect.top && cy < curveRect.bottom) return true;
-      if (cy > secRect.top && cy < secRect.bottom) {
-        const d = Math.hypot(cx - (secRect.left + secRect.width / 2), cy - (secRect.top + secRect.height / 2));
-        if (d < r) return true;
-      }
-      return false;
-    }
-
-    function overAccent(rc: DOMRect | null): boolean {
-      if (!rc || (!rc.width && !rc.height)) return false;
-      return punktAufFarbe((rc.left + rc.right) / 2, (rc.top + rc.bottom) / 2);
-    }
-
+    // Theme colour inversion (only touched when the state actually flips).
     const root = document.documentElement;
-    root.classList.toggle('brand-on-accent', overAccent(elBrandMark ? elBrandMark.getBoundingClientRect() : null));
-    root.classList.toggle('mass-on-accent', overAccent(elMassMark ? elMassMark.getBoundingClientRect() : null));
-    root.classList.toggle('nav-on-accent', overAccent(elNav ? elNav.getBoundingClientRect() : null));
+    if (brandOn !== lastThemeBrand) { root.classList.toggle('brand-on-accent', brandOn); lastThemeBrand = brandOn; }
+    if (massOn !== lastThemeMass) { root.classList.toggle('mass-on-accent', massOn); lastThemeMass = massOn; }
+    if (navOn !== lastThemeNav) { root.classList.toggle('nav-on-accent', navOn); lastThemeNav = navOn; }
 
     // 3D Perspective Text Expansion
-    const growT = clamp01((progress - TEXT_GROW_START) / (1 - TEXT_GROW_START));
-    const eased = growT * growT * growT;
-    const scaleVal = (1 + eased * TEXT_GROW_MAX).toFixed(3);
-    const finalFadeT = clamp01((progress - TEXT_FINAL_FADE_START) / (1 - TEXT_FINAL_FADE_START));
-    const textOpacity = 1 - finalFadeT;
-    const textBlur = (eased * TEXT_BLUR_MAX).toFixed(2);
-
+    const scaleStr = scaleVal.toFixed(3);
+    const opacityStr = String(textOpacity);
     for (let i = 0; i < mfRows.length; i++) {
       const row = mfRows[i];
       if (!row) continue;
-      const d = (i - mfRowCenter) / mfRowCenter;
+      const st = rowState[i];
+      const d = mfRowCenter > 0 ? (i - mfRowCenter) / mfRowCenter : 0;
       const tilt = (d * TEXT_BULGE_DEG * eased).toFixed(2);
-      const spread = (mfRowOffsets[i] * (parseFloat(scaleVal) - 1)).toFixed(1);
-      row.style.transform = `translateY(${spread}px) scale(${scaleVal}) rotateX(${tilt}deg)`;
-      row.style.opacity = String(textOpacity);
-      row.style.filter = parseFloat(textBlur) > 0.05 ? `blur(${textBlur}px)` : 'none';
+      const spread = (mfRowOffsets[i] * (scaleVal - 1)).toFixed(1);
+      const t = `translateY(${spread}px) scale(${scaleStr}) rotateX(${tilt}deg)`;
+      if (t !== st.t) { row.style.transform = t; st.t = t; }
+      if (opacityStr !== st.o) { row.style.opacity = opacityStr; st.o = opacityStr; }
+    }
+
+    // A single blur pass over the whole stack is far cheaper than one
+    // composited filter layer per animated row.
+    if (mfEl) {
+      const blur = textBlur > 0.05 ? `blur(${textBlur.toFixed(2)}px)` : '';
+      if (blur !== lastBlur) { mfEl.style.filter = blur; lastBlur = blur; }
     }
 
     const mfAusloeser = (mfSchmal && mfSchmal.matches) ? 1.25 : 0.6;
-    if (mfEl && rect.top < vh * mfAusloeser) mfEl.classList.add('is-auf');
+    if (mfEl && rect.top < vh * mfAusloeser && !mfEl.classList.contains('is-auf')) {
+      mfEl.classList.add('is-auf');
+    }
 
     if (orbitHint) {
-      const hintIn = clamp01((progress - HINT_FADE_START) / (1 - HINT_FADE_START));
-      const hintOut = 1 - clamp01((col - 0.18) / 0.12);
-      orbitHint.style.opacity = String(hintIn * hintOut);
-      document.body.classList.toggle('is-orbit-bereit', (hintIn * hintOut) > 0.5);
+      if (hintOpacity !== lastHint) { orbitHint.style.opacity = String(hintOpacity); lastHint = hintOpacity; }
+      const ready = hintOpacity > 0.5;
+      if (ready !== document.body.classList.contains('is-orbit-bereit')) {
+        document.body.classList.toggle('is-orbit-bereit', ready);
+      }
     }
   }
-
-  window.addEventListener('scroll', updateBoldMask, { passive: true });
-  window.addEventListener('resize', updateBoldMask);
-  updateBoldMask();
 
   // ── 5. Strikethrough & Underline Scrub ──
   const strich = document.querySelector('.mf-strike');
   const unter = document.querySelector('.om-bold-underline');
   function pruefenStrich(): void {
-    if (!boldScroll) return;
-    const rect = boldScroll.getBoundingClientRect();
-    const reserve = rect.height - window.innerHeight;
-    const p = reserve > 0 ? Math.max(0, Math.min(1, -rect.top / reserve)) : 0;
+    // Reuses the progress computed by updateBoldMask in the same frame instead
+    // of measuring the section a second time.
+    const p = lastRawProgress;
     if (strich) strich.classList.toggle('is-struck', p >= 0.008);
     if (unter) unter.classList.toggle('is-struck', p >= 0.038);
   }
-  window.addEventListener('scroll', pruefenStrich, { passive: true });
-  window.addEventListener('resize', pruefenStrich);
+
+  // ── Single frame-coalesced driver ──
+  // Every scroll-driven update runs from one requestAnimationFrame tick. The
+  // page previously ran the mask maths twice per frame (native scroll plus the
+  // Lenis scroll stream) with interleaved reads and writes.
+  let frameQueued = false;
+  function queueFrame(): void {
+    if (frameQueued) return;
+    frameQueued = true;
+    requestAnimationFrame(() => {
+      frameQueued = false;
+      updateBoldMask();
+      pruefenStrich();
+    });
+  }
+
+  window.addEventListener('scroll', queueFrame, { passive: true });
+  window.addEventListener('resize', queueFrame);
+  updateBoldMask();
   pruefenStrich();
 
-  // Sync directly with Lenis smooth virtual scroll stream
+  // Sync with the Lenis smooth virtual scroll stream (same coalesced frame).
   const hookLenis = () => {
     const l = (window as any).lenis;
     if (l) {
-      l.on('scroll', () => {
-        updateBoldMask();
-        pruefenStrich();
-      });
+      l.on('scroll', queueFrame);
     } else {
       setTimeout(hookLenis, 50);
     }
@@ -352,7 +414,11 @@ export function initManifestoScroll(): void {
         const stark = Math.min(1, Math.hypot(x, y) / (KRAFT * NAHE / 4));
         punkt.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(1 + stark * 0.12).toFixed(3)})`;
 
-        if (dabei || Math.hypot(x, y) > 0.3) {
+        // Park the loop once the pointer is away from the ring and the dot has
+        // settled, so a per-frame layout read no longer runs while the cursor
+        // sits anywhere else on the page.
+        const zeigerNah = dabei && Math.hypot(zeigerX - ruheX, zeigerY - ruheY) < NAHE * 1.4;
+        if (zeigerNah || Math.hypot(x, y) > 0.3) {
           requestAnimationFrame(bild);
         } else {
           x = 0; y = 0; punkt.style.transform = '';

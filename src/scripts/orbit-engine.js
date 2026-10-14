@@ -4,6 +4,21 @@ export function initOrbitEngine(){
   if (window.__orbitEngineInitialized) return;
   window.__orbitEngineInitialized = true;
 
+  // The engine builds exactly one layout mode: the <=640px branch permanently
+  // removes the orbit layers, while #streifen is hidden by CSS above 640px.
+  // If a touch device rotates across that boundary, neither layer is viable
+  // (blank section), so rebuild the page in the correct mode.
+  var schmalJetzt = window.innerWidth <= 640;
+  var grobZeiger = window.matchMedia &&
+                   window.matchMedia('(pointer: coarse)').matches;
+  if (grobZeiger){
+    var beiModuswechsel = function(){
+      if ((window.innerWidth <= 640) !== schmalJetzt) window.location.reload();
+    };
+    window.addEventListener('orientationchange', beiModuswechsel);
+    window.addEventListener('resize', beiModuswechsel);
+  }
+
   var AUFL_HELL = 0.83;
   var AUFL_DUNKEL = 0.005;
   var auflWert = {};
@@ -1914,8 +1929,16 @@ export function initOrbitEngine(){
 
 
   }
-  window.addEventListener('scroll', checkActive, { passive: true });
-  window.addEventListener('resize', checkActive);
+  // Coalesce scroll/resize work into a single animation frame so the engine
+  // never runs its visibility maths more than once per rendered frame.
+  var checkQueued = false;
+  function queueCheck(){
+    if (checkQueued) return;
+    checkQueued = true;
+    requestAnimationFrame(function(){ checkQueued = false; checkActive(); });
+  }
+  window.addEventListener('scroll', queueCheck, { passive: true });
+  window.addEventListener('resize', queueCheck);
   document.addEventListener('visibilitychange', function(){
     if (document.hidden) stopLoop();
     else if (active) startLoop();
@@ -2043,15 +2066,24 @@ export function initOrbitEngine(){
 
       var fe = easeInOutCubic(focusAmt);
 
+      var mm = /circle\(([\d.]+)px/.exec(maskSection ? maskSection.style.clipPath : '');
+      var maskR = mm ? parseFloat(mm[1]) : Infinity;
+
       hoverCard = (pointerInside && !dragging && !focused && focusAmt < 0.01)
         ? cardAt(pointerX, pointerY) : null;
 
-      if (hoverCard && !hoverCard.inFront &&
-          ueberManifest(pointerX, pointerY)) hoverCard = null;
+      // A hovered card sitting behind the open accent mask must not be
+      // interactive. Reuses the clip radius already parsed above instead of
+      // re-reading computed styles on every frame.
+      if (hoverCard && !hoverCard.inFront && maskR > MANIFEST_DECKT_AB) {
+        var mRect = maskSection.getBoundingClientRect();
+        if (mRect.bottom > 0 && mRect.top < window.innerHeight &&
+            Math.hypot(pointerX - (mRect.left + mRect.width / 2),
+                       pointerY - (mRect.top + mRect.height / 2)) <= maskR) {
+          hoverCard = null;
+        }
+      }
       layerFront.classList.toggle('is-hover', !!hoverCard);
-
-      var mm = /circle\(([\d.]+)px/.exec(maskSection ? maskSection.style.clipPath : '');
-      var maskR = mm ? parseFloat(mm[1]) : Infinity;
 
       var frontErlaubt = maskR < Math.min(window.innerWidth, window.innerHeight) / 2;
 

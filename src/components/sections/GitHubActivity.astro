@@ -1426,6 +1426,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
   }
 
   .gh-repo-folder-icon {
@@ -1435,6 +1436,10 @@
 
   .gh-repo-name {
     margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 13px;
     font-weight: 700;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -1442,6 +1447,7 @@
   }
 
   .gh-repo-tag {
+    flex-shrink: 0;
     font-size: 9px;
     font-weight: 800;
     padding: 2px 7px;
@@ -1763,6 +1769,7 @@
 
   .gh-commit-bubble {
     flex-grow: 1;
+    min-width: 0;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
@@ -1785,6 +1792,11 @@
   }
 
   .gh-bubble-repo {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: 700;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     color: var(--fg);
@@ -1833,8 +1845,10 @@
 
   .gh-bubble-foot {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 6px 12px;
     font-size: 11px;
     padding-top: 6px;
     border-top: 1px solid rgba(255, 255, 255, 0.04);
